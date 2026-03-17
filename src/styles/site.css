@@ -605,10 +605,12 @@ body::before {
     radial-gradient(circle at 18% 28%, rgba(204, 255, 0, 0.06), transparent 24%),
     radial-gradient(circle at 78% 64%, rgba(8, 145, 178, 0.04), transparent 26%),
     linear-gradient(125deg, rgba(255, 255, 255, 0.018), transparent 48%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' fill='none'%3E%3Cg stroke='%23686868' stroke-width='1' stroke-opacity='.3'%3E%3Cpath d='M118 110C132 50 234 21 309 63C363 93 354 170 280 183C191 198 107 163 118 110Z'/%3E%3Cpath d='M150 111C161 67 235 48 288 77C326 98 319 149 269 164C206 183 143 151 150 111Z'/%3E%3Cpath d='M177 112C186 80 238 67 274 87C301 102 296 139 261 149C216 163 171 143 177 112Z'/%3E%3Cpath d='M204 113C211 91 242 83 263 95C279 104 277 129 257 136C230 147 199 134 204 113Z'/%3E%3Cpath d='M426 127C456 88 552 76 630 88C701 98 770 118 770 145C770 171 696 186 616 186C531 186 445 171 426 127Z'/%3E%3Cpath d='M465 129C488 102 556 95 620 102C680 109 731 124 731 145C731 166 676 176 613 176C545 176 480 166 465 129Z'/%3E%3Cpath d='M505 132C521 114 565 109 609 113C654 117 693 127 693 144C693 160 652 167 609 167C563 167 521 161 505 132Z'/%3E%3Cpath d='M872 132C887 83 953 58 1017 69C1068 79 1108 116 1098 149C1088 178 1038 194 979 191C910 187 857 172 872 132Z'/%3E%3Cpath d='M901 131C913 95 959 76 1004 84C1041 92 1072 117 1065 142C1058 164 1023 175 981 173C932 171 891 159 901 131Z'/%3E%3Cpath d='M927 131C935 107 968 94 999 100C1025 105 1044 120 1039 138C1034 153 1010 160 981 159C946 157 921 149 927 131Z'/%3E%3Cpath d='M949 130C954 115 975 107 995 111C1011 114 1023 123 1020 134C1017 145 1001 149 982 148C959 147 945 141 949 130Z'/%3E%3C/g%3E%3C/svg%3E"),
+    url('/formula-topography-fixed.svg'),
     rgba(255, 255, 255, 0.02);
   background-size: auto, auto, auto, cover, auto;
-  background-position: center, center, center, center, center;
+  background-position: center, center, center, center center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+  background-attachment: scroll, scroll, scroll, fixed, scroll;
 }
 
 .prose .katex {
@@ -709,5 +711,9 @@ body::before {
   .site-nav .btn {
     min-width: 0;
     width: 100%;
+  }
+
+  .prose .katex-display {
+    background-attachment: scroll, scroll, scroll, scroll, scroll;
   }
 }

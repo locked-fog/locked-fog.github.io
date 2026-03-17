@@ -15,10 +15,11 @@ const featured = posts[0];
   <section class="hero-grid">
     <article class="panel panel--classified-4 panel--bracket-tl panel--bracket-br hero-panel">
       <span class="micro-label micro-label--accent">最新文章</span>
-      <h2>写文章就够了，其余交给构建流程。</h2>
+      <h2>{featured ? featured.data.title : '写文章就够了，其余交给构建流程。'}</h2>
       <p>
-        这套博客已经接入 Markdown 内容流、LaTeX 公式渲染、AIRIS 风格阅读排版，以及 GitHub Pages
-        的自动发布工作流。
+        {featured
+          ? featured.data.description
+          : '这套博客已经接入 Markdown 内容流、LaTeX 公式渲染、AIRIS 风格阅读排版，以及 GitHub Pages 的自动发布工作流。'}
       </p>
 
       <div class="hero-panel__actions">

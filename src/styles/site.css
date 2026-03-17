@@ -552,9 +552,26 @@ body::before {
   line-height: 1.72;
 }
 
+.prose .astro-code {
+  counter-reset: code-line;
+}
+
 .prose .astro-code .line {
-  display: block;
+  display: flex;
+  align-items: baseline;
   min-height: 1.72em;
+}
+
+.prose .astro-code .line::before {
+  counter-increment: code-line;
+  content: counter(code-line);
+  flex: 0 0 2.5rem;
+  margin-right: 0.95rem;
+  padding-right: 0.75rem;
+  border-right: 1px solid rgba(204, 255, 0, 0.14);
+  color: var(--color-text-tertiary);
+  text-align: right;
+  user-select: none;
 }
 
 .prose code:not(pre code) {

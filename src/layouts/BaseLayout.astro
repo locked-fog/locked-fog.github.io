@@ -107,6 +107,13 @@ const documentTitle = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
           const code = pre.querySelector('code');
           if (!code) continue;
 
+          for (const node of Array.from(code.childNodes)) {
+            if (node.nodeType !== Node.TEXT_NODE) continue;
+            if (!node.textContent?.trim()) {
+              code.removeChild(node);
+            }
+          }
+
           const wrapper = document.createElement('div');
           wrapper.className = 'code-block';
           pre.parentNode?.insertBefore(wrapper, pre);

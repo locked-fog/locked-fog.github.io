@@ -318,23 +318,6 @@ body::before {
   font-size: 1.05rem;
 }
 
-.about-checklist {
-  display: grid;
-  gap: 16px;
-}
-
-.about-checklist__list {
-  margin: 0;
-  padding-left: 1.4rem;
-  display: grid;
-  gap: 12px;
-}
-
-.about-checklist__list li {
-  color: var(--color-text-secondary);
-  line-height: 1.7;
-}
-
 .hero-side {
   display: grid;
   align-content: start;

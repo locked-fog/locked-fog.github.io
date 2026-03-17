@@ -1,14 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const profileTags = ['算法', '数学', '技术写作', 'Markdown / LaTeX', '静态站点'];
-
 const profileFields = [
   ['公开称呼', 'Locked_Fog'],
-  ['一句简介', '待补充'],
-  ['主要关注', '待补充'],
+  ['一句简介', 'ex-OIer，大学生，小众游戏哥，动漫婆罗门，天坑专业就读者，AI远视急先锋'],
   ['所在地区 / 时区', '中国 / UTC+8'],
-  ['联系方式', 'GitHub Issues / 待补充邮箱'],
+  ['联系方式', 'Aboxyxy@outlook.com / 20243466@stu.cqu.edu.cn'],
+  ['公开背景', '重庆大学环境与生态学院 2024 级本科生'],
 ];
 
 const siteFacts = [
@@ -17,16 +15,6 @@ const siteFacts = [
   ['站点框架', 'Astro'],
   ['发布方式', 'GitHub Pages'],
   ['开源协议', 'MIT License'],
-];
-
-const requiredInfo = [
-  '你希望公开显示的中文名、英文名，或固定署名方式。',
-  '一句最能代表你的简介，例如研究方向、职业身份或写作主题。',
-  '希望长期出现在“关于我”里的关键词，建议 3 到 6 个。',
-  '是否公开联系方式，例如邮箱、X、知乎、Bilibili、Telegram 等。',
-  '是否展示教育背景、机构、城市、工作方向；如果不想公开，可以留空。',
-  '你希望这个博客强调什么，例如算法题解、研究笔记、工程记录、随笔。',
-  '如果有个人理念或写作原则，可以给我 2 到 4 句原话，我会整理进页面。',
 ];
 ---
 
@@ -39,21 +27,21 @@ const requiredInfo = [
       <span class="micro-label micro-label--accent">ABOUT OPERATOR</span>
       <h2>关于我</h2>
       <p class="about-overview__lead">
-        这里将作为你的正式个人说明页，回答“你是谁、你在写什么、为什么值得持续关注”。目前站点已经有了结构，
-        但个人内容还只填入了最小可用信息。
+        这里记录的是公开身份、个人背景与写作入口。它不追求完整履历，而是给第一次进入这个站点的人一个足够明确的认识。
       </p>
 
       <div class="prose">
         <p>
-          现在已知的是：你以 <strong>Locked_Fog</strong> 作为公开身份，主要通过
-          <strong> Markdown / LaTeX </strong>写作，站点倾向于承载技术性、结构化、可长期归档的内容。
-          如果你愿意补充更明确的个人定位，我可以把这里收束成一段真正可信、专业的简介，而不是占位文本。
+          我以 <strong>Locked_Fog</strong> 作为公开署名。曾经是 OI 竞赛参与者，现在是大学生，也长期关注小众游戏、
+          动画与技术写作。这个博客主要承担“长期归档”的角色，所以比起即时表达，我更倾向于把内容整理成能反复阅读的文章。
+        </p>
+
+        <p>
+          目前就读于 <strong>重庆大学环境与生态学院</strong>，英文表述为
+          <strong> College of Environment and Ecology, Chongqing University</strong>。
+          虽然专业本身未必天然贴近这里的全部内容，但也正因为这种错位，这个站点才更像是一个个人观察、学习与表达的稳定出口。
         </p>
       </div>
-
-      <ul class="tag-list" aria-label="个人关键词">
-        {profileTags.map((tag) => <li>{tag}</li>)}
-      </ul>
     </article>
 
     <aside class="panel panel--classified-2 about-side">
@@ -108,18 +96,6 @@ const requiredInfo = [
           </li>
         ))}
       </ul>
-    </article>
-
-    <article class="panel panel--classified-2 prose-panel about-checklist">
-      <span class="micro-label">NEXT INPUT</span>
-      <h2>为了把“关于我”写完整，你还需要告诉我这些</h2>
-      <div class="prose">
-        <p>你不需要一次性给很多资料。把下面这些内容按你愿意公开的程度告诉我，我就可以把页面改成正式版本。</p>
-      </div>
-
-      <ol class="about-checklist__list">
-        {requiredInfo.map((item) => <li>{item}</li>)}
-      </ol>
     </article>
   </section>
 </BaseLayout>

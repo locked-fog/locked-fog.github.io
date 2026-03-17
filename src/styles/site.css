@@ -213,6 +213,10 @@ body::before {
   justify-content: center;
 }
 
+.btn--primary {
+  color: var(--color-text-inverse) !important;
+}
+
 .site-nav a,
 .post-card__link,
 .toc-list a {
@@ -480,6 +484,8 @@ body::before {
 .prose .astro-code code,
 .prose .astro-code span {
   clip-path: none !important;
+  font-family: var(--font-family-mono) !important;
+  font-variant-ligatures: none;
 }
 
 .prose pre,

@@ -190,10 +190,11 @@ body::before {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle, rgba(204, 255, 0, 0.16) 1.4px, transparent 1.6px) 0 0 / 14px 14px,
-    linear-gradient(90deg, rgba(204, 255, 0, 0.1), transparent 46%);
-  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.35) 58%, transparent);
-  opacity: 0.5;
+    radial-gradient(circle, rgba(204, 255, 0, 0.32) 1.2px, transparent 1.9px) 0 0 / 16px 16px,
+    radial-gradient(circle, rgba(204, 255, 0, 0.14) 1px, transparent 1.7px) 8px 8px / 16px 16px,
+    linear-gradient(90deg, rgba(204, 255, 0, 0.12), rgba(204, 255, 0, 0.04) 42%, transparent 68%);
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.98), rgba(0, 0, 0, 0.78) 44%, rgba(0, 0, 0, 0.2) 68%, transparent 82%);
+  opacity: 0.82;
 }
 
 .site-header > * {

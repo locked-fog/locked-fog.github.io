@@ -549,7 +549,7 @@ body::before {
   padding: 0;
   background: transparent !important;
   color: inherit;
-  line-height: 1.72;
+  line-height: 1.48;
 }
 
 .prose .astro-code {
@@ -559,7 +559,7 @@ body::before {
 .prose .astro-code .line {
   display: flex;
   align-items: baseline;
-  min-height: 1.72em;
+  min-height: 1.48em;
 }
 
 .prose .astro-code .line::before {

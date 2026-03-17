@@ -36,9 +36,50 @@ body::before {
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(204, 255, 0, 0.12), transparent 6px) left 2rem top 0 / 6px 100% no-repeat,
     linear-gradient(0deg, rgba(255, 255, 255, 0.05), transparent 160px) left bottom / 100% 220px no-repeat;
   opacity: 0.9;
+}
+
+.site-background::before {
+  content: '';
+  position: absolute;
+  top: 32px;
+  bottom: 32px;
+  left: 2rem;
+  width: 6px;
+  background:
+    linear-gradient(180deg, rgba(204, 255, 0, 0.26), rgba(204, 255, 0, 0.08)),
+    repeating-linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.32) 0,
+      rgba(10, 10, 10, 0.32) 10px,
+      transparent 10px,
+      transparent 22px
+    );
+  box-shadow: inset 0 0 0 1px rgba(204, 255, 0, 0.16);
+  opacity: 0.68;
+}
+
+.site-background::after {
+  content: '';
+  position: absolute;
+  top: 124px;
+  bottom: 124px;
+  left: calc(2rem - 11px);
+  width: 28px;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0,
+      transparent 14px,
+      rgba(204, 255, 0, 0.22) 14px,
+      rgba(204, 255, 0, 0.22) 15px,
+      transparent 15px,
+      transparent 44px
+    );
+  background-size: 100% 44px;
+  background-repeat: repeat-y;
+  opacity: 0.42;
 }
 
 .site-frame {
@@ -72,25 +113,6 @@ body::before {
     rgba(15, 15, 15, 0.92);
   clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
   overflow: hidden;
-}
-
-.site-rail__inner::before,
-.site-rail__inner::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 42px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
-}
-
-.site-rail__inner::before {
-  top: 14px;
-}
-
-.site-rail__inner::after {
-  bottom: 14px;
 }
 
 .site-rail__label {

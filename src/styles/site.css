@@ -36,7 +36,15 @@ body::before {
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(0deg, rgba(255, 255, 255, 0.05), transparent 160px) left bottom / 100% 220px no-repeat;
+    linear-gradient(0deg, rgba(255, 255, 255, 0.05), transparent 160px) left bottom / 100% 220px no-repeat,
+    url('/page-topography-fixed.svg') center center / cover no-repeat fixed;
+  mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.14) 0%,
+    rgba(0, 0, 0, 0.22) 34%,
+    rgba(0, 0, 0, 0.5) 72%,
+    rgba(0, 0, 0, 0.88) 100%
+  );
   opacity: 0.9;
 }
 
@@ -602,15 +610,19 @@ body::before {
   overflow-x: auto;
   border: 1px solid rgba(204, 255, 0, 0.15);
   background:
-    radial-gradient(circle at 18% 28%, rgba(204, 255, 0, 0.06), transparent 24%),
-    radial-gradient(circle at 78% 64%, rgba(8, 145, 178, 0.04), transparent 26%),
-    linear-gradient(125deg, rgba(255, 255, 255, 0.018), transparent 48%),
-    url('/formula-topography-fixed.svg'),
+    repeating-linear-gradient(
+      135deg,
+      rgba(204, 255, 0, 0.05) 0,
+      rgba(204, 255, 0, 0.05) 1px,
+      transparent 1px,
+      transparent 10px
+    ),
+    linear-gradient(180deg, rgba(204, 255, 0, 0.04), transparent 2.4rem),
     rgba(255, 255, 255, 0.02);
-  background-size: auto, auto, auto, cover, auto;
-  background-position: center, center, center, center center, center;
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
-  background-attachment: scroll, scroll, scroll, fixed, scroll;
+  background-size: auto, auto, auto;
+  background-position: center, center, center;
+  background-repeat: repeat, no-repeat, repeat;
+  background-attachment: scroll, scroll, scroll;
 }
 
 .prose .katex {
@@ -714,6 +726,6 @@ body::before {
   }
 
   .prose .katex-display {
-    background-attachment: scroll, scroll, scroll, scroll, scroll;
+    background-attachment: scroll, scroll, scroll;
   }
 }

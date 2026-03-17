@@ -10,18 +10,18 @@ from scipy.ndimage import gaussian_filter
 matplotlib.use("Agg")
 
 
-DEFAULT_OUTPUT = Path(__file__).resolve().parents[1] / "public" / "formula-topography-fixed.svg"
+DEFAULT_OUTPUT = Path(__file__).resolve().parents[1] / "public" / "page-topography-fixed.svg"
 
 
 @dataclass(frozen=True)
 class ContourConfig:
     output: Path
-    seed: int = 17
+    seed: int = 23
     grid_width: int = 480
     grid_height: int = 270
-    levels: int = 28
-    line_width: float = 1.15
-    alpha: float = 0.30
+    levels: int = 16
+    line_width: float = 1.6
+    alpha: float = 0.10
     color: str = "#686868"
     smooth_sigma: float = 1.2
     noise_scale: float = 1.0
@@ -33,15 +33,15 @@ class ContourConfig:
 
 def parse_args() -> ContourConfig:
     parser = argparse.ArgumentParser(
-        description="Generate a topographic contour SVG for the blog formula background."
+        description="Generate a topographic contour SVG for the blog page background."
     )
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
-    parser.add_argument("--seed", type=int, default=17)
+    parser.add_argument("--seed", type=int, default=23)
     parser.add_argument("--grid-width", type=int, default=480)
     parser.add_argument("--grid-height", type=int, default=270)
-    parser.add_argument("--levels", type=int, default=28)
-    parser.add_argument("--line-width", type=float, default=1.15)
-    parser.add_argument("--alpha", type=float, default=0.30)
+    parser.add_argument("--levels", type=int, default=16)
+    parser.add_argument("--line-width", type=float, default=1.6)
+    parser.add_argument("--alpha", type=float, default=0.10)
     parser.add_argument("--color", default="#686868")
     parser.add_argument("--smooth-sigma", type=float, default=1.2)
     parser.add_argument(

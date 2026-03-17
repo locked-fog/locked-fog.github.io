@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ClassificationBar from '../components/ClassificationBar.astro';
 
 const profileFields = [
   ['公开称呼', 'Locked_Fog'],
@@ -22,24 +23,44 @@ const siteFacts = [
   pageTitle="关于"
   pageDescription="关于 Locked_Fog，以及这个博客的写作方式、技术栈与维护原则。"
 >
+  <section class="panel panel--classified-5 panel--bracket-tl panel--bracket-br about-classification">
+    <div class="about-classification__meta">
+      <span class="micro-label micro-label--accent">CLASSIFICATION CARD</span>
+      <ClassificationBar level={5} horizontal size="sm" />
+      <div class="about-classification__level">
+        <span>LEVEL 5</span>
+        <strong>PERSONAL SIGNAL</strong>
+      </div>
+    </div>
+
+    <div class="about-classification__main">
+      <p class="about-classification__eyebrow">LOCKED FOG PERSONAL ARCHIVE</p>
+      <h2>LOCKED_FOG</h2>
+      <p class="about-classification__note">
+        不是个人主页，也不是履历页。这里只是一个把想长期留下来的东西慢慢写下来、慢慢堆起来的地方。
+      </p>
+    </div>
+  </section>
+
   <section class="about-grid">
     <article class="panel panel--classified-4 panel--bracket-tl panel--bracket-br prose-panel about-overview">
       <span class="micro-label micro-label--accent">ABOUT OPERATOR</span>
       <h2>关于我</h2>
       <p class="about-overview__lead">
-        这里记录的是公开身份、个人背景与写作入口。它不追求完整履历，而是给第一次进入这个站点的人一个足够明确的认识。
+        这里不是把人包装得很完整的地方，只是让第一次进来的人大概知道：这个博客是谁写的，为什么会写成这个样子。
       </p>
 
       <div class="prose">
         <p>
-          我以 <strong>Locked_Fog</strong> 作为公开署名。曾经是 OI 竞赛参与者，现在是大学生，也长期关注小众游戏、
-          动画与技术写作。这个博客主要承担“长期归档”的角色，所以比起即时表达，我更倾向于把内容整理成能反复阅读的文章。
+          我用 <strong>Locked_Fog</strong> 这个名字写东西。以前是 OIer，现在是大学生，平时也看小众游戏、动画，
+          对技术写作和 AI 这些东西一直有兴趣。很多会被别处快速刷过去的想法，我更愿意留在这里，写成之后还能再回来看的东西。
         </p>
 
         <p>
           目前就读于 <strong>重庆大学环境与生态学院</strong>，英文表述为
           <strong> College of Environment and Ecology, Chongqing University</strong>。
-          虽然专业本身未必天然贴近这里的全部内容，但也正因为这种错位，这个站点才更像是一个个人观察、学习与表达的稳定出口。
+          专业和这里的内容并不总是完全同路，但也正因为有这点错位，这个博客才更像一个自己的角落:
+          可以放题解、放笔记、放一些偏门兴趣，也可以放暂时还说不太清、但想先留下来的东西。
         </p>
       </div>
     </article>

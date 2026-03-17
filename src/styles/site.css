@@ -270,6 +270,83 @@ body::before {
   gap: 24px;
 }
 
+.about-classification {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
+  gap: 24px;
+  align-items: stretch;
+  padding: 24px 28px;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(204, 255, 0, 0.1), transparent 22%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0)),
+    var(--color-panel);
+}
+
+.about-classification__meta,
+.about-classification__main {
+  display: grid;
+  gap: 14px;
+}
+
+.about-classification__meta {
+  align-content: space-between;
+  min-height: 100%;
+}
+
+.about-classification__level {
+  display: grid;
+  gap: 6px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font-family-mono);
+  text-transform: uppercase;
+}
+
+.about-classification__level span {
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-wider);
+}
+
+.about-classification__level strong {
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.about-classification__main {
+  position: relative;
+  align-content: center;
+  min-height: 180px;
+  padding-left: 24px;
+  border-left: 1px solid var(--color-border);
+}
+
+.about-classification__eyebrow {
+  margin: 0;
+  color: var(--color-text-tertiary);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+}
+
+.about-classification__main h2 {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  letter-spacing: 0.14em;
+}
+
+.about-classification__note {
+  margin: 0;
+  max-width: 56ch;
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
 .hero-panel,
 .prose-panel,
 .article-panel {
@@ -795,9 +872,18 @@ body::before {
 @media (max-width: 980px) {
   .site-frame,
   .hero-grid,
+  .about-classification,
   .about-grid,
   .article-grid {
     grid-template-columns: 1fr;
+  }
+
+  .about-classification__main {
+    min-height: 0;
+    padding-left: 0;
+    border-left: 0;
+    padding-top: 8px;
+    border-top: 1px solid var(--color-border);
   }
 
   .site-rail {
@@ -812,6 +898,7 @@ body::before {
   }
 
   .site-header,
+  .about-classification,
   .hero-panel,
   .hero-side,
   .archive-panel,

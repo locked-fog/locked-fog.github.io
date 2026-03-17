@@ -294,6 +294,19 @@ body::before {
   min-height: 100%;
 }
 
+.about-classification__bar {
+  width: min(100%, 260px);
+}
+
+.about-classification__bar.classification-bar--horizontal {
+  gap: 8px;
+}
+
+.about-classification__bar .classification-bar__segment {
+  width: 44px;
+  height: 10px;
+}
+
 .about-classification__level {
   display: grid;
   gap: 6px;

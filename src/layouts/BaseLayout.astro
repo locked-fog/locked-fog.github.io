@@ -14,7 +14,7 @@ const {
   pageDescription = '一个使用 AIRIS 视觉语言构建、以 Markdown 为内容入口的个人博客。',
 } = Astro.props;
 
-const siteTitle = 'AIRIS Logbook';
+const siteTitle = 'Locked_Fog Blog';
 const documentTitle = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
 ---
 
@@ -38,26 +38,34 @@ const documentTitle = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
     <div class="site-frame">
       <aside class="site-rail">
         <div class="site-rail__inner">
-          <span class="micro-label micro-label--accent site-rail__label">AIRIS NODE</span>
+          <span class="micro-label micro-label--accent site-rail__label">LOCKED FOG</span>
+          <div class="site-rail__marker" aria-hidden="true"></div>
           <ClassificationBar level={4} pulse className="site-rail__bar" />
+          <div class="site-rail__nodes" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
           <p class="site-rail__caption">PERSONAL TRANSMISSION ARCHIVE</p>
         </div>
       </aside>
 
       <div class="site-shell">
-        <header class="panel panel--classified-3 panel--bracket-tr panel--bracket-bl site-header">
+        <header class="panel panel--classified-3 panel--bracket-tl panel--bracket-br site-header">
+          <div class="site-header__texture" aria-hidden="true"></div>
+
           <div class="site-header__meta">
             <span class="micro-label micro-label--accent">SYSTEM</span>
             <div>
               <p class="site-header__eyebrow">TACTICAL WRITING INTERFACE</p>
-              <h1 class="site-header__title">AIRIS Logbook</h1>
+              <h1 class="site-header__title">Locked_Fog Blog</h1>
             </div>
           </div>
 
           <nav class="site-nav" aria-label="主导航">
-            <a href="/">首页</a>
-            <a href="/about/">关于</a>
-            <a href="#publish">发布流程</a>
+            <a class="btn btn--primary btn--lg" href="/">首页</a>
+            <a class="btn btn--secondary btn--lg" href="/about/">关于</a>
+            <a class="btn btn--secondary btn--lg" href="https://github.com/locked-fog" target="_blank" rel="noreferrer">GitHub</a>
           </nav>
         </header>
 
@@ -65,14 +73,26 @@ const documentTitle = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
           <slot />
         </main>
 
-        <footer class="panel panel--classified-2 site-footer" id="publish">
-          <div>
-            <p class="site-footer__label">BUILD CHAIN</p>
-            <p class="site-footer__text">Markdown -> Astro -> Static HTML -> GitHub Actions -> GitHub Pages</p>
+        <footer class="panel panel--classified-2 panel--bracket-tl panel--bracket-br site-footer">
+          <div class="site-footer__identity">
+            <img
+              class="site-footer__avatar"
+              src="https://github.com/locked-fog.png?size=96"
+              alt="Locked_Fog GitHub avatar"
+              loading="lazy"
+              decoding="async"
+            />
+
+            <div class="site-footer__copy">
+              <p class="site-footer__label">OPERATOR</p>
+              <h2 class="site-footer__name">Locked_Fog</h2>
+              <p class="site-footer__text">Copyright (C) Locked_Fog 2026. Open source under the MIT License.</p>
+            </div>
           </div>
-          <div>
-            <p class="site-footer__label">WRITING MODE</p>
-            <p class="site-footer__text">直接编辑 <code>src/content/posts/*.md</code> 即可。</p>
+
+          <div class="site-footer__actions">
+            <a class="btn btn--primary" href="https://github.com/locked-fog" target="_blank" rel="noreferrer">GitHub Home</a>
+            <a class="btn btn--secondary" href="https://github.com/locked-fog/locked-fog.github.io" target="_blank" rel="noreferrer">Source Repo</a>
           </div>
         </footer>
       </div>

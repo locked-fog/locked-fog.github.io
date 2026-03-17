@@ -20,7 +20,7 @@ const { Content, headings } = await render(post);
 
 <BaseLayout pageTitle={post.data.title} pageDescription={post.data.description}>
   <div class="article-grid">
-    <article class={`panel panel--classified-${post.data.classification} panel--bracket-tr panel--bracket-bl article-panel`}>
+    <article class={`panel panel--classified-${post.data.classification} panel--bracket-tl panel--bracket-br article-panel`}>
       <header class="article-header">
         <div class="article-header__meta">
           <ClassificationBar level={post.data.classification as 1 | 2 | 3 | 4 | 5} horizontal size="sm" />

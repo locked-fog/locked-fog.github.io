@@ -1,0 +1,513 @@
+/** =============================================================================
+ * Dialog/Modal Component - Clean Tech UI Framework
+ * BEM: .dialog, .dialog--modifier, .dialog__element
+ * =============================================================================
+ */
+
+/* ==========================================================================
+   Dialog Backdrop (.dialog-backdrop)
+   ========================================================================== */
+
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: var(--z-modal-backdrop);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--transition-base),
+    visibility var(--transition-base);
+}
+
+.dialog-backdrop--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ==========================================================================
+   Dialog Container (.dialog)
+   ========================================================================== */
+
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  width: 100%;
+  max-width: 500px;
+  max-height: calc(100vh - var(--space-8));
+  background-color: var(--color-bg-secondary);
+  border: var(--line-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  z-index: var(--z-modal);
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition:
+    opacity var(--transition-base),
+    visibility var(--transition-base),
+    transform var(--transition-base),
+    border-color var(--transition-fast);
+}
+
+.dialog--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.dialog:hover {
+  border-color: var(--color-border-hover);
+}
+
+/* ==========================================================================
+   Dialog Header (.dialog__header)
+   ========================================================================== */
+
+.dialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-bottom: var(--line-thin) solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.dialog__title {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: var(--line-height-tight);
+}
+
+.dialog__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2);
+  background: transparent;
+  border: none;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.dialog__close:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-hover);
+}
+
+.dialog__close:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--color-accent);
+}
+
+.dialog__close svg,
+.dialog__close .icon {
+  width: 1.25em;
+  height: 1.25em;
+}
+
+/* ==========================================================================
+   Dialog Body (.dialog__body)
+   ========================================================================== */
+
+.dialog__body {
+  padding: var(--space-4);
+  overflow-y: auto;
+  flex: 1;
+  color: var(--color-text-primary);
+}
+
+/* Custom scrollbar for dialog body */
+.dialog__body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dialog__body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dialog__body::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: var(--radius-full);
+}
+
+.dialog__body::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-border-hover);
+}
+
+/* ==========================================================================
+   Dialog Footer (.dialog__footer)
+   ========================================================================== */
+
+.dialog__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-top: var(--line-thin) solid var(--color-border);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Dialog Size Variants
+   ========================================================================== */
+
+.dialog--sm { max-width: 400px; }
+.dialog--md { max-width: 500px; }
+.dialog--lg { max-width: 700px; }
+.dialog--xl { max-width: 900px; }
+
+.dialog--full {
+  max-width: calc(100vw - var(--space-8));
+  max-height: calc(100vh - var(--space-8));
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================================================
+   Dialog Layout Variants
+   ========================================================================== */
+
+/* No header variant */
+.dialog--no-header .dialog__header {
+  display: none;
+}
+
+.dialog--no-header {
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+}
+
+/* No footer variant */
+.dialog--no-footer .dialog__footer {
+  display: none;
+}
+
+.dialog--no-footer {
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+}
+
+/* Both no header and no footer */
+.dialog--no-header.dialog--no-footer {
+  border-radius: var(--radius-lg);
+}
+
+/* ==========================================================================
+   Dialog Bracket Decorations
+   ========================================================================== */
+
+.dialog[class*="dialog--bracket"] {
+  --_bracket-size: var(--bracket-size, 16px);
+  --_bracket-thickness: var(--bracket-thickness, 2px);
+  --_bracket-color: var(--color-accent);
+}
+
+.dialog[class*="dialog--bracket"]::before,
+.dialog[class*="dialog--bracket"]::after {
+  content: '';
+  position: absolute;
+  width: var(--_bracket-size);
+  height: var(--_bracket-size);
+  border-color: var(--_bracket-color);
+  border-style: solid;
+  pointer-events: none;
+  transition: border-color var(--transition-fast);
+  z-index: 1;
+}
+
+/* Top-left bracket */
+.dialog--bracket-tl::before,
+.dialog--bracket::before {
+  top: calc(-1 * var(--line-thin));
+  left: calc(-1 * var(--line-thin));
+  border-width: var(--_bracket-thickness) 0 0 var(--_bracket-thickness);
+}
+
+/* Bottom-right bracket */
+.dialog--bracket-br::after,
+.dialog--bracket::after {
+  bottom: calc(-1 * var(--line-thin));
+  right: calc(-1 * var(--line-thin));
+  border-width: 0 var(--_bracket-thickness) var(--_bracket-thickness) 0;
+}
+
+/* Top-right bracket */
+.dialog--bracket-tr::before {
+  top: calc(-1 * var(--line-thin));
+  right: calc(-1 * var(--line-thin));
+  border-width: var(--_bracket-thickness) var(--_bracket-thickness) 0 0;
+}
+
+/* Bottom-left bracket */
+.dialog--bracket-bl::after {
+  bottom: calc(-1 * var(--line-thin));
+  left: calc(-1 * var(--line-thin));
+  border-width: 0 0 var(--_bracket-thickness) var(--_bracket-thickness);
+}
+
+/* Combined bracket variants */
+.dialog--bracket-tl.dialog--bracket-br::before {
+  top: calc(-1 * var(--line-thin));
+  left: calc(-1 * var(--line-thin));
+  border-width: var(--_bracket-thickness) 0 0 var(--_bracket-thickness);
+}
+
+.dialog--bracket-tl.dialog--bracket-br::after {
+  bottom: calc(-1 * var(--line-thin));
+  right: calc(-1 * var(--line-thin));
+  border-width: 0 var(--_bracket-thickness) var(--_bracket-thickness) 0;
+}
+
+.dialog--bracket-tr.dialog--bracket-bl::before {
+  top: calc(-1 * var(--line-thin));
+  right: calc(-1 * var(--line-thin));
+  border-width: var(--_bracket-thickness) var(--_bracket-thickness) 0 0;
+}
+
+.dialog--bracket-tr.dialog--bracket-bl::after {
+  bottom: calc(-1 * var(--line-thin));
+  left: calc(-1 * var(--line-thin));
+  border-width: 0 0 var(--_bracket-thickness) var(--_bracket-thickness);
+}
+
+/* All corners */
+.dialog--bracket-all {
+  --_corner-offset: calc(var(--_bracket-size) / 2);
+}
+
+.dialog--bracket-all::before {
+  display: none;
+}
+
+.dialog--bracket-all::after {
+  display: none;
+}
+
+.dialog--bracket-all .dialog__header::before,
+.dialog--bracket-all .dialog__header::after,
+.dialog--bracket-all .dialog__footer::before,
+.dialog--bracket-all .dialog__footer::after {
+  content: '';
+  position: absolute;
+  width: var(--_bracket-size);
+  height: var(--_bracket-size);
+  border-color: var(--_bracket-color);
+  border-style: solid;
+  pointer-events: none;
+  transition: border-color var(--transition-fast);
+}
+
+.dialog--bracket-all .dialog__header::before {
+  top: calc(-1 * var(--line-thin));
+  left: calc(-1 * var(--line-thin));
+  border-width: var(--_bracket-thickness) 0 0 var(--_bracket-thickness);
+}
+
+.dialog--bracket-all .dialog__header::after {
+  top: calc(-1 * var(--line-thin));
+  right: calc(-1 * var(--line-thin));
+  border-width: var(--_bracket-thickness) var(--_bracket-thickness) 0 0;
+}
+
+.dialog--bracket-all .dialog__footer::before {
+  bottom: calc(-1 * var(--line-thin));
+  left: calc(-1 * var(--line-thin));
+  border-width: 0 0 var(--_bracket-thickness) var(--_bracket-thickness);
+}
+
+.dialog--bracket-all .dialog__footer::after {
+  bottom: calc(-1 * var(--line-thin));
+  right: calc(-1 * var(--line-thin));
+  border-width: 0 var(--_bracket-thickness) var(--_bracket-thickness) 0;
+}
+
+/* Hover state for brackets */
+.dialog[class*="dialog--bracket"]:hover::before,
+.dialog[class*="dialog--bracket"]:hover::after {
+  border-color: var(--color-accent-hover);
+}
+
+.dialog--bracket-all:hover .dialog__header::before,
+.dialog--bracket-all:hover .dialog__header::after,
+.dialog--bracket-all:hover .dialog__footer::before,
+.dialog--bracket-all:hover .dialog__footer::after {
+  border-color: var(--color-accent-hover);
+}
+
+/* ==========================================================================
+   Dialog Focus/Active States
+   ========================================================================== */
+
+.dialog:focus-within {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.dialog[class*="dialog--bracket"]:focus-within::before,
+.dialog[class*="dialog--bracket"]:focus-within::after {
+  border-color: var(--color-accent);
+}
+
+.dialog--bracket-all:focus-within .dialog__header::before,
+.dialog--bracket-all:focus-within .dialog__header::after,
+.dialog--bracket-all:focus-within .dialog__footer::before,
+.dialog--bracket-all:focus-within .dialog__footer::after {
+  border-color: var(--color-accent);
+}
+
+/* ==========================================================================
+   Dialog Animation Variants
+   ========================================================================== */
+
+/* Fade animation */
+.dialog--fade {
+  transition:
+    opacity var(--transition-base),
+    visibility var(--transition-base);
+}
+
+.dialog--fade.dialog--visible {
+  transform: translate(-50%, -50%);
+}
+
+/* Slide up animation */
+.dialog--slide-up {
+  transform: translate(-50%, -40%) scale(1);
+}
+
+.dialog--slide-up.dialog--visible {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Scale animation (default) */
+.dialog--scale {
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.dialog--scale.dialog--visible {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ==========================================================================
+   Dialog States
+   ========================================================================== */
+
+/* Loading state */
+.dialog--loading .dialog__body {
+  position: relative;
+  min-height: 120px;
+}
+
+.dialog--loading .dialog__body::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2rem;
+  height: 2rem;
+  margin: -1rem 0 0 -1rem;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: var(--radius-full);
+  animation: dialog-spin 0.75s linear infinite;
+}
+
+@keyframes dialog-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Disabled/Static state */
+.dialog--static {
+  pointer-events: none;
+}
+
+.dialog--static .dialog__close,
+.dialog--static .dialog__footer .btn {
+  pointer-events: auto;
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .dialog {
+    max-width: calc(100vw - var(--space-4));
+    max-height: calc(100vh - var(--space-4));
+  }
+
+  .dialog--sm,
+  .dialog--md,
+  .dialog--lg,
+  .dialog--xl {
+    max-width: calc(100vw - var(--space-4));
+  }
+
+  .dialog--full {
+    max-width: calc(100vw - var(--space-4));
+    max-height: calc(100vh - var(--space-4));
+    border-radius: var(--radius-md);
+  }
+
+  .dialog__header,
+  .dialog__body,
+  .dialog__footer {
+    padding: var(--space-3);
+  }
+
+  .dialog__footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .dialog__footer .btn {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   High Contrast / Accessibility
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog,
+  .dialog-backdrop {
+    transition: none;
+  }
+
+  .dialog--visible {
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+  .dialog {
+    border-width: 2px;
+  }
+
+  .dialog__header,
+  .dialog__footer {
+    border-color: currentColor;
+  }
+}

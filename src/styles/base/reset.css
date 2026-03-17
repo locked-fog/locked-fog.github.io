@@ -1,0 +1,314 @@
+/**
+ * =============================================================================
+ * Base Styles - CSS Reset
+ * =============================================================================
+ * Clean Tech UI Framework
+ * Modern minimal reset with sensible defaults
+ * Follows BEM methodology
+ * =============================================================================
+ */
+
+@import '../tokens/index.css';
+
+/* ==========================================================================
+   Box Model Reset
+   ========================================================================== */
+
+/**
+ * Universal box-sizing reset
+ * Include pseudo-elements for consistent sizing
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Margin & Padding Reset
+   ========================================================================== */
+
+/**
+ * Remove default margins from common elements
+ * Let the design system control spacing
+ */
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+figure,
+figcaption,
+dl,
+dd,
+ul,
+ol,
+li,
+pre,
+fieldset,
+legend,
+button,
+input,
+textarea,
+select,
+optgroup,
+option {
+  margin: 0;
+}
+
+/**
+ * Remove default padding from lists
+ */
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+/**
+ * Reset fieldset padding and border
+ */
+fieldset {
+  padding: 0;
+  border: none;
+}
+
+/* ==========================================================================
+   Typography Reset
+   ========================================================================== */
+
+/**
+ * Prevent font size inflation on mobile
+ */
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/**
+ * Set consistent line-height and font-smoothing
+ */
+html,
+body {
+  line-height: var(--line-height-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/**
+ * Ensure headings inherit font-weight
+ * Let the design system control hierarchy
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+/**
+ * Reset text formatting elements
+ */
+strong,
+b {
+  font-weight: var(--font-weight-bold);
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+/**
+ * Ensure code elements use mono font
+ */
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-family-mono);
+}
+
+/* ==========================================================================
+   Media Reset
+   ========================================================================== */
+
+/**
+ * Make media elements responsive by default
+ */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/**
+ * Maintain aspect ratio on images
+ */
+img {
+  height: auto;
+}
+
+/**
+ * Remove default iframe borders
+ */
+iframe {
+  border: none;
+}
+
+/* ==========================================================================
+   Form Reset
+   ========================================================================== */
+
+/**
+ * Inherit font styles for form elements
+ */
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/**
+ * Remove default button styling
+ */
+button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+/**
+ * Remove default input appearance
+ */
+input,
+textarea,
+select {
+  appearance: none;
+  background: transparent;
+  border: none;
+}
+
+/**
+ * Remove default search input styling
+ */
+input[type='search'] {
+  appearance: none;
+}
+
+/**
+ * Remove default select arrow (custom styling applied in components)
+ */
+select {
+  appearance: none;
+}
+
+/**
+ * Remove default textarea resize handle
+ * Allow only vertical resizing
+ */
+textarea {
+  resize: vertical;
+}
+
+/**
+ * Remove spinner from number inputs
+ */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/**
+ * Reset placeholder styling
+ */
+::placeholder {
+  opacity: 1;
+  color: var(--color-text-tertiary);
+}
+
+/* ==========================================================================
+   Table Reset
+   ========================================================================== */
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th,
+td {
+  padding: 0;
+  text-align: inherit;
+}
+
+/* ==========================================================================
+   Link Reset
+   ========================================================================== */
+
+/**
+ * Remove default underline and color
+ * Link styles applied in global.css
+ */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Misc Reset
+   ========================================================================== */
+
+/**
+ * Reset horizontal rule
+ */
+hr {
+  height: 0;
+  margin: 0;
+  border: none;
+  border-top: 1px solid var(--color-border);
+}
+
+/**
+ * Reset summary marker
+ */
+summary {
+  display: list-item;
+  cursor: pointer;
+}
+
+/**
+ * Hide content visually but keep accessible to screen readers
+ * BEM: .u-visually-hidden
+ */
+.u-visually-hidden,
+.u-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

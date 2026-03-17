@@ -1,0 +1,439 @@
+/**
+ * =============================================================================
+ * Alert/Notice Component
+ * =============================================================================
+ * Clean Tech UI Framework
+ * BEM Methodology: .alert, .alert--modifier, .alert__element
+ * Industrial/Tactical Dark Theme
+ * =============================================================================
+ */
+
+/* ==========================================================================
+   Base Alert (.alert)
+   ========================================================================== */
+
+.alert {
+  /* Layout */
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+
+  /* Box Model */
+  padding: var(--space-4);
+  border: 1px solid;
+  border-radius: var(--radius-md);
+
+  /* Visual */
+  background: transparent;
+
+  /* Transitions */
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+/* ==========================================================================
+   Alert Elements (.alert__*)
+   ========================================================================== */
+
+/* Icon - positioned on the left */
+.alert__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.125rem;
+}
+
+.alert__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Content container - takes remaining space */
+.alert__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  flex: 1;
+  min-width: 0;
+}
+
+/* Title - bold heading */
+.alert__title {
+  font: var(--font-weight-semibold) var(--font-size-sm) / var(--line-height-snug) var(--font-family-sans);
+  letter-spacing: var(--letter-spacing-wide);
+  color: inherit;
+  margin: 0;
+}
+
+/* Message - body text */
+.alert__message {
+  font: var(--font-weight-regular) var(--font-size-sm) / var(--line-height-normal) var(--font-family-sans);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Message standalone (without title) */
+.alert__message:first-child {
+  color: inherit;
+}
+
+/* Dismiss button - close button on the right */
+.alert__dismiss {
+  /* Reset */
+  appearance: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  /* Box Model */
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  margin: -0.25rem -0.25rem -0.25rem 0;
+  border-radius: var(--radius-sm);
+
+  /* Visual */
+  color: currentColor;
+  opacity: 0.6;
+
+  /* Transitions */
+  transition:
+    opacity var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.alert__dismiss:hover {
+  opacity: 1;
+  background-color: var(--color-bg-hover);
+}
+
+.alert__dismiss:active {
+  background-color: var(--color-bg-active);
+}
+
+.alert__dismiss:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) currentColor;
+}
+
+.alert__dismiss svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ==========================================================================
+   Alert Variants by Type (.alert--*)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Info Alert (.alert--info)
+   Blue/Cyan border and icon
+   -------------------------------------------------------------------------- */
+.alert--info {
+  border-color: var(--color-info);
+  color: var(--color-info);
+}
+
+.alert--info .alert__icon {
+  color: var(--color-info);
+}
+
+.alert--info .alert__title {
+  color: var(--color-info);
+}
+
+/* --------------------------------------------------------------------------
+   Success Alert (.alert--success)
+   Green border and icon
+   -------------------------------------------------------------------------- */
+.alert--success {
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+.alert--success .alert__icon {
+  color: var(--color-success);
+}
+
+.alert--success .alert__title {
+  color: var(--color-success);
+}
+
+/* --------------------------------------------------------------------------
+   Warning Alert (.alert--warning)
+   Orange border and icon
+   -------------------------------------------------------------------------- */
+.alert--warning {
+  border-color: var(--color-warning);
+  color: var(--color-warning);
+}
+
+.alert--warning .alert__icon {
+  color: var(--color-warning);
+}
+
+.alert--warning .alert__title {
+  color: var(--color-warning);
+}
+
+/* --------------------------------------------------------------------------
+   Danger Alert (.alert--danger)
+   Red border and icon
+   -------------------------------------------------------------------------- */
+.alert--danger {
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+.alert--danger .alert__icon {
+  color: var(--color-danger);
+}
+
+.alert--danger .alert__title {
+  color: var(--color-danger);
+}
+
+/* ==========================================================================
+   Alert States (.alert--prominent, .alert--compact)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Prominent State (.alert--prominent)
+   Filled background version
+   -------------------------------------------------------------------------- */
+.alert--prominent.alert--info {
+  background-color: var(--color-info-subtle);
+  border-color: var(--color-info);
+}
+
+.alert--prominent.alert--success {
+  background-color: var(--color-success-subtle);
+  border-color: var(--color-success);
+}
+
+.alert--prominent.alert--warning {
+  background-color: var(--color-warning-subtle);
+  border-color: var(--color-warning);
+}
+
+.alert--prominent.alert--danger {
+  background-color: var(--color-danger-subtle);
+  border-color: var(--color-danger);
+}
+
+/* --------------------------------------------------------------------------
+   Prominent Alert Background Patterns
+   Gradient patterns for enhanced visual differentiation
+   -------------------------------------------------------------------------- */
+
+/* Warning Prominent: Gradient dot pattern */
+.alert--prominent.alert--warning {
+  background-image: 
+    radial-gradient(
+      circle at 2px 2px,
+      rgba(249, 115, 22, 0.15) 1px,
+      transparent 1px
+    ),
+    linear-gradient(135deg, 
+      rgba(249, 115, 22, 0.05) 0%, 
+      transparent 50%,
+      rgba(249, 115, 22, 0.08) 100%
+    );
+  background-size: 12px 12px, 100% 100%;
+  background-position: 0 0, 0 0;
+}
+
+/* Danger Prominent: Gradient diagonal slash pattern */
+.alert--prominent.alert--danger {
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 6px,
+      rgba(220, 38, 38, 0.06) 6px,
+      rgba(220, 38, 38, 0.06) 12px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 6px,
+      rgba(220, 38, 38, 0.04) 6px,
+      rgba(220, 38, 38, 0.04) 12px
+    ),
+    linear-gradient(135deg,
+      rgba(220, 38, 38, 0.03) 0%,
+      transparent 50%,
+      rgba(220, 38, 38, 0.06) 100%
+    );
+  background-size: 20px 20px, 20px 20px, 100% 100%;
+  background-position: 0 0, 0 0, 0 0;
+}
+
+/* Success Prominent: Subtle check pattern */
+.alert--prominent.alert--success {
+  background-image: 
+    linear-gradient(135deg, 
+      rgba(34, 197, 94, 0.04) 0%, 
+      transparent 50%,
+      rgba(34, 197, 94, 0.06) 100%
+    );
+  background-size: 100% 100%;
+}
+
+/* Info Prominent: Subtle gradient */
+.alert--prominent.alert--info {
+  background-image: 
+    linear-gradient(135deg, 
+      rgba(99, 102, 241, 0.04) 0%, 
+      transparent 50%,
+      rgba(99, 102, 241, 0.06) 100%
+    );
+  background-size: 100% 100%;
+}
+
+.alert--prominent .alert__dismiss:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.alert--prominent .alert__dismiss:active {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   Compact State (.alert--compact)
+   Reduced padding for tighter spaces
+   -------------------------------------------------------------------------- */
+.alert--compact {
+  padding: var(--space-3);
+}
+
+.alert--compact .alert__icon {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0;
+}
+
+.alert--compact .alert__dismiss {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: -0.125rem -0.125rem -0.125rem 0;
+}
+
+/* ==========================================================================
+   Alert Combinations
+   ========================================================================== */
+
+/* Compact + Prominent */
+.alert--compact.alert--prominent {
+  padding: var(--space-3);
+}
+
+/* Without icon - content only */
+.alert--no-icon {
+  padding-left: var(--space-4);
+}
+
+.alert--compact.alert--no-icon {
+  padding-left: var(--space-3);
+}
+
+/* ==========================================================================
+   Alert Animations
+   ========================================================================== */
+
+/* Fade in animation */
+.alert--animate-in {
+  animation: alert-fade-in 200ms ease-out;
+}
+
+@keyframes alert-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide out animation (for dismiss) */
+.alert--animate-out {
+  animation: alert-fade-out 200ms ease-in forwards;
+}
+
+@keyframes alert-fade-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(0.5rem);
+  }
+}
+
+/* Pulse animation for important alerts */
+.alert--pulse {
+  animation: alert-pulse 2s ease-in-out infinite;
+}
+
+@keyframes alert-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 currentColor;
+  }
+  50% {
+    box-shadow: 0 0 0 2px currentColor;
+  }
+}
+
+/* ==========================================================================
+   Alert Accessibility
+   ========================================================================== */
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .alert,
+  .alert__dismiss {
+    transition: none;
+  }
+
+  .alert--animate-in,
+  .alert--animate-out,
+  .alert--pulse {
+    animation: none;
+  }
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+  .alert {
+    border-width: 2px;
+  }
+
+  .alert__dismiss:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+/* Focus visible for entire alert (when focusable) */
+.alert[tabindex]:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) currentColor;
+}

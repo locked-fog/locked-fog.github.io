@@ -1,0 +1,60 @@
+---
+import { getCollection, render } from 'astro:content';
+import ClassificationBar from '../../components/ClassificationBar.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate } from '../../utils/date';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  const visiblePosts = posts.filter((post) => !post.data.draft || !import.meta.env.PROD);
+
+  return visiblePosts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+---
+
+<BaseLayout pageTitle={post.data.title} pageDescription={post.data.description}>
+  <div class="article-grid">
+    <article class={`panel panel--classified-${post.data.classification} panel--bracket-tr panel--bracket-bl article-panel`}>
+      <header class="article-header">
+        <div class="article-header__meta">
+          <ClassificationBar level={post.data.classification as 1 | 2 | 3 | 4 | 5} horizontal size="sm" />
+          <span>{formatDate(post.data.pubDate)}</span>
+          {post.data.updatedDate && <span>更新于 {formatDate(post.data.updatedDate)}</span>}
+        </div>
+
+        <h1>{post.data.title}</h1>
+        <p class="article-header__description">{post.data.description}</p>
+
+        <ul class="tag-list" aria-label="文章标签">
+          {post.data.tags.map((tag) => <li>{tag}</li>)}
+        </ul>
+      </header>
+
+      <div class="prose">
+        <Content />
+      </div>
+    </article>
+
+    {headings.length > 0 && (
+      <aside class="panel panel--classified-2 toc-panel">
+        <div class="section-header section-header--segmented">
+          <span class="section-header__label">INDEX</span>
+          <span class="section-header__line"></span>
+        </div>
+        <ol class="toc-list">
+          {headings.map((heading) => (
+            <li class={`toc-list__depth-${heading.depth}`}>
+              <a href={`#${heading.slug}`}>{heading.text}</a>
+            </li>
+          ))}
+        </ol>
+      </aside>
+    )}
+  </div>
+</BaseLayout>

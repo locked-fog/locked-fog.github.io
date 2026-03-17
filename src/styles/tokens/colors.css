@@ -1,0 +1,4 @@
+/* DEPRECATED: Use tokens.css instead
+ * This file is kept for backward compatibility */
+@import './tokens.css';
+@import './legacy-aliases.css';

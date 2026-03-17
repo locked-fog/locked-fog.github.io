@@ -1,0 +1,625 @@
+/**
+ * =============================================================================
+ * Tabs Component
+ * =============================================================================
+ * Clean Tech UI Framework
+ * BEM Methodology: .tabs, .tabs__*, .tab, .tab--modifier
+ * Industrial/Tactical Dark Theme
+ * =============================================================================
+ */
+
+/* ==========================================================================
+   Tabs Container (.tabs)
+   ========================================================================== */
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Tab List (.tabs__list)
+   Horizontal flex container for tab buttons
+   ========================================================================== */
+
+.tabs__list {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ==========================================================================
+   Tab Button (.tab)
+   Individual tab trigger element
+   ========================================================================== */
+
+.tab {
+  /* Reset */
+  appearance: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+
+  /* Box Model */
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: -1px; /* Overlap border-bottom from list */
+
+  /* Typography */
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-wide);
+  white-space: nowrap;
+
+  /* Visual */
+  color: var(--color-text-secondary);
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+
+  /* Transitions */
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.tab:focus {
+  outline: none;
+}
+
+/* ==========================================================================
+   Tab States
+   ========================================================================== */
+
+/* Hover State */
+.tab:hover:not(:disabled):not([aria-disabled="true"]):not([aria-selected="true"]) {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-hover);
+}
+
+/* Active/Selected State */
+.tab[aria-selected="true"],
+.tab--active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+  background-color: transparent;
+}
+
+.tab[aria-selected="true"]:hover,
+.tab--active:hover {
+  color: var(--color-accent-hover);
+  border-bottom-color: var(--color-accent-hover);
+}
+
+/* Focus State */
+.tab:focus-visible {
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-accent);
+}
+
+/* Disabled State */
+.tab:disabled,
+.tab[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: var(--color-text-tertiary);
+  border-bottom-color: transparent;
+}
+
+.tab:disabled:hover,
+.tab[aria-disabled="true"]:hover {
+  background-color: transparent;
+  color: var(--color-text-tertiary);
+}
+
+/* ==========================================================================
+   Tab Content Elements
+   ========================================================================== */
+
+/* Tab Icon */
+.tab__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.25em;
+  height: 1.25em;
+}
+
+.tab__icon svg,
+.tab__icon img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Tab Text */
+.tab__text {
+  display: inline-block;
+}
+
+/* Tab Badge/Counter */
+.tab__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 var(--space-1);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-elevated);
+  border-radius: var(--radius-full);
+}
+
+.tab[aria-selected="true"] .tab__badge,
+.tab--active .tab__badge {
+  color: var(--color-text-inverse);
+  background-color: var(--color-accent);
+}
+
+/* ==========================================================================
+   Tab Panel (.tabs__panel)
+   Content container for each tab
+   ========================================================================== */
+
+.tabs__panel {
+  padding: var(--space-4);
+}
+
+/* Hidden state for inactive panels */
+.tabs__panel[hidden],
+.tabs__panel.hidden {
+  display: none;
+}
+
+/* ==========================================================================
+   Tab Variants
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Pills Variant (.tabs--pills)
+   Rounded background tabs
+   -------------------------------------------------------------------------- */
+
+.tabs--pills .tabs__list {
+  gap: var(--space-2);
+  padding: var(--space-2);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.tabs--pills .tab {
+  padding: var(--space-2) var(--space-4);
+  margin-bottom: 0;
+  border: none;
+  border-radius: var(--radius-md);
+  border-bottom: none;
+}
+
+.tabs--pills .tab:hover:not(:disabled):not([aria-disabled="true"]):not([aria-selected="true"]) {
+  background-color: var(--color-bg-hover);
+  color: var(--color-text-primary);
+}
+
+.tabs--pills .tab[aria-selected="true"],
+.tabs--pills .tab--active {
+  background-color: var(--color-accent);
+  color: var(--color-text-inverse);
+  border-bottom: none;
+}
+
+.tabs--pills .tab[aria-selected="true"]:hover,
+.tabs--pills .tab--active:hover {
+  background-color: var(--color-accent-hover);
+  color: var(--color-text-inverse);
+}
+
+.tabs--pills .tab__badge {
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-secondary);
+}
+
+.tabs--pills .tab[aria-selected="true"] .tab__badge,
+.tabs--pills .tab--active .tab__badge {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: var(--color-text-inverse);
+}
+
+/* --------------------------------------------------------------------------
+   Enclosed Variant (.tabs--enclosed)
+   Bordered container with tab separation
+   -------------------------------------------------------------------------- */
+
+.tabs--enclosed .tabs__list {
+  padding: var(--space-2);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-bottom: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.tabs--enclosed .tab {
+  margin-bottom: 0;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.tabs--enclosed .tab:hover:not(:disabled):not([aria-disabled="true"]):not([aria-selected="true"]) {
+  background-color: var(--color-bg-hover);
+  border-color: var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.tabs--enclosed .tab[aria-selected="true"],
+.tabs--enclosed .tab--active {
+  background-color: var(--color-bg-elevated);
+  border-color: var(--color-border);
+  border-bottom-color: var(--color-bg-elevated);
+  color: var(--color-accent);
+}
+
+.tabs--enclosed .tabs__panel {
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+/* --------------------------------------------------------------------------
+   Boxed Variant (.tabs--boxed)
+   Full bordered tabs within container
+   -------------------------------------------------------------------------- */
+
+.tabs--boxed .tabs__list {
+  gap: var(--space-1);
+  border-bottom: none;
+  padding: var(--space-2);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.tabs--boxed .tab {
+  margin-bottom: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.tabs--boxed .tab:hover:not(:disabled):not([aria-disabled="true"]):not([aria-selected="true"]) {
+  background-color: var(--color-bg-hover);
+  border-color: var(--color-border-hover);
+  color: var(--color-text-primary);
+}
+
+.tabs--boxed .tab[aria-selected="true"],
+.tabs--boxed .tab--active {
+  background-color: var(--color-accent-subtle);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  box-shadow:
+    0 0 10px var(--color-accent-glow),
+    inset 0 0 10px var(--color-accent-subtle);
+}
+
+/* ==========================================================================
+   Tab Sizes
+   ========================================================================== */
+
+/* Small Size (.tabs--sm) */
+.tabs--sm .tab {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-xs);
+}
+
+.tabs--sm .tab__icon {
+  width: 1em;
+  height: 1em;
+}
+
+.tabs--sm .tabs__panel {
+  padding: var(--space-3);
+}
+
+/* Large Size (.tabs--lg) */
+.tabs--lg .tab {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--font-size-base);
+}
+
+.tabs--lg .tab__icon {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.tabs--lg .tabs__panel {
+  padding: var(--space-6);
+}
+
+/* ==========================================================================
+   Tab Alignment Variants
+   ========================================================================== */
+
+/* Center aligned tabs */
+.tabs--center .tabs__list {
+  justify-content: center;
+}
+
+/* End/Right aligned tabs */
+.tabs--end .tabs__list {
+  justify-content: flex-end;
+}
+
+/* Justified tabs - equal width */
+.tabs--justified .tabs__list {
+  display: flex;
+}
+
+.tabs--justified .tab {
+  flex: 1;
+  min-width: 0;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   Tab Full Width
+   ========================================================================== */
+
+.tabs--full-width {
+  width: 100%;
+}
+
+.tabs--full-width .tabs__list {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Vertical Tabs (.tabs--vertical)
+   ========================================================================== */
+
+.tabs--vertical {
+  flex-direction: row;
+}
+
+.tabs--vertical .tabs__list {
+  flex-direction: column;
+  align-items: stretch;
+  border-bottom: none;
+  border-right: 1px solid var(--color-border);
+  min-width: 160px;
+}
+
+.tabs--vertical .tab {
+  margin-bottom: 0;
+  margin-right: -1px;
+  justify-content: flex-start;
+  border-bottom: none;
+  border-right: 2px solid transparent;
+  text-align: left;
+}
+
+.tabs--vertical .tab[aria-selected="true"],
+.tabs--vertical .tab--active {
+  border-bottom-color: transparent;
+  border-right-color: var(--color-accent);
+}
+
+.tabs--vertical .tabs__panel {
+  flex: 1;
+}
+
+/* Pills variant for vertical tabs */
+.tabs--vertical.tabs--pills .tabs__list {
+  border-right: none;
+  border-bottom: none;
+  gap: var(--space-1);
+}
+
+.tabs--vertical.tabs--pills .tab {
+  margin-right: 0;
+  border-right: none;
+  border-radius: var(--radius-md);
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  /* Stack tabs on small screens for default variant */
+  .tabs--responsive .tabs__list {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .tabs--responsive .tab {
+    flex: 1 1 auto;
+    min-width: 80px;
+    justify-content: center;
+  }
+
+  /* Convert vertical to horizontal on mobile */
+  .tabs--vertical.tabs--responsive {
+    flex-direction: column;
+  }
+
+  .tabs--vertical.tabs--responsive .tabs__list {
+    flex-direction: row;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+    min-width: auto;
+  }
+
+  .tabs--vertical.tabs--responsive .tab {
+    margin-right: 0;
+    margin-bottom: -1px;
+    border-right: none;
+    border-bottom: 2px solid transparent;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .tabs--vertical.tabs--responsive .tab[aria-selected="true"],
+  .tabs--vertical.tabs--responsive .tab--active {
+    border-right-color: transparent;
+    border-bottom-color: var(--color-accent);
+  }
+
+  .tabs--vertical.tabs--responsive.tabs--pills .tabs__list {
+    border: 1px solid var(--color-border);
+  }
+}
+
+/* ==========================================================================
+   Tab Animations
+   ========================================================================== */
+
+/* Fade in panel content */
+.tabs__panel {
+  animation: tabs-panel-fade-in var(--transition-base) ease-out;
+}
+
+@keyframes tabs-panel-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Underline animation for default variant */
+.tab:not(.tabs--pills .tab):not(.tabs--enclosed .tab):not(.tabs--boxed .tab)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  transform: scaleX(0);
+  transition: transform var(--transition-fast);
+}
+
+.tab:hover::after {
+  transform: scaleX(1);
+}
+
+.tab[aria-selected="true"]::after,
+.tab--active::after {
+  transform: scaleX(1);
+}
+
+/* Add position relative to tab for underline animation */
+.tab {
+  position: relative;
+}
+
+/* ==========================================================================
+   Loading State for Tab Content
+   ========================================================================== */
+
+.tabs__panel[aria-busy="true"] {
+  position: relative;
+  min-height: 100px;
+}
+
+.tabs__panel[aria-busy="true"]::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: var(--radius-full);
+  animation: tabs-spin 0.75s linear infinite;
+}
+
+@keyframes tabs-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   Tab Disabled Group State
+   ========================================================================== */
+
+.tabs--disabled .tab {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   High Contrast / Accessibility Enhancements
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .tab,
+  .tabs__panel {
+    transition: none;
+    animation: none;
+  }
+
+  .tab::after {
+    transition: none;
+  }
+}
+
+/* Focus visible for keyboard navigation */
+.tab:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .tabs__list {
+    border-bottom-color: #000;
+  }
+
+  .tab {
+    color: #000;
+    border-bottom-color: transparent;
+  }
+
+  .tab[aria-selected="true"],
+  .tab--active {
+    border-bottom-color: #000;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .tabs__panel[hidden],
+  .tabs__panel.hidden {
+    display: block !important;
+  }
+}

@@ -1,0 +1,375 @@
+/**
+ * ============================================================================
+ * Typography Components
+ * ============================================================================
+ * Clean Tech UI Framework
+ * BEM naming convention - Block: .typography, Element: .typography__heading
+ * ============================================================================
+ */
+
+@import '../tokens/index.css';
+
+/**
+ * ----------------------------------------------------------------------------
+ * Headings
+ * ----------------------------------------------------------------------------
+ * Clean tech aesthetic: slight letter-spacing, clear hierarchy, bold weights
+ * ----------------------------------------------------------------------------
+ */
+
+.typography__h1 {
+  font: var(--text-heading-1);
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-6) 0;
+}
+
+.typography__h2 {
+  font: var(--text-heading-2);
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.typography__h3 {
+  font: var(--text-heading-3);
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.typography__h4 {
+  font: var(--text-heading-4);
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-3) 0;
+}
+
+.typography__h5 {
+  font: var(--font-weight-semibold) var(--font-size-md) / var(--line-height-tight) var(--font-family-sans);
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-3) 0;
+}
+
+.typography__h6 {
+  font: var(--font-weight-semibold) var(--font-size-sm) / var(--line-height-tight) var(--font-family-sans);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-2) 0;
+}
+
+/**
+ * ----------------------------------------------------------------------------
+ * Body Text
+ * ----------------------------------------------------------------------------
+ */
+
+.typography__body {
+  font: var(--text-body);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.typography__body--small {
+  font: var(--text-body-sm);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-3) 0;
+}
+
+.typography__body--large {
+  font: var(--font-weight-regular) var(--font-size-md) / var(--line-height-relaxed) var(--font-family-sans);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.typography__body--secondary {
+  color: var(--color-text-secondary);
+}
+
+.typography__body--muted {
+  color: var(--color-text-tertiary);
+}
+
+/**
+ * ----------------------------------------------------------------------------
+ * Labels
+ * ----------------------------------------------------------------------------
+ */
+
+.typography__label {
+  font: var(--text-label);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-2) 0;
+  display: block;
+}
+
+.typography__label--small {
+  font-size: var(--font-size-2xs);
+}
+
+.typography__label--accent {
+  color: var(--color-accent);
+}
+
+.typography__label--success {
+  color: var(--color-success);
+}
+
+.typography__label--warning {
+  color: var(--color-warning);
+}
+
+.typography__label--error {
+  color: var(--color-error);
+}
+
+/**
+ * ----------------------------------------------------------------------------
+ * Code
+ * ----------------------------------------------------------------------------
+ */
+
+.typography__code {
+  font: var(--text-code);
+  color: var(--color-accent);
+  background: var(--color-accent-subtle);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+.typography__code--small {
+  font: var(--text-code-sm);
+}
+
+.typography__code-block {
+  font: var(--text-code);
+  color: var(--color-text-primary);
+  background: var(--color-bg-secondary);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  overflow-x: auto;
+  white-space: pre;
+  margin: 0 0 var(--space-4) 0;
+  display: block;
+}
+
+.typography__code-block--scrollable {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/**
+ * ----------------------------------------------------------------------------
+ * Caption
+ * ----------------------------------------------------------------------------
+ */
+
+.typography__caption {
+  font: var(--text-caption);
+  color: var(--color-text-tertiary);
+  margin: 0 0 var(--space-2) 0;
+}
+
+/**
+ * ----------------------------------------------------------------------------
+ * Text Utilities - Sizes
+ * ----------------------------------------------------------------------------
+ */
+
+.typography--size-2xs { font-size: var(--font-size-2xs); }
+.typography--size-xs { font-size: var(--font-size-xs); }
+.typography--size-sm { font-size: var(--font-size-sm); }
+.typography--size-md { font-size: var(--font-size-md); }
+.typography--size-lg { font-size: var(--font-size-lg); }
+.typography--size-xl { font-size: var(--font-size-xl); }
+.typography--size-2xl { font-size: var(--font-size-2xl); }
+.typography--size-3xl { font-size: var(--font-size-3xl); }
+
+/**
+ * ----------------------------------------------------------------------------
+ * Text Utilities - Weights
+ * ----------------------------------------------------------------------------
+ */
+
+.typography--weight-regular { font-weight: var(--font-weight-regular); }
+.typography--weight-medium { font-weight: var(--font-weight-medium); }
+.typography--weight-semibold { font-weight: var(--font-weight-semibold); }
+.typography--weight-bold { font-weight: var(--font-weight-bold); }
+
+/**
+ * ----------------------------------------------------------------------------
+ * Text Utilities - Colors
+ * ----------------------------------------------------------------------------
+ */
+
+.typography--color-primary { color: var(--color-text-primary); }
+.typography--color-secondary { color: var(--color-text-secondary); }
+.typography--color-tertiary { color: var(--color-text-tertiary); }
+.typography--color-accent { color: var(--color-accent); }
+.typography--color-success { color: var(--color-success); }
+.typography--color-warning { color: var(--color-warning); }
+.typography--color-error { color: var(--color-error); }
+.typography--color-inverse { color: var(--color-text-inverse); }
+
+/**
+ * ----------------------------------------------------------------------------
+ * Text Utilities - Alignment
+ * ----------------------------------------------------------------------------
+ */
+
+.typography--align-left { text-align: left; }
+.typography--align-center { text-align: center; }
+.typography--align-right { text-align: right; }
+.typography--align-justify { text-align: justify; }
+
+/**
+ * ----------------------------------------------------------------------------
+ * Text Utilities - Transform
+ * ----------------------------------------------------------------------------
+ */
+
+.typography--uppercase { text-transform: uppercase; }
+.typography--lowercase { text-transform: lowercase; }
+.typography--capitalize { text-transform: capitalize; }
+
+/**
+ * ----------------------------------------------------------------------------
+ * Text Utilities - Decoration
+ * ----------------------------------------------------------------------------
+ */
+
+.typography--underline { text-decoration: underline; }
+.typography--line-through { text-decoration: line-through; }
+.typography--no-decoration { text-decoration: none; }
+
+/**
+ * ----------------------------------------------------------------------------
+ * Text Utilities - Truncation
+ * ----------------------------------------------------------------------------
+ */
+
+.typography--truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.typography--truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.typography--truncate-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/**
+ * ----------------------------------------------------------------------------
+ * Text Utilities - Line Height
+ * ----------------------------------------------------------------------------
+ */
+
+.typography--leading-tight { line-height: var(--line-height-tight); }
+.typography--leading-normal { line-height: var(--line-height-normal); }
+.typography--leading-relaxed { line-height: var(--line-height-relaxed); }
+
+/**
+ * ----------------------------------------------------------------------------
+ * Text Utilities - Letter Spacing
+ * ----------------------------------------------------------------------------
+ */
+
+.typography--tracking-tight { letter-spacing: var(--letter-spacing-tight); }
+.typography--tracking-normal { letter-spacing: var(--letter-spacing-normal); }
+.typography--tracking-wide { letter-spacing: var(--letter-spacing-wide); }
+.typography--tracking-wider { letter-spacing: var(--letter-spacing-wider); }
+
+/**
+ * ----------------------------------------------------------------------------
+ * Text Utilities - Wrap
+ * ----------------------------------------------------------------------------
+ */
+
+.typography--wrap { white-space: normal; }
+.typography--nowrap { white-space: nowrap; }
+.typography--pre { white-space: pre; }
+.typography--pre-line { white-space: pre-line; }
+
+/**
+ * ----------------------------------------------------------------------------
+ * Text Utilities - Selection
+ * ----------------------------------------------------------------------------
+ */
+
+.typography__selectable::selection {
+  background: var(--color-accent-subtle);
+  color: var(--color-accent);
+}
+
+.typography--monospace {
+  font-family: var(--font-family-mono);
+}
+
+/**
+ * ----------------------------------------------------------------------------
+ * Utility Combinations
+ * ----------------------------------------------------------------------------
+ * Pre-composed common patterns
+ * ----------------------------------------------------------------------------
+ */
+
+.typography__kbd {
+  font: var(--text-code-sm);
+  color: var(--color-text-primary);
+  background: var(--color-bg-elevated);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 0 var(--color-border);
+}
+
+.typography__mark {
+  background: var(--color-accent-subtle);
+  color: var(--color-accent);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+.typography__link {
+  color: var(--color-blue);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.typography__link:hover {
+  color: var(--color-blue-hover);
+  text-decoration: underline;
+}
+
+.typography__link--accent {
+  color: var(--color-accent);
+}
+
+.typography__link--accent:hover {
+  color: var(--color-accent-hover);
+}
+
+.typography__blockquote {
+  font: var(--text-body);
+  color: var(--color-text-secondary);
+  border-left: 4px solid var(--color-accent);
+  padding-left: var(--space-4);
+  margin: 0 0 var(--space-4) 0;
+  font-style: italic;
+}

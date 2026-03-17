@@ -1,0 +1,157 @@
+/**
+ * Footnote Component
+ * Hover footnote with popup content
+ */
+
+:root {
+  --footnote-bg: var(--color-bg-elevated);
+  --footnote-border: var(--color-accent);
+  --footnote-text: var(--color-text-secondary);
+  --footnote-z-index: var(--z-tooltip, 700);
+}
+
+.footnote {
+  position: relative;
+  display: inline;
+}
+
+.footnote__marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  font: var(--font-weight-bold) var(--font-size-2xs) / 1 var(--font-family-mono);
+  color: var(--color-accent);
+  cursor: pointer;
+  vertical-align: super;
+  margin-left: 2px;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.footnote__marker:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-accent);
+  border-radius: 50%;
+}
+
+.footnote__popup {
+  position: absolute;
+  z-index: var(--footnote-z-index);
+  bottom: calc(100% + var(--space-3));
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(320px, 90vw);
+  padding: var(--space-3) var(--space-4);
+  background: var(--footnote-bg);
+  border-left: 2px solid var(--footnote-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  font: var(--font-weight-regular) var(--font-size-xs) / var(--line-height-normal) var(--font-family-sans);
+  color: var(--footnote-text);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-fast), visibility var(--transition-fast);
+  pointer-events: none;
+}
+
+.footnote__popup::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--footnote-border);
+}
+
+.footnote:hover .footnote__popup,
+.footnote:focus-within .footnote__popup {
+  opacity: 1;
+  visibility: visible;
+}
+
+.footnote__popup-header {
+  font: var(--font-weight-bold) var(--font-size-2xs) / 1 var(--font-family-mono);
+  color: var(--color-accent);
+  margin-bottom: var(--space-1);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.footnote__popup-content {
+  color: var(--color-text-primary);
+}
+
+/* Position variants */
+.footnote--right .footnote__popup {
+  left: auto;
+  right: 0;
+  transform: translateX(0);
+}
+
+.footnote--right .footnote__popup::before {
+  left: auto;
+  right: var(--space-4);
+  transform: translateX(0);
+}
+
+.footnote--left .footnote__popup {
+  left: 0;
+  right: auto;
+  transform: translateX(0);
+}
+
+.footnote--left .footnote__popup::before {
+  left: var(--space-4);
+  right: auto;
+  transform: translateX(0);
+}
+
+/* Size variants */
+.footnote--sm .footnote__popup {
+  width: min(200px, 90vw);
+  font-size: var(--font-size-2xs);
+  padding: var(--space-2) var(--space-3);
+}
+
+.footnote--lg .footnote__popup {
+  width: min(450px, 90vw);
+  font-size: var(--font-size-sm);
+  padding: var(--space-4) var(--space-5);
+}
+
+/* Numbered variant */
+.footnote--numbered .footnote__marker {
+  counter-increment: footnote;
+}
+
+.footnote--numbered .footnote__marker::before {
+  content: counter(footnote);
+}
+
+.footnote--numbered .footnote__popup-header::before {
+  content: counter(footnote) ". ";
+}
+
+/* Inline variant */
+.footnote--inline .footnote__popup {
+  position: relative;
+  bottom: auto;
+  left: auto;
+  transform: none;
+  width: 100%;
+  margin-top: var(--space-2);
+  border-left-width: 3px;
+}
+
+.footnote--inline .footnote__popup::before {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footnote__marker,
+  .footnote__popup {
+    transition: none;
+  }
+}

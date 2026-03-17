@@ -1,0 +1,297 @@
+/**
+ * =============================================================================
+ * Textarea Component
+ * =============================================================================
+ * Clean Tech UI Framework
+ * BEM Methodology: .textarea, .textarea--modifier
+ * Industrial/tactical dark theme
+ * =============================================================================
+ */
+
+/* ==========================================================================
+   Base Textarea (.textarea)
+   ========================================================================== */
+
+.textarea {
+  /* Reset */
+  appearance: none;
+  border: none;
+  background: transparent;
+  resize: vertical;
+
+  /* Layout */
+  width: 100%;
+  min-height: 100px;
+  padding: var(--space-3) var(--space-4);
+
+  /* Typography */
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+
+  /* Visual */
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  /* Transitions */
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+/* Placeholder styling */
+.textarea::placeholder {
+  color: var(--color-text-tertiary);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Interactive States
+   ========================================================================== */
+
+/* Hover State */
+.textarea:hover:not(:disabled):not([readonly]) {
+  background-color: var(--color-bg-hover);
+  border-color: var(--color-border-hover);
+}
+
+/* Focus State - Border accent color with subtle glow ring */
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-accent-glow),
+    0 0 15px var(--color-accent-glow);
+}
+
+/* Active State */
+.textarea:active:not(:disabled):not([readonly]) {
+  background-color: var(--color-bg-active);
+}
+
+/* ==========================================================================
+   Disabled State
+   ========================================================================== */
+
+.textarea:disabled {
+  cursor: not-allowed;
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-border);
+  color: var(--color-text-tertiary);
+  resize: none;
+  opacity: 0.7;
+}
+
+.textarea:disabled::placeholder {
+  color: var(--color-text-tertiary);
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   Readonly State
+   ========================================================================== */
+
+.textarea[readonly] {
+  cursor: default;
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.textarea[readonly]:focus {
+  border-color: var(--color-border-focus);
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   Error State
+   ========================================================================== */
+
+.textarea--error {
+  border-color: var(--color-danger);
+  background-color: var(--color-danger-subtle);
+}
+
+.textarea--error:hover:not(:disabled):not([readonly]) {
+  border-color: var(--color-danger-hover);
+}
+
+.textarea--error:focus {
+  border-color: var(--color-danger);
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-danger-subtle),
+    0 0 15px rgba(220, 38, 38, 0.2);
+}
+
+/* ==========================================================================
+   Size Variants
+   ========================================================================== */
+
+/* Small - 80px min-height */
+.textarea--sm {
+  min-height: 80px;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-xs);
+}
+
+/* Medium - 100px min-height (default) */
+.textarea--md {
+  min-height: 100px;
+}
+
+/* Large - 150px min-height */
+.textarea--lg {
+  min-height: 150px;
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--font-size-base);
+}
+
+/* Extra Large - 200px min-height */
+.textarea--xl {
+  min-height: 200px;
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--font-size-base);
+}
+
+/* ==========================================================================
+   Resize Variants
+   ========================================================================== */
+
+/* Auto-resize - both directions */
+.textarea--auto {
+  resize: both;
+}
+
+/* No resize */
+.textarea--no-resize {
+  resize: none;
+}
+
+/* Horizontal only */
+.textarea--resize-h {
+  resize: horizontal;
+}
+
+/* Vertical only (default) */
+.textarea--resize-v {
+  resize: vertical;
+}
+
+/* ==========================================================================
+   Focus Ring Variants
+   ========================================================================== */
+
+/* Enhanced focus ring with intense glow */
+.textarea--glow:focus {
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-accent-glow),
+    0 0 25px var(--color-accent-glow-intense),
+    0 0 50px var(--color-accent-glow);
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+/* Full width (default behavior, explicit class for override) */
+.textarea--full-width {
+  width: 100%;
+}
+
+/* Monospace font for code/logs */
+.textarea--mono {
+  font-family: var(--font-family-mono);
+}
+
+/* Compact padding */
+.textarea--compact {
+  padding: var(--space-2);
+}
+
+/* ==========================================================================
+   Textarea Wrapper
+   For positioning helper text, labels, or counters
+   ========================================================================== */
+
+.textarea-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.textarea-wrapper__label {
+  font: var(--font-weight-medium) var(--font-size-xs)/var(--line-height-normal) var(--font-family-sans);
+  color: var(--color-text-primary);
+}
+
+.textarea-wrapper__hint {
+  font: var(--font-weight-regular) var(--font-size-2xs)/var(--line-height-normal) var(--font-family-sans);
+  color: var(--color-text-tertiary);
+}
+
+.textarea-wrapper__error {
+  font: var(--font-weight-medium) var(--font-size-2xs)/var(--line-height-normal) var(--font-family-sans);
+  color: var(--color-danger);
+}
+
+.textarea-wrapper__counter {
+  font: var(--font-weight-regular) var(--font-size-2xs)/var(--line-height-normal) var(--font-family-mono);
+  color: var(--color-text-tertiary);
+  text-align: right;
+}
+
+/* Counter positioning within wrapper */
+.textarea-wrapper--with-counter {
+  position: relative;
+}
+
+.textarea-wrapper--with-counter .textarea {
+  padding-bottom: var(--space-6);
+}
+
+.textarea-wrapper--with-counter .textarea-wrapper__counter {
+  position: absolute;
+  bottom: var(--space-2);
+  right: var(--space-3);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Character Limit Indicator
+   ========================================================================== */
+
+.textarea-wrapper__counter--near-limit {
+  color: var(--color-warning);
+}
+
+.textarea-wrapper__counter--at-limit {
+  color: var(--color-danger);
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .textarea {
+    font-size: var(--font-size-base);
+    /* Prevent iOS zoom on focus */
+    min-height: 120px;
+  }
+
+  .textarea--sm {
+    min-height: 100px;
+  }
+
+  .textarea--lg,
+  .textarea--xl {
+    min-height: 180px;
+  }
+}

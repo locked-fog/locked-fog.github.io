@@ -1,0 +1,465 @@
+/**
+ * =============================================================================
+ * Select Dropdown Component
+ * =============================================================================
+ * Industrial/Tactical UI Framework
+ * BEM Naming Convention
+ * =============================================================================
+ */
+
+/**
+ * Select
+ * The main select dropdown element
+ */
+.select {
+  /* Reset */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* Layout */
+  width: 100%;
+  display: block;
+
+  /* Box Model */
+  padding: var(--space-3) var(--space-4);
+  padding-right: var(--space-10); /* space for arrow */
+
+  /* Typography */
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+
+  /* Visual */
+  background-color: var(--color-bg-elevated);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23999999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-3) center;
+  background-size: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  /* Interaction */
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Remove default arrow in IE */
+.select::-ms-expand {
+  display: none;
+}
+
+/**
+ * Select Placeholder/First Option
+ * Style for the placeholder option
+ */
+.select option:first-child {
+  color: var(--color-text-tertiary);
+}
+
+/**
+ * Select Options
+ * Individual option styling
+ */
+.select option {
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+}
+
+/* ==========================================================================
+   States
+   ========================================================================== */
+
+/**
+ * Hover State
+ */
+.select:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--color-bg-hover);
+  border-color: var(--color-border-hover);
+}
+
+/**
+ * Focus State
+ */
+.select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-accent-glow),
+    0 0 15px var(--color-accent-glow);
+}
+
+/**
+ * Active/Pressed State
+ */
+.select:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--color-bg-active);
+}
+
+/**
+ * Disabled State
+ */
+.select:disabled,
+.select[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-border);
+  color: var(--color-text-tertiary);
+}
+
+/**
+ * Error State
+ */
+.select--error,
+.select[aria-invalid="true"] {
+  border-color: var(--color-danger);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23dc2626' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
+
+.select--error:hover:not(:disabled):not([aria-disabled="true"]),
+.select[aria-invalid="true"]:hover:not(:disabled):not([aria-disabled="true"]) {
+  border-color: var(--color-danger-hover);
+  box-shadow: 0 0 8px rgba(220, 38, 38, 0.2);
+}
+
+.select--error:focus,
+.select[aria-invalid="true"]:focus {
+  border-color: var(--color-danger);
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) rgba(220, 38, 38, 0.3),
+    0 0 15px rgba(220, 38, 38, 0.2);
+}
+
+/**
+ * Success State
+ */
+.select--success {
+  border-color: var(--color-success);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2322c55e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
+
+.select--success:hover:not(:disabled):not([aria-disabled="true"]) {
+  border-color: var(--color-success-hover);
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.2);
+}
+
+.select--success:focus {
+  border-color: var(--color-success);
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) rgba(34, 197, 94, 0.3),
+    0 0 15px rgba(34, 197, 94, 0.2);
+}
+
+/**
+ * Warning State
+ */
+.select--warning {
+  border-color: var(--color-warning);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f97316' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
+
+.select--warning:hover:not(:disabled):not([aria-disabled="true"]) {
+  border-color: var(--color-warning-hover);
+  box-shadow: 0 0 8px rgba(249, 115, 22, 0.2);
+}
+
+/* ==========================================================================
+   Size Variants
+   ========================================================================== */
+
+/**
+ * Small Select (.select--sm)
+ */
+.select--sm {
+  padding: var(--space-2) var(--space-3);
+  padding-right: var(--space-8);
+  font-size: var(--font-size-xs);
+  border-radius: var(--radius-sm);
+  background-size: 14px;
+  background-position: right var(--space-2) center;
+}
+
+/**
+ * Medium Select (.select--md) - Default
+ */
+.select--md {
+  padding: var(--space-3) var(--space-4);
+  padding-right: var(--space-10);
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-md);
+  background-size: 16px;
+  background-position: right var(--space-3) center;
+}
+
+/**
+ * Large Select (.select--lg)
+ */
+.select--lg {
+  padding: var(--space-4) var(--space-5);
+  padding-right: var(--space-12);
+  font-size: var(--font-size-base);
+  border-radius: var(--radius-lg);
+  background-size: 20px;
+  background-position: right var(--space-4) center;
+}
+
+/* ==========================================================================
+   Width Variants
+   ========================================================================== */
+
+/**
+ * Full Width (.select--full-width)
+ */
+.select--full-width {
+  width: 100%;
+}
+
+/**
+ * Auto Width (.select--auto)
+ */
+.select--auto {
+  width: auto;
+}
+
+/* ==========================================================================
+   Select Wrapper
+   For additional positioning and styling
+   ========================================================================== */
+
+/**
+ * Select Wrapper
+ */
+.select-wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+/**
+ * Select Wrapper with Icon
+ */
+.select-wrapper--with-icon {
+  position: relative;
+}
+
+.select-wrapper--with-icon .select {
+  padding-left: var(--space-10);
+}
+
+.select-wrapper__icon {
+  position: absolute;
+  left: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-secondary);
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.select-wrapper--with-icon .select:focus ~ .select-wrapper__icon,
+.select-wrapper--with-icon .select:hover ~ .select-wrapper__icon {
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   Select Group
+   For multiple selects with consistent spacing
+   ========================================================================== */
+
+/**
+ * Select Group
+ */
+.select-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.select-group--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.select-group--horizontal .select-wrapper,
+.select-group--horizontal .select {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* ==========================================================================
+   Label & Helper Text
+   ========================================================================== */
+
+/**
+ * Select Label
+ */
+.select-label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+}
+
+/**
+ * Required Indicator
+ */
+.select-label__required {
+  color: var(--color-danger);
+  margin-left: var(--space-1);
+}
+
+/**
+ * Helper Text
+ */
+.select-helper {
+  display: block;
+  margin-top: var(--space-2);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-2xs);
+  color: var(--color-text-tertiary);
+}
+
+/**
+ * Error Message
+ */
+.select-error {
+  display: block;
+  margin-top: var(--space-2);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-2xs);
+  color: var(--color-danger);
+}
+
+/* ==========================================================================
+   Select with Optgroups
+   ========================================================================== */
+
+/**
+ * Optgroup Styling
+ */
+.select optgroup {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-secondary);
+  padding: var(--space-2);
+}
+
+/**
+ * Disabled Option
+ */
+.select option:disabled {
+  color: var(--color-text-tertiary);
+  background-color: var(--color-bg-secondary);
+  cursor: not-allowed;
+}
+
+/**
+ * Selected Option
+ */
+.select option:checked {
+  background-color: var(--color-accent-subtle);
+  color: var(--color-accent);
+}
+
+/**
+ * Hover on Options (for browsers that support it)
+ */
+.select option:hover {
+  background-color: var(--color-bg-hover);
+}
+
+/* ==========================================================================
+   Multiple Select (.select[multiple])
+   ========================================================================== */
+
+/**
+ * Multiple Select
+ */
+.select[multiple] {
+  padding: var(--space-2);
+  background-image: none;
+  min-height: 120px;
+}
+
+.select[multiple] option {
+  padding: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-1);
+  border-radius: var(--radius-sm);
+}
+
+.select[multiple] option:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Dark Dropdown Override
+   For custom dropdown styling (where supported)
+   ========================================================================== */
+
+/**
+ * Dark themed dropdown (Webkit browsers)
+ */
+.select::-webkit-listbox {
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/**
+ * Firefox specific styling
+ */
+.select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 var(--color-text-primary);
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+/**
+ * Select Focus Animation
+ */
+@keyframes select-focus-pulse {
+  0% {
+    box-shadow:
+      0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+      0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-accent-glow),
+      0 0 5px var(--color-accent-glow);
+  }
+  50% {
+    box-shadow:
+      0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+      0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-accent-glow),
+      0 0 20px var(--color-accent-glow);
+  }
+  100% {
+    box-shadow:
+      0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+      0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-accent-glow),
+      0 0 5px var(--color-accent-glow);
+  }
+}
+
+.select--animated:focus {
+  animation: select-focus-pulse 2s ease-in-out infinite;
+}

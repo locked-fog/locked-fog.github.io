@@ -1,0 +1,630 @@
+/**
+ * =============================================================================
+ * AIRIS VISUAL LANGUAGE DOCUMENTATION
+ * =============================================================================
+ * DEPRECATED: Token definitions moved to tokens/tokens.css
+ * This file is kept for reference and documentation purposes only.
+ * =============================================================================
+ * 
+ * The AIRIS visual language system includes:
+ * - Color relationships and tonal hierarchy
+ * - Structural style and framing rules
+ * - Typography character
+ * - Decorative syntax
+ * - Motif families
+ * - Texture systems
+ * - Combination and density rules
+ * 
+ * See tokens/tokens.css for canonical token definitions.
+ * =============================================================================
+ */
+
+:root {
+  /* ==========================================================================
+     A. COLOR SYSTEM
+     ========================================================================== */
+  
+  /* --- A1. Neutral Hierarchy --- */
+  /* Primary background - deepest black */
+  --airis-bg-primary: #0a0a0a;
+  /* Secondary background - panels, cards */
+  --airis-bg-secondary: #111111;
+  /* Elevated surface - hover states, modals */
+  --airis-bg-elevated: #1a1a1a;
+  /* Interactive hover */
+  --airis-bg-hover: #222222;
+  /* Active/pressed state */
+  --airis-bg-active: #2a2a2a;
+  
+  /* Panel variants */
+  --airis-panel: #0f0f0f;
+  --airis-panel-elevated: #161616;
+  --airis-panel-border: #2a2a2a;
+  
+  /* --- A2. Text Hierarchy --- */
+  /* Primary text - highest contrast, body content */
+  --airis-text-primary: #e5e5e5;
+  /* Secondary text - labels, descriptions */
+  --airis-text-secondary: #999999;
+  /* Tertiary text - metadata, timestamps (use sparingly for functional text) */
+  --airis-text-tertiary: #666666;
+  /* Inverse text - on light backgrounds */
+  --airis-text-inverse: #0a0a0a;
+  
+  /* --- A3. Border Hierarchy --- */
+  /* Default border */
+  --airis-border: #2a2a2a;
+  /* Border on hover */
+  --airis-border-hover: #3a3a3a;
+  /* Border on focus/active */
+  --airis-border-focus: #4a4a4a;
+  
+  /* --- A4. Accent Families --- */
+  /* Primary accent - ACID YELLOW (signature AIRIS color) */
+  --airis-accent: #ccff00;
+  --airis-accent-hover: #b3e600;
+  --airis-accent-subtle: rgba(204, 255, 0, 0.1);
+  --airis-accent-muted: rgba(204, 255, 0, 0.4);
+  
+  /* Secondary accent - CYAN (restrained, technical) */
+  --airis-accent-cyan: #0891b2;
+  --airis-accent-cyan-hover: #0e7490;
+  --airis-accent-cyan-subtle: rgba(8, 145, 178, 0.1);
+  
+  /* --- A5. Semantic Colors --- */
+  /* Success - operational, confirmed */
+  --airis-success: #22c55e;
+  --airis-success-hover: #16a34a;
+  --airis-success-subtle: rgba(34, 197, 94, 0.1);
+  
+  /* Warning - caution, attention required */
+  --airis-warning: #f97316;
+  --airis-warning-hover: #ea580c;
+  --airis-warning-subtle: rgba(249, 115, 22, 0.1);
+  
+  /* Danger - critical, error, threat */
+  --airis-danger: #dc2626;
+  --airis-danger-hover: #b91c1c;
+  --airis-danger-subtle: rgba(220, 38, 38, 0.1);
+  
+  /* Info - informational, neutral */
+  --airis-info: #6366f1;
+  --airis-info-hover: #4f46e5;
+  --airis-info-subtle: rgba(99, 102, 241, 0.1);
+  
+  /* --- A6. Glow Effects --- */
+  /* Restrained glow - primary accent */
+  --airis-glow: rgba(204, 255, 0, 0.15);
+  --airis-glow-intense: rgba(204, 255, 0, 0.25);
+  
+  /* Restrained glow - cyan accent */
+  --airis-glow-cyan: rgba(8, 145, 178, 0.15);
+  --airis-glow-cyan-intense: rgba(8, 145, 178, 0.25);
+  
+  /* --- A7. Classification Palette --- */
+  /* Security clearance encoding (5 levels) */
+  --airis-class-1: #666666;  /* Unclassified */
+  --airis-class-2: #999999;  /* Internal */
+  --airis-class-3: #ccff00;  /* Confidential */
+  --airis-class-4: #f97316;  /* Secret */
+  --airis-class-5: #dc2626;  /* Top Secret */
+  
+  /* ==========================================================================
+     B. STRUCTURAL STYLE
+     ========================================================================== */
+  
+  /* --- B1. Edge Treatment --- */
+  /* Default: straight edges preferred over rounded */
+  --airis-radius-none: 0;
+  --airis-radius-sm: 2px;
+  --airis-radius-md: 4px;
+  --airis-radius-lg: 6px;
+  --airis-radius-full: 9999px;
+  
+  /* --- B2. Border Logic --- */
+  /* Line weights - thin baseline, medium emphasis, thick classification */
+  --airis-line-thin: 1px;
+  --airis-line-medium: 2px;
+  --airis-line-thick: 3px;
+  --airis-line-thicker: 4px;
+  
+  /* --- B3. Corner Treatment --- */
+  /* Bracket sizing */
+  --airis-bracket-size: 16px;
+  --airis-bracket-thickness: 2px;
+  
+  /* --- B4. Visual Weight Distribution --- */
+  /* AIRIS favors: light top, medium middle, heavy bottom (content gravity) */
+  /* Headers: minimal visual weight */
+  /* Body: medium visual weight */
+  /* Navigation/controls: medium-heavy visual weight */
+  
+  /* ==========================================================================
+     C. TYPOGRAPHY CHARACTER
+     ========================================================================== */
+  
+  /* --- C1. Font Families --- */
+  /* Display - headings, titles */
+  --airis-font-display: 'IBM Plex Sans', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Body - interface text, labels */
+  --airis-font-body: 'IBM Plex Sans', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Mono - code, metadata, timestamps, technical text */
+  --airis-font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+  
+  /* --- C2. Font Sizes --- */
+  /* Functional text - minimum sizes for readability */
+  --airis-text-2xs: 0.625rem;   /* 10px - DECORATIVE ONLY */
+  --airis-text-xs: 0.6875rem;   /* 11px - metadata (timestamps, counts) */
+  --airis-text-sm: 0.8125rem;   /* 13px - body text, labels */
+  --airis-text-base: 0.9375rem; /* 15px - large body */
+  --airis-text-lg: 1.125rem;    /* 18px - headings small */
+  --airis-text-xl: 1.5rem;      /* 24px - headings */
+  --airis-text-2xl: 2rem;       /* 32px - headings large */
+  --airis-text-3xl: 2.5rem;    /* 40px - display */
+  --airis-text-4xl: 3.5rem;    /* 56px - hero */
+  
+  /* --- C3. Line Heights --- */
+  --airis-leading-tight: 1.1;
+  --airis-leading-snug: 1.25;
+  --airis-leading-normal: 1.5;
+  --airis-leading-relaxed: 1.75;
+  
+  /* --- C4. Letter Spacing --- */
+  --airis-tracking-tighter: -0.03em;
+  --airis-tracking-tight: -0.02em;
+  --airis-tracking-normal: 0;
+  --airis-tracking-wide: 0.025em;
+  --airis-tracking-wider: 0.05em;
+  --airis-tracking-widest: 0.1em;
+  
+  /* --- C5. Text Hierarchy Rules --- */
+  /* 
+   * FUNCTIONAL TEXT - Must always be readable
+   * - Body text: 13px minimum, primary or secondary color
+   * - Labels: 13px minimum, secondary color
+   * - Metadata: 11px minimum, tertiary color acceptable
+   * - Navigation: 13px minimum
+   * 
+   * DECORATIVE TEXT - Atmospheric only
+   * - Micro text: 10px, tertiary color
+   * - Used for: serial numbers, coordinates, technical annotations
+   */
+  
+  /* --- C6. Typography Voice --- */
+  /* Display: Confident, industrial, bold */
+  /* Body: Neutral, readable, professional */
+  /* Mono: Technical, precise, functional */
+  
+  /* ==========================================================================
+     D. DECORATIVE SYNTAX
+     ========================================================================== */
+  
+  /* --- D1. Control Lines --- */
+  /* Technical annotation marks */
+  /* Use for: coordinate references, alignment ticks, measurement markers */
+  --airis-control-line-color: var(--airis-text-tertiary);
+  --airis-control-line-weight: 1px;
+  
+  /* --- D2. Signal Lines --- */
+  /* Status indicators, directional cues */
+  /* Use for: active states, direction indicators, live data */
+  --airis-signal-line-color: var(--airis-accent);
+  --airis-signal-line-weight: 2px;
+  
+  /* --- D3. Framing Lines --- */
+  /* Structural borders, panel edges */
+  --airis-frame-line-color: var(--airis-border);
+  --airis-frame-line-weight: 1px;
+  
+  /* --- D4. Technical Dividers --- */
+  /* Section separation */
+  /* Variants: solid, dotted, segmented */
+  --airis-divider-color: var(--airis-border);
+  --airis-divider-weight: 1px;
+  
+  /* --- D5. Classification Markers --- */
+  /* Security level indicators */
+  /* Thick bars (3px minimum), bold colors */
+  --airis-class-marker-width: 3px;
+  --airis-class-marker-gap: 2px;
+  
+  /* ==========================================================================
+     E. GRAPHIC MOTIF FAMILIES
+     ========================================================================== */
+  
+  /* --- E1. Classification Bar System --- */
+  /* SECURITY CLEARANCE ENCODING
+   * Purpose: Encode security/access levels visually
+   * Structure: Horizontal bar segments, count + color = level
+   * Rules:
+   *   - Bars must be THICK (3px minimum)
+   *   - Bars must be the DOMINANT element
+   *   - Level text must be bold and readable
+   *   - This is FUNCTIONAL, not decorative
+   */
+  --airis-bar-class-width: 3px;
+  --airis-bar-class-gap: 2px;
+  --airis-bar-class-height: 12px;
+  
+  /* --- E2. Stripe Band System --- */
+  /* COLOR RIBBONS
+   * Purpose: Editorial accent, content separation, emphasis
+   * Structure: Horizontal or vertical bands
+   * Rules:
+   *   - Use for: emphasis zones, classification headers, content markers
+   *   - Color: accent families only (not arbitrary)
+   *   - Width: 2px (subtle) to 4px (emphasis)
+   *   - Never use for full-page decoration
+   */
+  --airis-stripe-width-thin: 2px;
+  --airis-stripe-width-thick: 4px;
+  
+  /* --- E3. Contour Line System --- */
+  /* TOPOGRAPHIC FIELD LINES
+   * Purpose: Atmospheric background, depth indication
+   * Structure: Repeating linear patterns
+   * Rules:
+   *   - Use in: backgrounds, subtle overlays
+   *   - Opacity: 5-15% maximum
+   *   - Spacing: 8px minimum
+   *   - Never use as primary content divider
+   */
+  --airis-contour-spacing: 8px;
+  --airis-contour-opacity: 0.08;
+  
+  /* --- E4. Bracket Corner System --- */
+  /* STRUCTURAL EMPHASIS
+   * Purpose: Frame key content, indicate importance
+   * Structure: Corner brackets (L-shaped)
+   * Rules:
+   *   - Use sparingly (hero elements, key panels only)
+   *   - NOT for every panel
+   *   - Size: 16px default, scalable
+   *   - Thickness: 2px
+   */
+  --airis-bracket-size: 16px;
+  --airis-bracket-weight: 2px;
+  
+  /* --- E5. Control Annotation System --- */
+  /* TECHNICAL LABELS
+   * Purpose: Coordinate-like strings, node tags, identifiers
+   * Structure: Monospace, uppercase, wide tracking
+   * Rules:
+   *   - Font: Mono, 10px, uppercase
+   *   - Color: Tertiary (subtle)
+   *   - Use for: Serial numbers, coordinates, technical IDs
+   *   - Never use for functional content
+   */
+  
+  /* --- E6. Node/Serial Tag System --- */
+  /* IDENTIFIERS
+   * Purpose: Mark nodes, items, tracked elements
+   * Structure: Small rectangular tags
+   * Rules:
+   *   - Font: Mono, 10px
+   *   - Background: Subtle (10% opacity)
+   *   - Border: 1px accent
+   *   - Use for: Item tracking, node identification
+   */
+  
+  /* ==========================================================================
+     F. TEXTURE/ATMOSPHERIC SYSTEMS
+     ========================================================================== */
+  
+  /* --- F1. Dot Field --- */
+  /* BACKGROUND GRID
+   * Purpose: Technical atmosphere, measurement reference
+   * Structure: Regular dot pattern
+   * Rules:
+   *   - Dot size: 2px
+   *   - Spacing: 8px
+   *   - Opacity: 15% maximum
+   *   - Color: Tertiary
+   */
+  --airis-dot-size: 2px;
+  --airis-dot-spacing: 8px;
+  --airis-dot-opacity: 0.15;
+  
+  /* --- F2. Hatch Zone --- */
+  /* TECHNICAL SHADING
+   * Purpose: Indicate special zones, disabled states
+   * Structure: Diagonal line pattern
+   * Rules:
+   *   - Angle: 45 degrees
+   *   - Spacing: 6px
+   *   - Opacity: 8% maximum
+   *   - Use for: Disabled overlays, special regions
+   */
+  --airis-hatch-angle: 45deg;
+  --airis-hatch-spacing: 6px;
+  --airis-hatch-opacity: 0.08;
+  
+  /* --- F3. Scan Texture --- */
+  /* HORIZONTAL LINE FIELD
+   * Purpose: Technical drawing atmosphere
+   * Structure: Repeating horizontal lines
+   * Rules:
+   *   - Line height: 2px
+   *   - Gap: 2px
+   *   - Opacity: 3% maximum
+   *   - Use for: Background atmosphere only
+   */
+  --airis-scan-line-height: 2px;
+  --airis-scan-gap: 2px;
+  --airis-scan-opacity: 0.03;
+  
+  /* --- F4. Contour Overlay --- */
+  /* FIELD LINE BACKGROUND
+   * Purpose: Depth indication, technical map feel
+   * Structure: Irregular or regular line patterns
+   * Rules:
+   *   - Opacity: 5-10%
+   *   - Color: Border or tertiary
+   *   - Use for: Hero areas, emphasis backgrounds
+   */
+  
+  /* ==========================================================================
+     G. DENSITY RULES
+     ========================================================================== */
+  
+  /* --- G1. Low-Detail (Default) --- */
+  /* 
+   * Use for: Main layouts, navigation, content areas
+   * Characteristics:
+   *   - Clean backgrounds (solid)
+   *   - Simple borders (1px)
+   *   - Minimal motifs (brackets on key elements only)
+   *   - No texture overlays
+   *   - No hatching or dot fields
+   */
+  
+  /* --- G2. Medium-Detail --- */
+  /*
+   * Use for: Emphasis zones, featured content, classification areas
+   * Characteristics:
+   *   - Subtle texture overlays (dot field, scan)
+   *   - Stripe bands (2px)
+   *   - Bracket corners on panels
+   *   - Classification bars
+   *   - Rule lines (segmented variants)
+   */
+  
+  /* --- G3. High-Detail --- */
+  /*
+   * Use for: Hero sections, title zones, classification displays
+   * Characteristics:
+   *   - Multiple texture layers
+   *   - Bracket combinations
+   *   - Full classification bar display
+   *   - Contour line patterns
+   *   - Micro annotations
+   *   - Use RESTRAINED - can overwhelm if overused
+   */
+  
+  /* ==========================================================================
+     H. COMBINATION RULES
+     ========================================================================== */
+  
+  /* --- H1. Layer Hierarchy --- */
+  /* 
+   * Layer 0: Background (solid colors)
+   * Layer 1: Texture overlays (dots, hatching, scan)
+   * Layer 2: Structural elements (borders, panels)
+   * Layer 3: Classification markers (bars, stripes)
+   * Layer 4: Emphasis elements (brackets, glows)
+   * Layer 5: Content (text, controls)
+   * 
+   * Rule: Higher layers should not be obscured by lower layers
+   */
+  
+  /* --- H2. Motif Isolation Rules --- */
+  /*
+   * Classification bars: ISOLATED - don't mix with other motifs in same space
+   * Stripe bands: CAN COMBINE with brackets
+   * Brackets: CAN COMBINE with stripes, textures
+   * Contour lines: CAN COMBINE with textures
+   * Control annotations: ISOLATED - don't mix with content
+   */
+  
+  /* --- H3. Primary vs Secondary --- */
+  /*
+   * PRIMARY (use most often):
+   *   - Classification bars (when encoding security)
+   *   - Simple borders
+   *   - Single bracket corners
+   * 
+   * SECONDARY (use for emphasis):
+   *   - Stripe bands
+   *   - Texture overlays
+   *   - Full bracket sets
+   *   - Contour lines
+   * 
+   * ACCENT (use sparingly):
+   *   - Glow effects
+   *   - Scan animations
+   *   - High-detail combinations
+   */
+  
+  /* --- H4. Clutter Prevention --- */
+  /*
+   * Rule of thumb: If a motif doesn't serve a purpose, remove it
+   * 
+   * Signs of clutter:
+   *   - Multiple motifs fighting for attention
+   *   - Texture overwhelming content
+   *   - Too many accent colors
+   *   - Brackets on every panel
+   * 
+   * Prevention:
+   *   - Use low-detail by default
+   *   - Add detail only where needed
+   *   - Maintain clear hierarchy
+   */
+  
+  /* --- H5. Redundancy Prevention --- */
+  /*
+   * Don't combine:
+   *   - Two similar dividers (solid + dotted = choose one)
+   *   - Classification bar + stripe for same info
+   *   - Bracket + border on same edge
+   *   - Multiple textures in same space
+   */
+  
+  /* ==========================================================================
+     I. SPACING SYSTEM
+     ========================================================================== */
+  
+  --airis-space-1: 0.25rem;   /* 4px */
+  --airis-space-2: 0.5rem;    /* 8px */
+  --airis-space-3: 0.75rem;   /* 12px */
+  --airis-space-4: 1rem;      /* 16px */
+  --airis-space-5: 1.25rem;   /* 20px */
+  --airis-space-6: 1.5rem;    /* 24px */
+  --airis-space-8: 2rem;      /* 32px */
+  --airis-space-10: 2.5rem;   /* 40px */
+  --airis-space-12: 3rem;     /* 48px */
+  --airis-space-16: 4rem;     /* 64px */
+  
+  /* ==========================================================================
+     J. ANIMATION SYSTEM
+     ========================================================================== */
+  
+  /* Timing */
+  --airis-duration-instant: 50ms;
+  --airis-duration-fast: 150ms;
+  --airis-duration-base: 200ms;
+  --airis-duration-slow: 300ms;
+  
+  /* Easing */
+  --airis-ease-linear: linear;
+  --airis-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --airis-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --airis-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* ==========================================================================
+     K. LEGACY/EXPORT MAPPING
+     ========================================================================== */
+  /* Maps new AIRIS tokens to existing framework tokens for compatibility */
+  
+  /* Colors */
+  --color-bg-primary: var(--airis-bg-primary);
+  --color-bg-secondary: var(--airis-bg-secondary);
+  --color-bg-elevated: var(--airis-bg-elevated);
+  --color-bg-hover: var(--airis-bg-hover);
+  --color-bg-active: var(--airis-bg-active);
+  --color-panel: var(--airis-panel);
+  --color-panel-elevated: var(--airis-panel-elevated);
+  --color-panel-border: var(--airis-panel-border);
+  --color-text-primary: var(--airis-text-primary);
+  --color-text-secondary: var(--airis-text-secondary);
+  --color-text-tertiary: var(--airis-text-tertiary);
+  --color-text-inverse: var(--airis-text-inverse);
+  --color-border: var(--airis-border);
+  --color-border-hover: var(--airis-border-hover);
+  --color-border-focus: var(--airis-border-focus);
+  --color-accent: var(--airis-accent);
+  --color-accent-hover: var(--airis-accent-hover);
+  --color-accent-subtle: var(--airis-accent-subtle);
+  --color-accent-muted: var(--airis-accent-muted);
+  --color-accent-cyan: var(--airis-accent-cyan);
+  --color-accent-cyan-hover: var(--airis-accent-cyan-hover);
+  --color-accent-cyan-subtle: var(--airis-accent-cyan-subtle);
+  --color-success: var(--airis-success);
+  --color-success-hover: var(--airis-success-hover);
+  --color-success-subtle: var(--airis-success-subtle);
+  --color-warning: var(--airis-warning);
+  --color-warning-hover: var(--airis-warning-hover);
+  --color-warning-subtle: var(--airis-warning-subtle);
+  --color-danger: var(--airis-danger);
+  --color-danger-hover: var(--airis-danger-hover);
+  --color-danger-subtle: var(--airis-danger-subtle);
+  --color-info: var(--airis-info);
+  --color-info-hover: var(--airis-info-hover);
+  --color-info-subtle: var(--airis-info-subtle);
+  --color-accent-glow: var(--airis-glow);
+  --color-accent-glow-intense: var(--airis-glow-intense);
+  --color-accent-cyan-glow: var(--airis-glow-cyan);
+  --color-accent-cyan-glow-intense: var(--airis-glow-cyan-intense);
+  --color-classification-1: var(--airis-class-1);
+  --color-classification-2: var(--airis-class-2);
+  --color-classification-3: var(--airis-class-3);
+  --color-classification-4: var(--airis-class-4);
+  --color-classification-5: var(--airis-class-5);
+  
+  /* Typography */
+  --font-family-sans: var(--airis-font-body);
+  --font-family-mono: var(--airis-font-mono);
+  --font-family-display: var(--airis-font-display);
+  --font-size-2xs: var(--airis-text-2xs);
+  --font-size-xs: var(--airis-text-xs);
+  --font-size-sm: var(--airis-text-sm);
+  --font-size-base: var(--airis-text-base);
+  --font-size-lg: var(--airis-text-lg);
+  --font-size-xl: var(--airis-text-xl);
+  --font-size-2xl: var(--airis-text-2xl);
+  --font-size-3xl: var(--airis-text-3xl);
+  --font-size-4xl: var(--airis-text-4xl);
+  --line-height-tight: var(--airis-leading-tight);
+  --line-height-snug: var(--airis-leading-snug);
+  --line-height-normal: var(--airis-leading-normal);
+  --line-height-relaxed: var(--airis-leading-relaxed);
+  --letter-spacing-tighter: var(--airis-tracking-tighter);
+  --letter-spacing-tight: var(--airis-tracking-tight);
+  --letter-spacing-normal: var(--airis-tracking-normal);
+  --letter-spacing-wide: var(--airis-tracking-wide);
+  --letter-spacing-wider: var(--airis-tracking-wider);
+  --letter-spacing-widest: var(--airis-tracking-widest);
+  
+  /* Spacing */
+  --space-1: var(--airis-space-1);
+  --space-2: var(--airis-space-2);
+  --space-3: var(--airis-space-3);
+  --space-4: var(--airis-space-4);
+  --space-5: var(--airis-space-5);
+  --space-6: var(--airis-space-6);
+  --space-8: var(--airis-space-8);
+  --space-10: var(--airis-space-10);
+  --space-12: var(--airis-space-12);
+  --space-16: var(--airis-space-16);
+  
+  /* Radius */
+  --radius-none: var(--airis-radius-none);
+  --radius-sm: var(--airis-radius-sm);
+  --radius-md: var(--airis-radius-md);
+  --radius-lg: var(--airis-radius-lg);
+  --radius-full: var(--airis-radius-full);
+  
+  /* Lines */
+  --line-thin: var(--airis-line-thin);
+  --line-medium: var(--airis-line-medium);
+  --line-thick: var(--airis-line-thick);
+  --line-thicker: var(--airis-line-thicker);
+  
+  /* Brackets */
+  --bracket-size: var(--airis-bracket-size);
+  --bracket-thickness: var(--airis-bracket-thickness);
+  
+  /* Classification */
+  --bar-classification-width: var(--airis-bar-class-width);
+  --bar-classification-gap: var(--airis-bar-class-gap);
+  --bar-classification-height: var(--airis-bar-class-height);
+  
+  /* Patterns */
+  --pattern-hatch-angle: var(--airis-hatch-angle);
+  --pattern-hatch-spacing: var(--airis-hatch-spacing);
+  --pattern-hatch-thickness: var(--airis-line-thin);
+  --pattern-hatch-opacity: var(--airis-hatch-opacity);
+  --pattern-dot-size: var(--airis-dot-size);
+  --pattern-dot-spacing: var(--airis-dot-spacing);
+  --pattern-dot-opacity: var(--airis-dot-opacity);
+  
+  /* Transitions */
+  --transition-fast: var(--airis-duration-fast);
+  --transition-base: var(--airis-duration-base);
+  --transition-slow: var(--airis-duration-slow);
+  
+  /* Focus */
+  --focus-ring-width: var(--airis-line-medium);
+  --focus-ring-offset: var(--airis-line-medium);
+  --focus-ring-color: var(--airis-accent);
+}

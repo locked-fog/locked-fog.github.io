@@ -1,0 +1,619 @@
+/**
+ * =============================================================================
+ * Button Component
+ * =============================================================================
+ * Clean Tech UI Framework
+ * BEM Methodology: .btn, .btn--modifier, .btn__element
+ * =============================================================================
+ */
+
+/* ==========================================================================
+   Base Button (.btn)
+   ========================================================================== */
+
+.btn {
+  --btn-frame-color: var(--color-border);
+  --btn-chamfer-size: var(--airis-chamfer-size, 10px);
+
+  /* Reset */
+  appearance: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+
+  /* Box Model */
+  padding: var(--space-3) var(--space-4);
+  border-radius: 0;
+
+  /* Typography - JetBrains Mono, larger size */
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+  text-align: center;
+  white-space: nowrap;
+
+  /* Visual */
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid transparent;
+  background-image:
+    linear-gradient(135deg, transparent 44%, var(--btn-frame-color) 48%, var(--btn-frame-color) 52%, transparent 56%),
+    linear-gradient(45deg, transparent 44%, var(--btn-frame-color) 48%, var(--btn-frame-color) 52%, transparent 56%),
+    linear-gradient(var(--btn-frame-color), var(--btn-frame-color)),
+    linear-gradient(var(--btn-frame-color), var(--btn-frame-color)),
+    linear-gradient(var(--btn-frame-color), var(--btn-frame-color)),
+    linear-gradient(var(--btn-frame-color), var(--btn-frame-color));
+  background-size:
+    var(--btn-chamfer-size) var(--btn-chamfer-size),
+    var(--btn-chamfer-size) var(--btn-chamfer-size),
+    calc(100% - var(--btn-chamfer-size)) 1px,
+    1px calc(100% - var(--btn-chamfer-size)),
+    calc(100% - var(--btn-chamfer-size)) 1px,
+    1px calc(100% - var(--btn-chamfer-size));
+  background-position:
+    top right,
+    bottom left,
+    0 0,
+    100% var(--btn-chamfer-size),
+    var(--btn-chamfer-size) 100%,
+    0 0;
+  background-repeat: no-repeat;
+
+  /* Transitions */
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.btn:focus {
+  outline: none;
+}
+
+/* Hover State */
+.btn:hover:not(:disabled) {
+  background-color: var(--color-bg-elevated);
+  --btn-frame-color: var(--color-border-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Active/Pressed State */
+.btn:active:not(:disabled) {
+  background-color: var(--color-bg-active);
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* Focus Ring - Accessibility */
+.btn:focus-visible {
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-ring-color);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  cursor: not-allowed;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  background-color: var(--color-bg-secondary);
+  --btn-frame-color: var(--color-border);
+  color: var(--color-text-tertiary);
+  box-shadow: none;
+  transform: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:disabled::before,
+.btn[aria-disabled="true"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 4px,
+    rgba(0, 0, 0, 0.1) 4px,
+    rgba(0, 0, 0, 0.1) 8px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btn:disabled > *,
+.btn[aria-disabled="true"] > * {
+  position: relative;
+  z-index: 2;
+}
+
+.btn:disabled:focus-visible,
+.btn[aria-disabled="true"]:focus-visible {
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + 2px) rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   Button Interactivity States
+   ========================================================================== */
+
+/**
+ * Selected/Active State
+ * When button is toggled on or selected
+ */
+.btn--selected {
+  background-color: var(--color-accent-subtle);
+  --btn-frame-color: var(--color-accent);
+  color: var(--color-accent);
+  box-shadow: 
+    0 0 10px var(--color-accent-glow),
+    inset 0 0 10px var(--color-accent-subtle);
+}
+
+.btn--selected:hover:not(:disabled) {
+  background-color: rgba(0, 212, 255, 0.2);
+}
+
+.btn--selected:active:not(:disabled) {
+  background-color: rgba(0, 212, 255, 0.25);
+}
+
+/**
+ * Pressed State (during click)
+ */
+.btn--pressed {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: none !important;
+}
+
+/**
+ * Released State (post-click animation)
+ */
+.btn--released {
+  animation: btn-release-pulse 300ms ease-out;
+}
+
+@keyframes btn-release-pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--color-accent-glow);
+  }
+  50% {
+    box-shadow: 0 0 20px 5px var(--color-accent-glow);
+  }
+  100% {
+    box-shadow: 0 0 0 0 var(--color-accent-glow);
+  }
+}
+
+/**
+ * Focused State (enhanced focus ring)
+ */
+.btn--focused {
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-accent),
+    0 0 15px var(--color-accent-glow);
+}
+
+/**
+ * Toggle Button Group
+ */
+.btn-toggle {
+  display: inline-flex;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.btn-toggle .btn {
+  border-radius: 0;
+  border: none;
+  border-right: 1px solid var(--color-border);
+}
+
+.btn-toggle .btn:last-child {
+  border-right: none;
+}
+
+.btn-toggle .btn--selected {
+  border-right-color: var(--color-accent);
+}
+
+/**
+ * Hover glow enhancement for primary buttons
+ */
+.btn--primary:not(:disabled):hover {
+  animation: btn-glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes btn-glow-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px var(--color-accent-glow),
+      0 0 40px var(--color-accent-glow);
+  }
+  50% {
+    box-shadow: 
+      0 0 25px var(--color-accent-glow),
+      0 0 50px var(--color-accent-glow);
+  }
+}
+
+/* ==========================================================================
+   Button Variants (.btn--*)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Primary Button (.btn--primary)
+   Filled cyan accent
+   -------------------------------------------------------------------------- */
+.btn--primary {
+  background-color: var(--color-accent);
+  --btn-frame-color: var(--color-accent);
+  color: var(--color-text-inverse);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background-color: var(--color-accent-hover);
+  --btn-frame-color: var(--color-accent-hover);
+  box-shadow:
+    0 0 20px var(--color-accent-glow),
+    0 0 40px var(--color-accent-glow);
+}
+
+.btn--primary:active:not(:disabled) {
+  background-color: var(--color-accent-hover);
+  box-shadow: 0 0 10px var(--color-accent-glow);
+}
+
+.btn--primary:focus-visible {
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-accent),
+    0 0 20px var(--color-accent-glow);
+}
+
+/* --------------------------------------------------------------------------
+   Secondary Button (.btn--secondary)
+   Outlined style
+   -------------------------------------------------------------------------- */
+.btn--secondary {
+  background-color: transparent;
+  --btn-frame-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.btn--secondary:hover:not(:disabled) {
+  background-color: var(--color-accent-subtle);
+  --btn-frame-color: var(--color-accent-hover);
+  color: var(--color-accent-hover);
+  box-shadow:
+    0 0 15px var(--color-accent-glow),
+    inset 0 0 10px var(--color-accent-subtle);
+}
+
+.btn--secondary:active:not(:disabled) {
+  background-color: rgba(0, 212, 255, 0.15);
+  box-shadow: 0 0 8px var(--color-accent-glow);
+}
+
+.btn--secondary:focus-visible {
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-accent),
+    0 0 15px var(--color-accent-glow);
+}
+
+/* --------------------------------------------------------------------------
+   Ghost Button (.btn--ghost)
+   Transparent with hover effect
+   -------------------------------------------------------------------------- */
+.btn--ghost {
+  background-color: transparent;
+  background-image: none;
+  color: var(--color-text-secondary);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background-color: var(--color-bg-hover);
+  color: var(--color-text-primary);
+  box-shadow: none;
+}
+
+.btn--ghost:active:not(:disabled) {
+  background-color: var(--color-bg-active);
+}
+
+.btn--ghost:focus-visible {
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-border-focus);
+}
+
+/* --------------------------------------------------------------------------
+   Icon Button (.btn--icon)
+   Icon-only buttons (square, centered icon)
+   -------------------------------------------------------------------------- */
+.btn--icon {
+  padding: var(--space-3);
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+}
+
+/* Size variants for icon buttons */
+.btn--icon.btn--sm {
+  padding: var(--space-2);
+}
+
+.btn--icon.btn--lg {
+  padding: var(--space-4);
+}
+
+/* Ensure icons are centered and sized properly */
+.btn--icon svg,
+.btn--icon img,
+.btn--icon .icon {
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+}
+
+/* Icon button variants maintain their specific styles */
+.btn--icon.btn--primary:hover:not(:disabled) {
+  box-shadow:
+    0 0 15px var(--color-accent-glow),
+    0 0 30px var(--color-accent-glow);
+}
+
+.btn--icon.btn--secondary:hover:not(:disabled) {
+  box-shadow:
+    0 0 10px var(--color-accent-glow),
+    inset 0 0 8px var(--color-accent-subtle);
+}
+
+/* ==========================================================================
+   Button Sizes (.btn--sm, .btn--md, .btn--lg)
+   ========================================================================== */
+
+/* Small Size (.btn--sm) */
+.btn--sm {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-xs);
+  border-radius: var(--radius-sm);
+  gap: var(--space-1);
+}
+
+/* Medium Size (.btn--md) - Default */
+.btn--md {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-md);
+  gap: var(--space-2);
+}
+
+/* Large Size (.btn--lg) */
+.btn--lg {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--font-size-md);
+  border-radius: var(--radius-lg);
+  gap: var(--space-3);
+}
+
+/* Icon sizing for different button sizes */
+.btn--sm .icon,
+.btn--sm svg,
+.btn--sm img {
+  width: 1em;
+  height: 1em;
+}
+
+.btn--lg .icon,
+.btn--lg svg,
+.btn--lg img {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+/* ==========================================================================
+   Button Content Elements (.btn__*)
+   ========================================================================== */
+
+/* Button Text */
+.btn__text {
+  display: inline-block;
+}
+
+/* Button Icon - positioned before text */
+.btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.25em;
+  height: 1.25em;
+}
+
+/* Button Icon - positioned after text */
+.btn__icon--end {
+  order: 1;
+}
+
+/* Loading State */
+.btn[aria-busy="true"] {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.btn[aria-busy="true"]::after {
+  content: '';
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: var(--radius-full);
+  animation: btn-spin 0.75s linear infinite;
+  color: inherit;
+}
+
+@keyframes btn-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   Special Button Variants
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Danger/Destructive Button (.btn--danger)
+   -------------------------------------------------------------------------- */
+.btn--danger {
+  background-color: var(--color-error);
+  --btn-frame-color: var(--color-error);
+  color: var(--color-text-inverse);
+}
+
+.btn--danger:hover:not(:disabled) {
+  background-color: var(--color-error-hover);
+  --btn-frame-color: var(--color-error-hover);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+}
+
+.btn--danger:focus-visible {
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-error);
+}
+
+/* --------------------------------------------------------------------------
+   Success Button (.btn--success)
+   -------------------------------------------------------------------------- */
+.btn--success {
+  background-color: var(--color-success);
+  --btn-frame-color: var(--color-success);
+  color: var(--color-text-inverse);
+}
+
+.btn--success:hover:not(:disabled) {
+  background-color: var(--color-success-hover);
+  --btn-frame-color: var(--color-success-hover);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+.btn--success:focus-visible {
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-success);
+}
+
+/* --------------------------------------------------------------------------
+   Link Button (.btn--link)
+   Looks like a link but behaves like a button
+   -------------------------------------------------------------------------- */
+.btn--link {
+  background-color: transparent;
+  background-image: none;
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  padding: 0;
+  height: auto;
+  min-height: auto;
+}
+
+.btn--link:hover:not(:disabled) {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--color-accent-hover);
+  box-shadow: none;
+  text-decoration: none;
+}
+
+.btn--link:active:not(:disabled) {
+  color: var(--color-accent-hover);
+  transform: none;
+}
+
+.btn--link:focus-visible {
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-accent);
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Button Groups
+   ========================================================================== */
+
+.btn-group {
+  display: inline-flex;
+  gap: var(--space-2);
+}
+
+.btn-group--joined {
+  gap: 0;
+}
+
+.btn-group--joined .btn {
+  border-radius: 0;
+}
+
+.btn-group--joined .btn:first-child {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.btn-group--joined .btn:last-child {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.btn-group--joined .btn:not(:first-child) {
+  margin-left: -1px;
+}
+
+/* ==========================================================================
+   Full Width Button
+   ========================================================================== */
+
+.btn--full-width {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .btn--responsive {
+    width: 100%;
+  }
+
+  .btn-group--responsive {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-group--responsive .btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,260 @@
+/**
+ * =============================================================================
+ * Breadcrumb Component
+ * =============================================================================
+ * Clean Tech UI Framework
+ * BEM Methodology: .breadcrumb, .breadcrumb--modifier, .breadcrumb__element
+ * =============================================================================
+ */
+
+/* ==========================================================================
+   Base Breadcrumb (.breadcrumb)
+   Navigation path showing current page location
+   ========================================================================== */
+
+.breadcrumb {
+  /* Reset */
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  /* Layout */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  /* Spacing */
+  gap: var(--space-2);
+
+  /* Typography */
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+}
+
+/* ==========================================================================
+   Breadcrumb Item (.breadcrumb__item)
+   Individual navigation segment
+   ========================================================================== */
+
+.breadcrumb__item {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+
+  /* Spacing */
+  gap: var(--space-2);
+}
+
+/* ==========================================================================
+   Breadcrumb Separator (.breadcrumb__separator)
+   Divider between breadcrumb items
+   ========================================================================== */
+
+.breadcrumb__separator {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Visual */
+  color: var(--color-text-tertiary);
+
+  /* Typography */
+  font-size: var(--font-size-xs);
+  line-height: 1;
+
+  /* Prevent text selection */
+  user-select: none;
+}
+
+/* Chevron icon styling */
+.breadcrumb__separator::before {
+  content: '/';
+  font-weight: var(--font-weight-regular);
+}
+
+/* Alternative: Chevron separator (.breadcrumb--chevron) */
+.breadcrumb--chevron .breadcrumb__separator::before {
+  content: '›';
+  font-size: 1.2em;
+  margin-top: -1px;
+}
+
+/* Alternative: Arrow separator (.breadcrumb--arrow) */
+.breadcrumb--arrow .breadcrumb__separator::before {
+  content: '→';
+  font-size: 0.9em;
+}
+
+/* ==========================================================================
+   Breadcrumb Link (.breadcrumb__link)
+   Clickable navigation element
+   ========================================================================== */
+
+.breadcrumb__link {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+
+  /* Typography */
+  color: var(--color-text-secondary);
+  text-decoration: none;
+
+  /* Transitions */
+  transition:
+    color var(--transition-fast),
+    text-decoration var(--transition-fast);
+}
+
+.breadcrumb__link:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.breadcrumb__link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-accent);
+  border-radius: var(--radius-sm);
+}
+
+.breadcrumb__link:active {
+  color: var(--color-accent-hover);
+}
+
+/* ==========================================================================
+   Current Item (.breadcrumb__item--current)
+   Active/current page - non-clickable
+   ========================================================================== */
+
+.breadcrumb__item--current {
+  /* Typography */
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.breadcrumb__item--current .breadcrumb__link {
+  color: var(--color-text-primary);
+  pointer-events: none;
+  text-decoration: none;
+}
+
+.breadcrumb__item--current .breadcrumb__link:hover {
+  color: var(--color-text-primary);
+}
+
+/* ==========================================================================
+   Breadcrumb Modifiers
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Compact Breadcrumb (.breadcrumb--compact)
+   Reduced spacing for tight spaces
+   -------------------------------------------------------------------------- */
+.breadcrumb--compact {
+  gap: var(--space-1);
+}
+
+.breadcrumb--compact .breadcrumb__item {
+  gap: var(--space-1);
+}
+
+/* --------------------------------------------------------------------------
+   Inverted Breadcrumb (.breadcrumb--inverted)
+   For use on dark or colored backgrounds
+   -------------------------------------------------------------------------- */
+.breadcrumb--inverted .breadcrumb__link {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.breadcrumb--inverted .breadcrumb__link:hover {
+  color: var(--color-accent);
+}
+
+.breadcrumb--inverted .breadcrumb__item--current {
+  color: #ffffff;
+}
+
+.breadcrumb--inverted .breadcrumb__separator {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   Breadcrumb with Icons (.breadcrumb__icon)
+   Add icons before text
+   -------------------------------------------------------------------------- */
+.breadcrumb__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  margin-right: var(--space-1);
+}
+
+.breadcrumb__icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* ==========================================================================
+   Responsive Behavior
+   ========================================================================== */
+
+/* Mobile: Hide middle items, show only first and last */
+@media (max-width: 480px) {
+  .breadcrumb--responsive .breadcrumb__item:not(:first-child):not(:last-child):not(.breadcrumb__item--current) {
+    display: none;
+  }
+
+  .breadcrumb--responsive .breadcrumb__item:first-child + .breadcrumb__separator,
+  .breadcrumb--responsive .breadcrumb__item--current {
+    display: inline-flex;
+  }
+
+  /* Show ellipsis separator between first and last */
+  .breadcrumb--responsive .breadcrumb__item:first-child + .breadcrumb__separator::before {
+    content: '...';
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+/* Hide visually but keep for screen readers */
+.breadcrumb__visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .breadcrumb__link {
+    text-decoration: underline;
+  }
+
+  .breadcrumb__separator {
+    color: var(--color-text-secondary);
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .breadcrumb__link,
+  .breadcrumb__separator {
+    transition: none;
+  }
+}

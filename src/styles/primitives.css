@@ -1,0 +1,504 @@
+/**
+ * =============================================================================
+ * AIRIS Primitives Layer
+ * =============================================================================
+ * Reusable visual primitives based on AIRIS visual language guide
+ * Phase 2: Production-ready primitives
+ * =============================================================================
+ */
+
+:root {
+  /* ==========================================================================
+     STRIPE BANDS
+     ========================================================================== */
+  /* Horizontal accent bands */
+  --airis-stripe-h-height: 3px;
+  --airis-stripe-h-thick: 4px;
+  
+  /* Vertical accent bands */
+  --airis-stripe-v-width: 3px;
+  --airis-stripe-v-thick: 4px;
+  
+  /* Stripe colors */
+  --airis-stripe-color: var(--airis-accent, #ccff00);
+  --airis-stripe-color-secondary: var(--airis-accent-cyan, #0891b2);
+  
+  /* ==========================================================================
+     NODE / SERIAL TAGS
+     ========================================================================== */
+  --airis-tag-padding-x: 6px;
+  --airis-tag-padding-y: 2px;
+  --airis-tag-font-size: 0.625rem;
+  --airis-tag-border-width: 1px;
+  --airis-tag-border-radius: 2px;
+  
+  /* ==========================================================================
+     TEXTURE: DOT FIELD
+     ========================================================================== */
+  --airis-dotfield-size: 2px;
+  --airis-dotfield-spacing: 8px;
+  --airis-dotfield-color: var(--airis-text-tertiary, #666666);
+  --airis-dotfield-opacity: 0.15;
+  
+  /* ==========================================================================
+     TEXTURE: HATCH ZONE
+     ========================================================================== */
+  --airis-hatch-angle: 45deg;
+  --airis-hatch-spacing: 6px;
+  --airis-hatch-color: var(--airis-text-tertiary, #666666);
+  --airis-hatch-opacity: 0.08;
+  
+  /* ==========================================================================
+     TEXTURE: SCAN
+     ========================================================================== */
+  --airis-scan-line-height: 2px;
+  --airis-scan-gap: 2px;
+  --airis-scan-color: var(--airis-border, #2a2a2a);
+  --airis-scan-opacity: 0.03;
+  
+  /* ==========================================================================
+     TEXTURE: CONTOUR
+     ========================================================================== */
+  --airis-contour-spacing: 16px;
+  --airis-contour-color: var(--airis-border, #2a2a2a);
+  --airis-contour-opacity: 0.3;
+}
+
+/* =============================================================================
+   STRIPE BAND - Horizontal
+   ============================================================================= */
+
+.airis-stripe-h {
+  display: block;
+  width: 100%;
+  height: var(--airis-stripe-h-height);
+  background: var(--airis-stripe-color);
+}
+
+.airis-stripe-h--thick {
+  height: var(--airis-stripe-h-thick);
+}
+
+.airis-stripe-h--secondary {
+  background: var(--airis-stripe-color-secondary);
+}
+
+.airis-stripe-h--muted {
+  background: var(--airis-text-tertiary);
+  opacity: 0.5;
+}
+
+.airis-stripe-h--segmented {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--airis-stripe-color) 0px,
+    var(--airis-stripe-color) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+/* =============================================================================
+   STRIPE BAND - Vertical
+   ============================================================================= */
+
+.airis-stripe-v {
+  display: block;
+  width: var(--airis-stripe-v-width);
+  height: 100%;
+  background: var(--airis-stripe-color);
+}
+
+.airis-stripe-v--thick {
+  width: var(--airis-stripe-v-thick);
+}
+
+.airis-stripe-v--secondary {
+  background: var(--airis-stripe-color-secondary);
+}
+
+.airis-stripe-v--muted {
+  background: var(--airis-text-tertiary);
+  opacity: 0.5;
+}
+
+/* =============================================================================
+   NODE / SERIAL TAG
+   ============================================================================= */
+
+.airis-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: var(--airis-tag-padding-y) var(--airis-tag-padding-x);
+  font-family: var(--airis-font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--airis-tag-font-size);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--airis-text-secondary, #999999);
+  background: rgba(255, 255, 255, 0.05);
+  border: var(--airis-tag-border-width) solid var(--airis-border, #2a2a2a);
+  border-radius: var(--airis-tag-border-radius);
+}
+
+.airis-tag--accent {
+  color: var(--airis-accent, #ccff00);
+  border-color: var(--airis-accent, #ccff00);
+  background: rgba(204, 255, 0, 0.05);
+}
+
+.airis-tag--cyan {
+  color: var(--airis-accent-cyan, #0891b2);
+  border-color: var(--airis-accent-cyan, #0891b2);
+  background: rgba(8, 145, 178, 0.05);
+}
+
+.airis-tag--success {
+  color: var(--airis-success, #22c55e);
+  border-color: var(--airis-success, #22c55e);
+  background: rgba(34, 197, 94, 0.05);
+}
+
+.airis-tag--warning {
+  color: var(--airis-warning, #f97316);
+  border-color: var(--airis-warning, #f97316);
+  background: rgba(249, 115, 22, 0.05);
+}
+
+.airis-tag--danger {
+  color: var(--airis-danger, #dc2626);
+  border-color: var(--airis-danger, #dc2626);
+  background: rgba(220, 38, 38, 0.05);
+}
+
+.airis-tag__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* =============================================================================
+   TEXTURE: DOT FIELD
+   ============================================================================= */
+
+.airis-dotfield {
+  background-image: radial-gradient(
+    circle,
+    var(--airis-dotfield-color) var(--airis-dotfield-size),
+    transparent var(--airis-dotfield-size)
+  );
+  background-size: var(--airis-dotfield-spacing) var(--airis-dotfield-spacing);
+  opacity: var(--airis-dotfield-opacity);
+}
+
+.airis-dotfield--dense {
+  --airis-dotfield-spacing: 6px;
+  --airis-dotfield-opacity: 0.2;
+}
+
+.airis-dotfield--subtle {
+  --airis-dotfield-opacity: 0.08;
+}
+
+.airis-dotfield--accent {
+  --airis-dotfield-color: var(--airis-accent, #ccff00);
+}
+
+.airis-dotfield--cyan {
+  --airis-dotfield-color: var(--airis-accent-cyan, #0891b2);
+}
+
+/* =============================================================================
+   TEXTURE: HATCH ZONE
+   ============================================================================= */
+
+.airis-hatch {
+  background-image: repeating-linear-gradient(
+    var(--airis-hatch-angle),
+    transparent,
+    transparent var(--airis-hatch-spacing),
+    var(--airis-accent, #ccff00) var(--airis-hatch-spacing),
+    var(--airis-accent, #ccff00) calc(var(--airis-hatch-spacing) + 2px)
+  );
+  opacity: 0.15;
+}
+
+.airis-hatch--dense {
+  --airis-hatch-spacing: 4px;
+}
+
+.airis-hatch--subtle {
+  opacity: 0.08;
+}
+
+.airis-hatch--secondary {
+  background-image: repeating-linear-gradient(
+    var(--airis-hatch-angle),
+    transparent,
+    transparent var(--airis-hatch-spacing),
+    var(--airis-accent-cyan, #0891b2) var(--airis-hatch-spacing),
+    var(--airis-accent-cyan, #0891b2) calc(var(--airis-hatch-spacing) + 2px)
+  );
+}
+
+.airis-hatch--muted {
+  background-image: repeating-linear-gradient(
+    var(--airis-hatch-angle),
+    transparent,
+    transparent var(--airis-hatch-spacing),
+    var(--airis-border, #2a2a2a) var(--airis-hatch-spacing),
+    var(--airis-border, #2a2a2a) calc(var(--airis-hatch-spacing) + 2px)
+  );
+  opacity: 0.4;
+}
+
+.airis-hatch--reverse {
+  --airis-hatch-angle: -45deg;
+}
+
+.airis-hatch--horizontal {
+  --airis-hatch-angle: 0deg;
+}
+
+.airis-hatch--vertical {
+  --airis-hatch-angle: 90deg;
+}
+
+/* =============================================================================
+   TEXTURE: SCAN LINES
+   ============================================================================= */
+
+.airis-scan {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent var(--airis-scan-gap),
+    var(--airis-scan-color) var(--airis-scan-gap),
+    var(--airis-scan-color) calc(var(--airis-scan-gap) + var(--airis-scan-line-height))
+  );
+  opacity: var(--airis-scan-opacity);
+}
+
+.airis-scan--dense {
+  --airis-scan-gap: 1px;
+  --airis-scan-line-height: 1px;
+}
+
+.airis-scan--subtle {
+  --airis-scan-opacity: 0.02;
+}
+
+/* =============================================================================
+   TEXTURE: CONTOUR LINES
+   ============================================================================= */
+
+.airis-contour {
+  background-image: repeating-linear-gradient(
+    0deg,
+    var(--airis-contour-color) 0px,
+    var(--airis-contour-color) 1px,
+    transparent 1px,
+    transparent var(--airis-contour-spacing)
+  );
+  opacity: var(--airis-contour-opacity);
+}
+
+.airis-contour--vertical {
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--airis-contour-color) 0px,
+    var(--airis-contour-color) 1px,
+    transparent 1px,
+    transparent var(--airis-contour-spacing)
+  );
+}
+
+.airis-contour--diagonal {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--airis-contour-color) 0px,
+    var(--airis-contour-color) 1px,
+    transparent 1px,
+    transparent var(--airis-contour-spacing)
+  );
+}
+
+/* =============================================================================
+   DENSITY CLASSES
+   ============================================================================= */
+
+/* Low Detail - Clean, minimal */
+.airis-density--low {
+  /* No texture, simple borders */
+}
+
+/* Medium Detail - Subtle textures */
+.airis-density--medium {
+  background-image: radial-gradient(
+    circle,
+    var(--airis-dotfield-color) 1px,
+    transparent 1px
+  );
+  background-size: var(--airis-dotfield-spacing) var(--airis-dotfield-spacing);
+  opacity: 0.08;
+}
+
+/* High Detail - Multiple layers */
+.airis-density--high {
+  position: relative;
+}
+
+.airis-density--high::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 6px,
+      rgba(102, 102, 102, 0.03) 6px,
+      rgba(102, 102, 102, 0.03) 7px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      var(--airis-border, #2a2a2a) 0px,
+      var(--airis-border, #2a2a2a) 1px,
+      transparent 1px,
+      transparent 16px
+    );
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.airis-density--high > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* =============================================================================
+   SIGNAL LINE / LOCATOR MARK
+   ============================================================================= */
+
+.airis-signal {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.airis-signal::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--airis-accent, #ccff00);
+}
+
+.airis-signal--active::before {
+  box-shadow: 0 0 6px var(--airis-accent, #ccff00);
+}
+
+.airis-signal--inactive::before {
+  background: var(--airis-text-tertiary, #666666);
+}
+
+.airis-signal--success::before {
+  background: var(--airis-success, #22c55e);
+  box-shadow: 0 0 6px var(--airis-success, #22c55e);
+}
+
+.airis-signal--warning::before {
+  background: var(--airis-warning, #f97316);
+  box-shadow: 0 0 6px var(--airis-warning, #f97316);
+}
+
+.airis-signal--danger::before {
+  background: var(--airis-danger, #dc2626);
+  box-shadow: 0 0 6px var(--airis-danger, #dc2626);
+  animation: airis-signal-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes airis-signal-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Locator mark - small crosshair */
+.airis-locator {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.airis-locator::before,
+.airis-locator::after {
+  content: '';
+  position: absolute;
+  background: var(--airis-accent, #ccff00);
+  opacity: 0.6;
+}
+
+.airis-locator::before {
+  width: 6px;
+  height: 1px;
+}
+
+.airis-locator::after {
+  width: 1px;
+  height: 6px;
+}
+
+/* =============================================================================
+   RULE LINE VARIANTS
+   ============================================================================= */
+
+.airis-rule {
+  height: 1px;
+  background: var(--airis-border, #2a2a2a);
+}
+
+.airis-rule--medium {
+  height: 2px;
+}
+
+.airis-rule--thick {
+  height: 3px;
+}
+
+.airis-rule--accent {
+  background: var(--airis-accent, #ccff00);
+  opacity: 0.5;
+}
+
+.airis-rule--dotted {
+  height: auto;
+  border-top: 1px dotted var(--airis-border, #2a2a2a);
+  background: none;
+}
+
+.airis-rule--segmented {
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--airis-border, #2a2a2a) 0px,
+    var(--airis-border, #2a2a2a) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+.airis-rule--segmented-accent {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--airis-accent, #ccff00) 0px,
+    var(--airis-accent, #ccff00) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  height: 2px;
+  opacity: 0.5;
+}

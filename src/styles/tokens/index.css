@@ -1,0 +1,98 @@
+/* Design Tokens - Index
+   AIRIS Design System
+   Aggregates all token files */
+
+@import './tokens.css';
+@import './legacy-aliases.css';
+
+:root {
+  /* Shadow Tokens (not in canonical set) */
+  --shadow-none: none;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 20px var(--color-accent-glow);
+  --shadow-glow-lg: 0 0 40px var(--color-accent-glow-intense);
+
+  --shadow-inset-sm: inset 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-inset-md: inset 0 2px 4px 0 rgba(0, 0, 0, 0.6);
+  --shadow-inset-lg: inset 0 4px 8px 0 rgba(0, 0, 0, 0.7);
+  --shadow-inset-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.05), inset 0 -1px 0 0 rgba(0, 0, 0, 0.5);
+
+  --shadow-glow-accent-subtle: 0 0 12px rgba(204, 255, 0, 0.15);
+  --shadow-glow-accent-intense: 0 0 30px rgba(204, 255, 0, 0.3);
+  --shadow-glow-accent-ring: 0 0 0 2px rgba(204, 255, 0, 0.2), 0 0 20px rgba(204, 255, 0, 0.15);
+  --shadow-glow-cyan: 0 0 15px rgba(0, 255, 255, 0.2);
+  --shadow-glow-cyan-intense: 0 0 25px rgba(0, 255, 255, 0.35);
+  --shadow-glow-error: 0 0 15px rgba(255, 50, 50, 0.2);
+  --shadow-glow-success: 0 0 15px rgba(50, 255, 100, 0.2);
+
+  --shadow-layer-1: 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+  --shadow-layer-2: 0 4px 8px -2px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-layer-3: 0 8px 16px -4px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-layer-4: 0 16px 32px -8px rgba(0, 0, 0, 0.7), 0 8px 16px -4px rgba(0, 0, 0, 0.5);
+
+  --shadow-hover: 0 2px 8px -2px rgba(0, 0, 0, 0.4), 0 4px 12px -4px rgba(0, 0, 0, 0.2);
+  --shadow-hover-lift: 0 8px 16px -4px rgba(0, 0, 0, 0.5), 0 4px 8px -2px rgba(0, 0, 0, 0.3);
+  --shadow-hover-accent: 0 0 12px rgba(204, 255, 0, 0.1), 0 4px 12px -2px rgba(0, 0, 0, 0.4);
+
+  --shadow-sharp-sm: 0 2px 0 0 rgba(0, 0, 0, 0.8);
+  --shadow-sharp-md: 0 4px 0 0 rgba(0, 0, 0, 0.9);
+  --shadow-sharp-lg: 0 8px 0 0 rgba(0, 0, 0, 0.95);
+  --shadow-sharp-accent: 0 2px 0 0 rgba(204, 255, 0, 0.5);
+
+  /* Extended Transitions */
+  --transition-slower: 500ms ease;
+  --duration-ultra-fast: 100ms;
+  --duration-snappy: 175ms;
+  --duration-slower: 500ms;
+
+  /* Animation */
+  --animation-fade-in: 200ms;
+  --animation-slide-in: 250ms;
+  --animation-scale-in: 200ms;
+
+  /* Stagger */
+  --stagger-0: 0ms;
+  --stagger-1: 50ms;
+  --stagger-2: 100ms;
+  --stagger-3: 150ms;
+  --stagger-4: 200ms;
+
+  /* Extended Easing */
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-sharp: cubic-bezier(0.4, 0, 0.6, 1);
+
+  /* Container Widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
+
+  /* Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* Density Tokens */
+  --density-compact-padding-x: var(--space-2);
+  --density-compact-padding-y: var(--space-1);
+  --density-compact-gap: var(--space-2);
+
+  --density-default-padding-x: var(--space-3);
+  --density-default-padding-y: var(--space-2);
+  --density-default-gap: var(--space-3);
+
+  --density-comfortable-padding-x: var(--space-4);
+  --density-comfortable-padding-y: var(--space-3);
+  --density-comfortable-gap: var(--space-4);
+
+  /* Additional Radius (not in canonical) */
+  --radius-xl: 0;
+  --radius-2xl: 0;
+}

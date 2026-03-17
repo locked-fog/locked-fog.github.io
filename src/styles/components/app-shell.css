@@ -1,0 +1,542 @@
+/**
+ * =============================================================================
+ * App Shell Component - Layout Wrapper
+ * =============================================================================
+ * AIRIS — Axiom Industries Render Interface System
+ * BEM Methodology: .app-shell, .app-shell--modifier, .app-shell__element
+ * =============================================================================
+ * 
+ * The App Shell provides the foundational layout structure for AIRIS applications.
+ * It handles the positioning and sizing of sidebar, navbar, and main content areas.
+ * 
+ * Usage:
+ *   <div class="app-shell">
+ *     <aside class="sidebar">...</aside>
+ *     <main class="app-shell__main">...</main>
+ *   </div>
+ */
+
+/* ==========================================================================
+   CSS Custom Properties (App Shell-specific)
+   ========================================================================== */
+
+:root {
+  /* App Shell Dimensions */
+  --app-shell-sidebar-width: var(--sidebar-width, 260px);
+  --app-shell-sidebar-collapsed: var(--sidebar-width-collapsed, 64px);
+  --app-shell-navbar-height: 64px;
+  --app-shell-main-padding: var(--space-6);
+  --app-shell-main-padding-mobile: var(--space-4);
+}
+
+/* ==========================================================================
+   Base App Shell (.app-shell)
+   ========================================================================== */
+
+.app-shell {
+  /* Reset */
+  box-sizing: border-box;
+
+  /* Layout */
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+
+  /* Visual */
+  background-color: var(--color-bg-primary);
+
+  /* Ensure proper stacking context */
+  position: relative;
+  z-index: var(--z-base);
+}
+
+/* ==========================================================================
+   App Shell Main Content (.app-shell__main)
+   ========================================================================== */
+
+.app-shell__main {
+  /* Layout */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Prevent flex overflow issues */
+  min-height: 100vh;
+
+  /* Box Model */
+  padding: var(--app-shell-main-padding);
+
+  /* Scroll behavior */
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* Custom scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.app-shell__main::-webkit-scrollbar {
+  width: 6px;
+}
+
+.app-shell__main::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.app-shell__main::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+}
+
+.app-shell__main::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-hover);
+}
+
+/* ==========================================================================
+   App Shell Content Wrapper (.app-shell__content)
+   For nesting content within main area
+   ========================================================================== */
+
+.app-shell__content {
+  /* Layout */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  /* Visual */
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+
+  /* Scroll */
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   App Shell Header Area (.app-shell__header)
+   For content header within main area
+   ========================================================================== */
+
+.app-shell__header {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+
+  /* Box Model */
+  height: var(--app-shell-navbar-height);
+  padding: 0 var(--space-4);
+
+  /* Visual */
+  background-color: var(--color-bg-elevated);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.app-shell__header-title {
+  /* Typography */
+  font: var(--font-weight-semibold) var(--font-size-lg) / var(--line-height-tight) var(--font-family-sans);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.app-shell__header-actions {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* ==========================================================================
+   Sidebar Integration (.app-shell with .sidebar)
+   ========================================================================== */
+
+/* Sidebar on the left (default) */
+.app-shell:has(.sidebar) {
+  /* Main content offset for sidebar */
+  & .app-shell__main {
+    margin-left: var(--app-shell-sidebar-width);
+    transition: margin-left var(--transition-slow) var(--ease-in-out);
+  }
+}
+
+/* Sidebar fixed positioning handling */
+.app-shell:has(.sidebar--fixed) {
+  & .app-shell__main {
+    margin-left: var(--app-shell-sidebar-width);
+  }
+}
+
+/* ==========================================================================
+   App Shell Variants
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Sidebar Right (.app-shell--sidebar-right)
+   Sidebar positioned on the right side
+   -------------------------------------------------------------------------- */
+
+.app-shell--sidebar-right {
+  flex-direction: row-reverse;
+
+  & .app-shell__main {
+    margin-left: 0;
+    margin-right: var(--app-shell-sidebar-width);
+  }
+
+  /* Right sidebar adjustments */
+  & .sidebar {
+    border-right: none;
+    border-left: 1px solid var(--color-border);
+  }
+
+  & .sidebar--fixed {
+    left: auto;
+    right: 0;
+  }
+
+  /* Active indicator adjustment */
+  & .sidebar__item--active::before {
+    left: auto;
+    right: calc(var(--space-2) * -1);
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   No Sidebar / Full Width (.app-shell--full)
+   Main content takes full width
+   -------------------------------------------------------------------------- */
+
+.app-shell--full {
+  & .app-shell__main {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Collapsed Sidebar (.app-shell--sidebar-collapsed)
+   Sidebar in collapsed state
+   -------------------------------------------------------------------------- */
+
+.app-shell--sidebar-collapsed {
+  & .app-shell__main {
+    margin-left: var(--app-shell-sidebar-collapsed);
+  }
+
+  /* When sidebar is on the right */
+  &.app-shell--sidebar-right .app-shell__main {
+    margin-left: 0;
+    margin-right: var(--app-shell-sidebar-collapsed);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   With Top Navbar (.app-shell--with-navbar)
+   Navbar above main content
+   -------------------------------------------------------------------------- */
+
+.app-shell--with-navbar {
+  flex-direction: column;
+
+  & .app-shell__main {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: var(--app-shell-navbar-height);
+    min-height: calc(100vh - var(--app-shell-navbar-height));
+  }
+
+  /* When sidebar is also present */
+  &:has(.sidebar) {
+    flex-direction: row;
+
+    & .app-shell__wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    & .app-shell__main {
+      margin-top: var(--app-shell-navbar-height);
+      margin-left: 0;
+      min-height: calc(100vh - var(--app-shell-navbar-height));
+    }
+  }
+
+  /* Navbar fixed handling */
+  & .navbar--fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-fixed);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Full Layout (.app-shell--layout-full)
+   Sidebar + Navbar + Main content
+   -------------------------------------------------------------------------- */
+
+.app-shell--layout-full {
+  flex-direction: row;
+
+  /* Wrapper for navbar + main */
+  & .app-shell__wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    margin-left: var(--app-shell-sidebar-width);
+  }
+
+  /* Main content with navbar offset */
+  & .app-shell__main {
+    margin-left: 0;
+    margin-top: var(--app-shell-navbar-height);
+    min-height: calc(100vh - var(--app-shell-navbar-height));
+  }
+
+  /* Fixed navbar */
+  & .navbar--fixed {
+    position: fixed;
+    top: 0;
+    left: var(--app-shell-sidebar-width);
+    right: 0;
+    z-index: var(--z-fixed);
+  }
+
+  /* Sidebar right variant */
+  &.app-shell--sidebar-right {
+    & .app-shell__wrapper {
+      margin-left: 0;
+      margin-right: var(--app-shell-sidebar-width);
+    }
+
+    & .app-shell__main {
+      margin-top: var(--app-shell-navbar-height);
+    }
+
+    & .navbar--fixed {
+      left: 0;
+      right: var(--app-shell-sidebar-width);
+    }
+  }
+
+  /* Collapsed sidebar variant */
+  &.app-shell--sidebar-collapsed {
+    & .app-shell__wrapper {
+      margin-left: var(--app-shell-sidebar-collapsed);
+    }
+
+    & .navbar--fixed {
+      left: var(--app-shell-sidebar-collapsed);
+    }
+
+    &.app-shell--sidebar-right {
+      & .app-shell__wrapper {
+        margin-left: 0;
+        margin-right: var(--app-shell-sidebar-collapsed);
+      }
+
+      & .navbar--fixed {
+        left: 0;
+        right: var(--app-shell-sidebar-collapsed);
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+   Mobile Menu Integration
+   ========================================================================== */
+
+/* Mobile hamburger in app shell */
+.app-shell__menu-toggle {
+  /* Reset */
+  appearance: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  /* Layout */
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+
+  /* Visual */
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-md);
+
+  /* Transitions */
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.app-shell__menu-toggle:hover {
+  background-color: var(--color-bg-hover);
+  color: var(--color-text-primary);
+}
+
+.app-shell__menu-toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.app-shell__menu-toggle-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* ==========================================================================
+   Responsive Behavior
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  :root {
+    --app-shell-main-padding: var(--app-shell-main-padding-mobile);
+  }
+
+  /* Show mobile menu toggle on small screens */
+  .app-shell__menu-toggle {
+    display: flex;
+  }
+
+  /* Sidebar handling on mobile - hidden by default */
+  .app-shell:has(.sidebar--responsive) {
+    & .app-shell__main {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  /* Full layout adjustments on mobile */
+  .app-shell--layout-full {
+    & .app-shell__wrapper {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    & .navbar--fixed {
+      left: 0;
+      right: 0;
+    }
+
+    & .app-shell__main {
+      margin-top: var(--app-shell-navbar-height);
+    }
+
+    /* When sidebar is open on mobile */
+    &:has(.sidebar--responsive.is-open) .app-shell__wrapper,
+    &:has(.sidebar--responsive[aria-expanded="true"]) .app-shell__wrapper {
+      /* Disable pointer events on main content when overlay is active */
+      pointer-events: none;
+    }
+  }
+
+  /* Right sidebar mobile handling */
+  .app-shell--sidebar-right {
+    & .app-shell__main {
+      margin-right: 0;
+    }
+  }
+
+  /* Collapsed state doesn't apply on mobile */
+  .app-shell--sidebar-collapsed {
+    & .app-shell__main {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+
+/* ==========================================================================
+   Status Bar Integration (.app-shell--with-statusbar)
+   ========================================================================== */
+
+.app-shell--with-statusbar {
+  /* When status bar is at the bottom */
+  & .app-shell__main {
+    min-height: calc(100vh - var(--statusbar-height));
+  }
+
+  &:has(.statusbar--bottom) .app-shell__main {
+    margin-bottom: var(--statusbar-height);
+  }
+
+  /* When sidebar and status bar are both present */
+  &:has(.sidebar):has(.statusbar--bottom) .app-shell__main {
+    min-height: calc(100vh - var(--statusbar-height));
+  }
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+/* Hide sidebar on specific breakpoints */
+@media (max-width: 1024px) {
+  .app-shell--hide-sidebar-lg {
+    & .app-shell__main {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+
+    & .sidebar {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .app-shell--hide-sidebar-md {
+    & .app-shell__main {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+
+    & .sidebar {
+      display: none;
+    }
+  }
+}
+
+/* Full height without scroll on main */
+.app-shell__main--no-scroll {
+  overflow: hidden;
+}
+
+/* Padded content wrapper for consistent internal spacing */
+.app-shell__body {
+  padding: var(--space-4);
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell,
+  .app-shell__main,
+  .app-shell__wrapper {
+    transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   High Contrast Mode
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+  .app-shell__content {
+    border-width: 2px;
+  }
+
+  .app-shell__header {
+    border-bottom-width: 2px;
+  }
+}

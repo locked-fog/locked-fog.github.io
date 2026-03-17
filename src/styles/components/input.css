@@ -1,0 +1,743 @@
+/**
+ * =============================================================================
+ * Input Component
+ * =============================================================================
+ * Clean Tech UI Framework
+ * BEM Methodology: .input, .input--modifier, .input__element
+ * Industrial/Tactical Dark Theme
+ * =============================================================================
+ */
+
+/* ==========================================================================
+   Base Input (.input)
+   ========================================================================== */
+
+.input {
+  /* Reset */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  background: transparent;
+  outline: none;
+
+  /* Layout */
+  display: block;
+  width: 100%;
+
+  /* Box Model */
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+
+  /* Typography */
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+
+  /* Visual */
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+
+  /* Transitions */
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+/* Placeholder styling */
+.input::placeholder {
+  color: var(--color-text-tertiary);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Interactive States
+   ========================================================================== */
+
+/* Hover State */
+.input:hover:not(:disabled):not([readonly]):not([aria-disabled="true"]) {
+  border-color: var(--color-border-hover);
+}
+
+/* Focus State */
+.input:focus:not(:disabled):not([readonly]):not([aria-disabled="true"]) {
+  border-color: var(--color-accent);
+  box-shadow:
+    0 0 0 1px var(--color-accent),
+    0 0 12px var(--color-accent-glow);
+}
+
+/* Disabled State */
+.input:disabled,
+.input[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-border);
+  color: var(--color-text-tertiary);
+}
+
+.input:disabled::placeholder,
+.input[aria-disabled="true"]::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* Read-only State */
+.input[readonly] {
+  cursor: default;
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.input[readonly]:focus {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 1px var(--color-border-focus);
+}
+
+/* ==========================================================================
+   Input Variants by Type
+   ========================================================================== */
+
+/* Search Input */
+.input--search {
+  padding-left: calc(var(--space-4) + 1.5rem);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: var(--space-4) center;
+  background-size: 1rem;
+}
+
+.input--search::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.input--search:focus {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ccff00' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
+}
+
+/* Password Input with toggle button support */
+.input--password {
+  padding-right: calc(var(--space-4) + 1.5rem);
+}
+
+/* ==========================================================================
+   Size Variants
+   ========================================================================== */
+
+/* Small Size */
+.input--sm {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-xs);
+  border-radius: var(--radius-sm);
+}
+
+.input--sm.input--search {
+  padding-left: calc(var(--space-3) + 1.25rem);
+  background-position: var(--space-3) center;
+  background-size: 0.875rem;
+}
+
+.input--sm.input--password {
+  padding-right: calc(var(--space-3) + 1.25rem);
+}
+
+/* Medium Size (default) */
+.input--md {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-md);
+}
+
+/* Large Size */
+.input--lg {
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--font-size-base);
+  border-radius: var(--radius-md);
+}
+
+.input--lg.input--search {
+  padding-left: calc(var(--space-5) + 1.75rem);
+  background-position: var(--space-5) center;
+  background-size: 1.25rem;
+}
+
+.input--lg.input--password {
+  padding-right: calc(var(--space-5) + 1.75rem);
+}
+
+/* ==========================================================================
+   State Variants
+   ========================================================================== */
+
+/* Error State */
+.input--error,
+.input[aria-invalid="true"] {
+  border-color: var(--color-danger);
+  background-color: var(--color-danger-subtle);
+}
+
+.input--error:hover:not(:disabled):not([readonly]),
+.input[aria-invalid="true"]:hover:not(:disabled):not([readonly]) {
+  border-color: var(--color-danger-hover);
+}
+
+.input--error:focus:not(:disabled):not([readonly]),
+.input[aria-invalid="true"]:focus:not(:disabled):not([readonly]) {
+  border-color: var(--color-danger);
+  box-shadow:
+    0 0 0 1px var(--color-danger),
+    0 0 12px rgba(220, 38, 38, 0.3);
+}
+
+.input--error::placeholder,
+.input[aria-invalid="true"]::placeholder {
+  color: rgba(220, 38, 38, 0.6);
+}
+
+/* Success State */
+.input--success {
+  border-color: var(--color-success);
+  background-color: var(--color-success-subtle);
+}
+
+.input--success:hover:not(:disabled):not([readonly]) {
+  border-color: var(--color-success-hover);
+}
+
+.input--success:focus:not(:disabled):not([readonly]) {
+  border-color: var(--color-success);
+  box-shadow:
+    0 0 0 1px var(--color-success),
+    0 0 12px rgba(34, 197, 94, 0.3);
+}
+
+/* Warning State */
+.input--warning {
+  border-color: var(--color-warning);
+  background-color: var(--color-warning-subtle);
+}
+
+.input--warning:hover:not(:disabled):not([readonly]) {
+  border-color: var(--color-warning-hover);
+}
+
+.input--warning:focus:not(:disabled):not([readonly]) {
+  border-color: var(--color-warning);
+  box-shadow:
+    0 0 0 1px var(--color-warning),
+    0 0 12px rgba(249, 115, 22, 0.3);
+}
+
+/* ==========================================================================
+   Input Group (with icons, prefixes, suffixes)
+   ========================================================================== */
+
+/* Input Group Container */
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Input within a group */
+.input-group .input {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Input with Icon (internal icon) */
+.input-group--icon-left .input {
+  padding-left: calc(var(--space-4) + 1.5rem);
+}
+
+.input-group--icon-right .input {
+  padding-right: calc(var(--space-4) + 1.5rem);
+}
+
+/* Icon element inside input group */
+.input-group__icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--color-text-tertiary);
+  pointer-events: none;
+  transition: color var(--transition-fast);
+}
+
+.input-group__icon--left {
+  left: var(--space-4);
+}
+
+.input-group__icon--right {
+  right: var(--space-4);
+}
+
+/* Icon color change on focus */
+.input-group:focus-within .input-group__icon {
+  color: var(--color-accent);
+}
+
+.input-group--error:focus-within .input-group__icon,
+.input-group[aria-invalid="true"]:focus-within .input-group__icon {
+  color: var(--color-danger);
+}
+
+/* Prefix/Suffix Elements */
+.input-group__prefix,
+.input-group__suffix {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.input-group__prefix {
+  border-right: none;
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.input-group__suffix {
+  border-left: none;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+/* Adjust input when prefix/suffix is present */
+.input-group--prefix .input {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.input-group--suffix .input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Hover states for prefix/suffix */
+.input-group:hover .input-group__prefix,
+.input-group:hover .input-group__suffix {
+  border-color: var(--color-border-hover);
+}
+
+.input-group:focus-within .input-group__prefix,
+.input-group:focus-within .input-group__suffix {
+  border-color: var(--color-accent);
+}
+
+.input-group--error:focus-within .input-group__prefix,
+.input-group--error:focus-within .input-group__suffix,
+.input-group[aria-invalid="true"]:focus-within .input-group__prefix,
+.input-group[aria-invalid="true"]:focus-within .input-group__suffix {
+  border-color: var(--color-danger);
+}
+
+/* ==========================================================================
+   Size Variants for Input Groups
+   ========================================================================== */
+
+.input-group--sm .input-group__icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.input-group--sm .input-group__icon--left {
+  left: var(--space-3);
+}
+
+.input-group--sm .input-group__icon--right {
+  right: var(--space-3);
+}
+
+.input-group--sm .input-group__prefix,
+.input-group--sm .input-group__suffix {
+  padding: 0 var(--space-2);
+  font-size: var(--font-size-xs);
+}
+
+.input-group--lg .input-group__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.input-group--lg .input-group__icon--left {
+  left: var(--space-5);
+}
+
+.input-group--lg .input-group__icon--right {
+  right: var(--space-5);
+}
+
+.input-group--lg .input-group__prefix,
+.input-group--lg .input-group__suffix {
+  padding: 0 var(--space-4);
+  font-size: var(--font-size-base);
+}
+
+/* ==========================================================================
+   Action Button inside Input Group
+   ========================================================================== */
+
+.input-group__action {
+  position: absolute;
+  top: 50%;
+  right: var(--space-2);
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-1);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  transition: 
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.input-group__action:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-hover);
+}
+
+.input-group__action:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-accent);
+}
+
+.input-group__action svg,
+.input-group__action .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Adjust input padding when action button is present */
+.input-group--action .input {
+  padding-right: calc(var(--space-4) + 2rem);
+}
+
+.input-group--sm.input-group--action .input {
+  padding-right: calc(var(--space-3) + 1.75rem);
+}
+
+.input-group--lg.input-group--action .input {
+  padding-right: calc(var(--space-5) + 2.25rem);
+}
+
+/* ==========================================================================
+   Textarea Variant
+   ========================================================================== */
+
+.input--textarea {
+  min-height: 5rem;
+  max-height: 20rem;
+  resize: vertical;
+  padding: var(--space-3) var(--space-4);
+  line-height: var(--line-height-relaxed);
+}
+
+.input--textarea.input--sm {
+  min-height: 4rem;
+  padding: var(--space-2) var(--space-3);
+}
+
+.input--textarea.input--lg {
+  min-height: 6rem;
+  padding: var(--space-4) var(--space-5);
+}
+
+/* ==========================================================================
+   Select/Native Dropdown Styles
+   ========================================================================== */
+
+.input--select {
+  padding-right: calc(var(--space-4) + 1.5rem);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-4) center;
+  background-size: 1rem;
+  cursor: pointer;
+}
+
+.input--select:focus {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ccff00' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
+
+.input--select:disabled,
+.input--select[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+.input--select.input--sm {
+  padding-right: calc(var(--space-3) + 1.25rem);
+  background-position: right var(--space-3) center;
+  background-size: 0.875rem;
+}
+
+.input--select.input--lg {
+  padding-right: calc(var(--space-5) + 1.75rem);
+  background-position: right var(--space-5) center;
+  background-size: 1.25rem;
+}
+
+/* ==========================================================================
+   Number Input with Step Controls
+   ========================================================================== */
+
+/* Hide default spinners for cleaner look */
+.input[type="number"]::-webkit-inner-spin-button,
+.input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Input with number stepper buttons */
+.input-group--number {
+  display: flex;
+}
+
+.input-group--number .input {
+  text-align: center;
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  -moz-appearance: textfield;
+}
+
+.input-group--number .input::-webkit-inner-spin-button,
+.input-group--number .input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-group__stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  padding: 0;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: 
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.input-group__stepper:hover {
+  background-color: var(--color-bg-hover);
+  border-color: var(--color-border-hover);
+  color: var(--color-text-primary);
+}
+
+.input-group__stepper:active {
+  background-color: var(--color-bg-active);
+}
+
+.input-group__stepper--down {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  border-right: none;
+}
+
+.input-group__stepper--up {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border-left: none;
+}
+
+.input-group__stepper:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Loading State
+   ========================================================================== */
+
+.input[aria-busy="true"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ccff00' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cstyle%3E.spinner%7Banimation:spin 1s linear infinite;transform-origin:center;%7D@keyframes spin%7Bto%7Btransform:rotate(360deg);%7D%7D%3C/style%3E%3Cg class='spinner'%3E%3Cpath d='M21 12a9 9 0 1 1-6.219-8.56'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-4) center;
+  background-size: 1rem;
+  padding-right: calc(var(--space-4) + 1.5rem);
+}
+
+.input--sm[aria-busy="true"] {
+  background-position: right var(--space-3) center;
+  background-size: 0.875rem;
+  padding-right: calc(var(--space-3) + 1.25rem);
+}
+
+.input--lg[aria-busy="true"] {
+  background-position: right var(--space-5) center;
+  background-size: 1.25rem;
+  padding-right: calc(var(--space-5) + 1.75rem);
+}
+
+/* ==========================================================================
+   Label and Helper Text
+   ========================================================================== */
+
+/* Input Label */
+.input-label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.input-label--required::after {
+  content: '*';
+  margin-left: var(--space-1);
+  color: var(--color-danger);
+}
+
+/* Helper Text */
+.input-helper {
+  display: block;
+  margin-top: var(--space-2);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+}
+
+.input-helper--error {
+  color: var(--color-danger);
+}
+
+.input-helper--success {
+  color: var(--color-success);
+}
+
+.input-helper--warning {
+  color: var(--color-warning);
+}
+
+/* ==========================================================================
+   Field Wrapper (combines label, input, and helper)
+   ========================================================================== */
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input-field--inline {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.input-field--inline .input-label {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Input List (for datalist/autocomplete styling)
+   ========================================================================== */
+
+.input-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: var(--z-dropdown);
+  margin-top: var(--space-1);
+  padding: var(--space-1);
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  max-height: 15rem;
+  overflow-y: auto;
+}
+
+.input-list__item {
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: 
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.input-list__item:hover,
+.input-list__item--highlighted {
+  background-color: var(--color-bg-hover);
+}
+
+.input-list__item--selected {
+  background-color: var(--color-accent-subtle);
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .input-field--inline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .input-field--inline .input-label {
+    margin-bottom: 0;
+  }
+
+  .input-group--responsive {
+    flex-wrap: wrap;
+  }
+
+  .input-group--responsive .input-group__prefix,
+  .input-group--responsive .input-group__suffix {
+    width: 100%;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    border: 1px solid var(--color-border);
+    border-bottom: none;
+    justify-content: center;
+  }
+
+  .input-group--responsive .input-group__suffix {
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    border: 1px solid var(--color-border);
+    border-top: none;
+  }
+
+  .input-group--responsive.input-group--suffix .input,
+  .input-group--responsive.input-group--prefix .input {
+    border-radius: 0;
+  }
+}

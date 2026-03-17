@@ -1,0 +1,224 @@
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.section-header__label {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-widest);
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
+}
+
+.section-header__line {
+  flex: 1;
+  height: var(--line-thin);
+  background-color: var(--color-border);
+}
+
+.section-header--centered {
+  justify-content: center;
+}
+
+.section-header--centered .section-header__label {
+  text-align: center;
+}
+
+.section-header--centered .section-header__label::before {
+  content: '';
+  display: inline-block;
+  width: var(--space-6);
+  height: var(--line-thin);
+  background-color: var(--color-border);
+  margin-right: var(--space-3);
+  vertical-align: middle;
+}
+
+.section-header--accent .section-header__line,
+.section-header--accent .section-header__label::before {
+  background-color: var(--color-accent);
+}
+
+.section-header--accent-cyan .section-header__line,
+.section-header--accent-cyan .section-header__label::before {
+  background-color: var(--color-accent-cyan);
+}
+
+.section-header--medium .section-header__line,
+.section-header--medium .section-header__label::before {
+  height: var(--line-medium);
+}
+
+.section-header--thick .section-header__line,
+.section-header--thick .section-header__label::before {
+  height: var(--line-thick);
+}
+
+.section-header--segmented .section-header__line {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-border) 0px,
+    var(--color-border) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+.section-header--segmented.section-header--accent .section-header__line {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-accent) 0px,
+    var(--color-accent) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+.section-header--segmented.section-header--accent-cyan .section-header__line {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-accent-cyan) 0px,
+    var(--color-accent-cyan) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+.section-header--segmented.section-header--centered .section-header__label::before {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-border) 0px,
+    var(--color-border) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  height: var(--line-thin);
+}
+
+.section-header--segmented.section-header--centered.section-header--accent .section-header__label::before {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-accent) 0px,
+    var(--color-accent) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+.section-header--segmented.section-header--centered.section-header--accent-cyan .section-header__label::before {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-accent-cyan) 0px,
+    var(--color-accent-cyan) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+.section-header--dotted .section-header__line {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-border) 0px,
+    var(--color-border) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+}
+
+.section-header--dotted.section-header--accent .section-header__line {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-accent) 0px,
+    var(--color-accent) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+}
+
+.section-header--dotted.section-header--accent-cyan .section-header__line {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-accent-cyan) 0px,
+    var(--color-accent-cyan) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+}
+
+.section-header--dotted.section-header--centered .section-header__label::before {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-border) 0px,
+    var(--color-border) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+  height: var(--line-thin);
+}
+
+.section-header--dotted.section-header--centered.section-header--accent .section-header__label::before {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-accent) 0px,
+    var(--color-accent) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+}
+
+.section-header--dotted.section-header--centered.section-header--accent-cyan .section-header__label::before {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-accent-cyan) 0px,
+    var(--color-accent-cyan) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+}
+
+.section-header--no-rule .section-header__line {
+  display: none;
+}
+
+.section-header--no-rule.section-header--centered .section-header__label::before {
+  display: none;
+}
+
+.section-header--compact {
+  gap: var(--space-2);
+}
+
+.section-header--compact.section-header--centered .section-header__label::before {
+  width: var(--space-4);
+  margin-right: var(--space-2);
+}
+
+.section-header--relaxed {
+  gap: var(--space-4);
+}
+
+.section-header--relaxed.section-header--centered .section-header__label::before {
+  width: var(--space-8);
+  margin-right: var(--space-4);
+}
+
+.section-header--primary .section-header__label {
+  color: var(--color-text-primary);
+}
+
+.section-header--secondary .section-header__label {
+  color: var(--color-text-secondary);
+}
+
+.section-header--label-accent .section-header__label {
+  color: var(--color-accent);
+}
+
+.section-header--label-accent-cyan .section-header__label {
+  color: var(--color-accent-cyan);
+}

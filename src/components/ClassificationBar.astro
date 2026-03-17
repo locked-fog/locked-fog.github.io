@@ -1,0 +1,32 @@
+---
+interface Props {
+  level?: 1 | 2 | 3 | 4 | 5;
+  horizontal?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+  pulse?: boolean;
+  className?: string;
+}
+
+const {
+  level = 3,
+  horizontal = false,
+  size = 'md',
+  pulse = false,
+  className = '',
+} = Astro.props;
+
+const sizeClass = size === 'md' ? '' : `classification-bar--${size}`;
+const directionClass = horizontal ? 'classification-bar--horizontal' : '';
+const pulseClass = pulse ? 'classification-bar--pulse' : '';
+const classes = ['classification-bar', `classification-bar--${level}`, sizeClass, directionClass, pulseClass, className]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<div class={classes} aria-hidden="true">
+  <span class="classification-bar__segment"></span>
+  <span class="classification-bar__segment"></span>
+  <span class="classification-bar__segment"></span>
+  <span class="classification-bar__segment"></span>
+  <span class="classification-bar__segment"></span>
+</div>

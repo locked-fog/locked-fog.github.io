@@ -1,0 +1,816 @@
+/**
+ * =============================================================================
+ * Slider Component (Range Input)
+ * =============================================================================
+ * Clean Tech UI Framework
+ * BEM Naming Convention
+ * Volume-style range slider with cyan accent
+ * =============================================================================
+ */
+
+/**
+ * CSS Custom Properties for Slider
+ * These are set via JavaScript to control the fill position
+ * --slider-value: current value (default: 50)
+ * --slider-min: minimum value (default: 0)
+ * --slider-max: maximum value (default: 100)
+ */
+
+/* ==========================================================================
+   Slider Container
+   ========================================================================== */
+
+/**
+ * Slider
+ * The main wrapper for the range slider component
+ */
+.slider {
+  --slider-value: 50;
+  --slider-min: 0;
+  --slider-max: 100;
+  --slider-percent: calc((var(--slider-value) - var(--slider-min)) / (var(--slider-max) - var(--slider-min)) * 100%);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+/* ==========================================================================
+   Slider Input (Native Range)
+   ========================================================================== */
+
+/**
+ * Slider Input
+ * The native range input, visually hidden but fully functional
+ * Positioned absolutely over the custom visual elements
+ */
+.slider__input {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Webkit slider thumb (invisible but grabbable) */
+.slider__input::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Firefox slider thumb */
+.slider__input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Webkit slider track (invisible) */
+.slider__input::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* Firefox slider track */
+.slider__input::-moz-range-track {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Slider Visual Elements
+   ========================================================================== */
+
+/**
+ * Slider Track
+ * The visual track background that contains the fill and thumb
+ */
+.slider__track {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: visible;
+}
+
+/**
+ * Slider Fill
+ * The filled portion from min to current thumb position
+ * Width is controlled by --slider-percent CSS variable
+ */
+.slider__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--slider-percent);
+  background: linear-gradient(90deg, var(--color-accent-hover) 0%, var(--color-accent) 100%);
+  border-radius: var(--radius-full);
+  transition: width var(--transition-fast);
+  box-shadow: inset 0 0 8px var(--color-accent-glow);
+}
+
+/**
+ * Slider Thumb
+ * The draggable circular indicator
+ */
+.slider__thumb {
+  position: absolute;
+  top: 50%;
+  left: var(--slider-percent);
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-accent);
+  border: 2px solid var(--color-bg-primary);
+  border-radius: var(--radius-full);
+  box-shadow: 
+    0 0 10px var(--color-accent-glow),
+    0 0 20px var(--color-accent-glow-intense),
+    0 2px 4px rgba(0, 0, 0, 0.4);
+  transition: 
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/**
+ * Slider Value
+ * The numeric value display label
+ */
+.slider__value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  padding: var(--space-1) var(--space-2);
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font: var(--font-weight-medium) var(--font-size-xs)/var(--line-height-normal) var(--font-family-mono);
+  color: var(--color-accent);
+  transition: 
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+/**
+ * Slider Label
+ * Text label describing the slider
+ */
+.slider__label {
+  font: var(--font-weight-medium) var(--font-size-xs)/var(--line-height-normal) var(--font-family-sans);
+  color: var(--color-text-primary);
+}
+
+/**
+ * Slider Header
+ * Container for label and value display
+ */
+.slider__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ==========================================================================
+   Slider Limits Display (Min/Max Labels)
+   ========================================================================== */
+
+/**
+ * Slider Limits Container
+ * Holds min and max labels below the track
+ */
+.slider__limits {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: var(--space-1);
+}
+
+/**
+ * Min/Max Label Base
+ */
+.slider__min-label,
+.slider__max-label {
+  font: var(--font-weight-regular) var(--font-size-2xs)/var(--line-height-normal) var(--font-family-mono);
+  color: var(--color-text-tertiary);
+  transition: color var(--transition-fast);
+}
+
+/**
+ * Hover State - labels become more visible
+ */
+.slider:hover .slider__min-label,
+.slider:hover .slider__max-label {
+  color: var(--color-text-secondary);
+}
+
+/**
+ * Active/Dragging State
+ */
+.slider--dragging .slider__min-label,
+.slider--dragging .slider__max-label {
+  color: var(--color-accent);
+}
+
+/**
+ * Disabled State
+ */
+.slider__input:disabled ~ .slider__limits .slider__min-label,
+.slider__input:disabled ~ .slider__limits .slider__max-label {
+  color: var(--color-text-tertiary);
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   States
+   ========================================================================== */
+
+/**
+ * Hover State
+ */
+.slider:hover .slider__track {
+  border-color: var(--color-border-hover);
+}
+
+.slider:hover .slider__thumb {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 
+    0 0 15px var(--color-accent-glow),
+    0 0 30px var(--color-accent-glow-intense),
+    0 2px 6px rgba(0, 0, 0, 0.4);
+  background-color: var(--color-accent-hover);
+}
+
+.slider:hover .slider__fill {
+  box-shadow: inset 0 0 12px var(--color-accent-glow-intense);
+}
+
+.slider:hover .slider__value {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 10px var(--color-accent-glow);
+}
+
+/**
+ * Focus State
+ */
+.slider__input:focus-visible ~ .slider__track {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.slider__input:focus-visible ~ .slider__track .slider__thumb {
+  transform: translate(-50%, -50%) scale(1.15);
+  box-shadow: 
+    0 0 20px var(--color-accent-glow),
+    0 0 40px var(--color-accent-glow-intense),
+    0 0 0 3px var(--color-accent-glow);
+}
+
+/**
+ * Active/Pressed State
+ */
+.slider:active .slider__thumb,
+.slider__input:active ~ .slider__track .slider__thumb {
+  transform: translate(-50%, -50%) scale(0.95);
+  box-shadow: 
+    0 0 8px var(--color-accent-glow),
+    0 0 15px var(--color-accent-glow-intense),
+    0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/**
+ * Disabled State
+ */
+.slider--disabled,
+.slider__input:disabled {
+  cursor: not-allowed;
+}
+
+.slider__input:disabled ~ .slider__track {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-border);
+}
+
+.slider__input:disabled ~ .slider__track .slider__fill {
+  background: linear-gradient(90deg, var(--color-text-tertiary) 0%, var(--color-text-secondary) 100%);
+  box-shadow: none;
+}
+
+.slider__input:disabled ~ .slider__track .slider__thumb {
+  background-color: var(--color-text-tertiary);
+  box-shadow: none;
+  border-color: var(--color-border);
+}
+
+.slider__input:disabled ~ .slider__header .slider__label,
+.slider__input:disabled ~ .slider__label {
+  color: var(--color-text-tertiary);
+}
+
+.slider__input:disabled ~ .slider__header .slider__value,
+.slider__input:disabled ~ .slider__value {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-border);
+  color: var(--color-text-tertiary);
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   Slider Interactivity States
+   ========================================================================== */
+
+/**
+ * Selected/Focused State
+ * Enhanced styling when slider is focused
+ */
+.slider--selected .slider__track,
+.slider__input:focus-visible ~ .slider__track {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 10px var(--color-accent-glow);
+}
+
+.slider--selected .slider__fill,
+.slider__input:focus-visible ~ .slider__track .slider__fill {
+  box-shadow: 
+    inset 0 0 12px var(--color-accent-glow-intense),
+    0 0 10px var(--color-accent-glow);
+}
+
+/**
+ * Dragging State
+ * Enhanced thumb glow during active dragging
+ */
+.slider--dragging .slider__track {
+  border-color: var(--color-accent-hover);
+}
+
+.slider--dragging .slider__thumb {
+  transform: translate(-50%, -50%) scale(1.2);
+  background-color: var(--color-accent-hover);
+  box-shadow: 
+    0 0 20px var(--color-accent-glow),
+    0 0 40px var(--color-accent-glow-intense),
+    0 0 60px var(--color-accent-glow),
+    0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.slider--dragging .slider__fill {
+  box-shadow: 
+    inset 0 0 15px var(--color-accent-glow-intense),
+    0 0 15px var(--color-accent-glow);
+}
+
+/**
+ * Released State
+ * Pulse animation after releasing the slider
+ */
+.slider--released .slider__thumb {
+  animation: slider-release-pulse 400ms ease-out;
+}
+
+@keyframes slider-release-pulse {
+  0% {
+    box-shadow: 
+      0 0 10px var(--color-accent-glow),
+      0 0 20px var(--color-accent-glow-intense);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px var(--color-accent-glow),
+      0 0 50px var(--color-accent-glow-intense),
+      0 0 70px var(--color-accent-glow);
+  }
+  100% {
+    box-shadow: 
+      0 0 10px var(--color-accent-glow),
+      0 0 20px var(--color-accent-glow-intense);
+  }
+}
+
+/**
+ * Hover enhancement on thumb
+ */
+.slider:hover .slider__thumb {
+  transition: 
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+/**
+ * Active state (mouse down on thumb)
+ */
+.slider:active .slider__thumb {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+/**
+ * Track hover effect
+ */
+.slider:hover .slider__track {
+  border-color: var(--color-border-hover);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+/**
+ * Value display hover
+ */
+.slider:hover .slider__value {
+  border-color: var(--color-accent);
+  color: var(--color-accent-hover);
+  box-shadow: 0 0 10px var(--color-accent-glow);
+}
+
+/**
+ * Min/Max label interaction
+ */
+.slider__min-label,
+.slider__max-label {
+  transition: 
+    color var(--transition-fast),
+    text-shadow var(--transition-fast);
+}
+
+.slider:hover .slider__min-label {
+  text-shadow: 0 0 5px var(--color-accent-glow);
+}
+
+.slider:hover .slider__max-label {
+  text-shadow: 0 0 5px var(--color-accent-glow);
+}
+
+.slider--dragging .slider__min-label,
+.slider--dragging .slider__max-label {
+  color: var(--color-accent);
+  text-shadow: 0 0 8px var(--color-accent-glow);
+}
+
+/**
+ * Percentage display styling (when showing drag ratio)
+ */
+.slider__percent {
+  font: var(--font-weight-regular) var(--font-size-2xs)/var(--line-height-normal) var(--font-family-mono);
+  color: var(--color-accent);
+  opacity: 0.8;
+  margin-left: var(--space-1);
+  transition: opacity var(--transition-fast);
+}
+
+.slider:hover .slider__percent {
+  opacity: 1;
+}
+
+/**
+ * Loading/Interactive state
+ */
+.slider--loading .slider__thumb {
+  animation: slider-loading-pulse 1s ease-in-out infinite;
+}
+
+@keyframes slider-loading-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* ==========================================================================
+   Size Variants
+   ========================================================================== */
+
+/**
+ * Small Slider (.slider--sm)
+ */
+.slider--sm .slider__track {
+  height: 4px;
+}
+
+.slider--sm .slider__thumb {
+  width: 12px;
+  height: 12px;
+}
+
+.slider--sm .slider__input::-webkit-slider-thumb {
+  width: 16px;
+  height: 16px;
+}
+
+.slider--sm .slider__input::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+}
+
+.slider--sm .slider__value {
+  min-width: 32px;
+  padding: 2px var(--space-2);
+  font-size: var(--font-size-2xs);
+}
+
+.slider--sm .slider__label {
+  font-size: var(--font-size-2xs);
+}
+
+/**
+ * Medium Slider (.slider--md) - Default
+ */
+.slider--md .slider__track {
+  height: 6px;
+}
+
+.slider--md .slider__thumb {
+  width: 16px;
+  height: 16px;
+}
+
+/**
+ * Large Slider (.slider--lg)
+ */
+.slider--lg .slider__track {
+  height: 8px;
+}
+
+.slider--lg .slider__thumb {
+  width: 20px;
+  height: 20px;
+  border-width: 3px;
+  box-shadow: 
+    0 0 15px var(--color-accent-glow),
+    0 0 30px var(--color-accent-glow-intense),
+    0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.slider--lg .slider__input::-webkit-slider-thumb {
+  width: 24px;
+  height: 24px;
+}
+
+.slider--lg .slider__input::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+}
+
+.slider--lg .slider__value {
+  min-width: 48px;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+}
+
+.slider--lg .slider__label {
+  font-size: var(--font-size-sm);
+}
+
+.slider--lg:hover .slider__thumb {
+  box-shadow: 
+    0 0 20px var(--color-accent-glow),
+    0 0 40px var(--color-accent-glow-intense),
+    0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   Layout Variants
+   ========================================================================== */
+
+/**
+ * Slider with value on the right side
+ */
+.slider--with-value {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.slider--with-value .slider__track-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.slider--with-value .slider__value {
+  min-width: 48px;
+  text-align: center;
+}
+
+/**
+ * Vertical Slider (.slider--vertical)
+ * Note: Requires JavaScript to update positioning for vertical orientation
+ */
+.slider--vertical {
+  height: 150px;
+  width: auto;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.slider--vertical .slider__track {
+  width: 6px;
+  height: 100%;
+}
+
+.slider--vertical .slider__fill {
+  width: 100%;
+  height: var(--slider-percent);
+  top: auto;
+  bottom: 0;
+  background: linear-gradient(180deg, var(--color-accent-hover) 0%, var(--color-accent) 100%);
+}
+
+.slider--vertical .slider__thumb {
+  left: 50%;
+  top: auto;
+  bottom: var(--slider-percent);
+  transform: translate(-50%, 50%);
+}
+
+.slider--vertical:hover .slider__thumb {
+  transform: translate(-50%, 50%) scale(1.1);
+}
+
+.slider--vertical .slider__input:focus-visible ~ .slider__track .slider__thumb {
+  transform: translate(-50%, 50%) scale(1.15);
+}
+
+.slider--vertical:active .slider__thumb,
+.slider--vertical .slider__input:active ~ .slider__track .slider__thumb {
+  transform: translate(-50%, 50%) scale(0.95);
+}
+
+/* ==========================================================================
+   Color Variants
+   ========================================================================== */
+
+/**
+ * Success/Green Slider (.slider--success)
+ */
+.slider--success {
+  --color-accent: var(--color-success);
+  --color-accent-hover: var(--color-success-hover);
+  --color-accent-glow: rgba(16, 185, 129, 0.3);
+  --color-accent-glow-intense: rgba(16, 185, 129, 0.5);
+}
+
+.slider--success .slider__value {
+  color: var(--color-success);
+}
+
+/**
+ * Warning/Amber Slider (.slider--warning)
+ */
+.slider--warning {
+  --color-accent: var(--color-warning);
+  --color-accent-hover: var(--color-warning-hover);
+  --color-accent-glow: rgba(245, 158, 11, 0.3);
+  --color-accent-glow-intense: rgba(245, 158, 11, 0.5);
+}
+
+.slider--warning .slider__value {
+  color: var(--color-warning);
+}
+
+/**
+ * Error/Red Slider (.slider--error)
+ */
+.slider--error {
+  --color-accent: var(--color-error);
+  --color-accent-hover: var(--color-error-hover);
+  --color-accent-glow: rgba(239, 68, 68, 0.3);
+  --color-accent-glow-intense: rgba(239, 68, 68, 0.5);
+}
+
+.slider--error .slider__value {
+  color: var(--color-error);
+}
+
+/* ==========================================================================
+   Special Variants
+   ========================================================================== */
+
+/**
+ * Stepped Slider (.slider--stepped)
+ * Shows tick marks at each step
+ */
+.slider--stepped .slider__track::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--color-border) 0px,
+    var(--color-border) 1px,
+    transparent 1px,
+    transparent calc(100% / var(--slider-steps, 10))
+  );
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/**
+ * Slim Track Slider (.slider--slim)
+ * Ultra-thin track for minimal look
+ */
+.slider--slim .slider__track {
+  height: 2px;
+}
+
+.slider--slim .slider__thumb {
+  width: 14px;
+  height: 14px;
+}
+
+/**
+ * Glow Slider (.slider--glow)
+ * Enhanced glow effect for emphasis
+ */
+.slider--glow .slider__fill {
+  box-shadow: 
+    inset 0 0 8px var(--color-accent-glow),
+    0 0 10px var(--color-accent-glow);
+}
+
+.slider--glow .slider__thumb {
+  box-shadow: 
+    0 0 15px var(--color-accent-glow),
+    0 0 30px var(--color-accent-glow-intense),
+    0 0 60px var(--color-accent-glow),
+    0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   Animation Keyframes
+   ========================================================================== */
+
+@keyframes slider-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 10px var(--color-accent-glow),
+      0 0 20px var(--color-accent-glow-intense);
+  }
+  50% {
+    box-shadow: 
+      0 0 15px var(--color-accent-glow),
+      0 0 30px var(--color-accent-glow-intense),
+      0 0 45px var(--color-accent-glow);
+  }
+}
+
+/**
+ * Pulsing animation for active/interacting state
+ */
+.slider--pulsing .slider__thumb {
+  animation: slider-pulse 1.5s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+/**
+ * Full width slider
+ */
+.slider--full-width {
+  width: 100%;
+}
+
+/**
+ * Centered label/value
+ */
+.slider--centered .slider__header {
+  justify-content: center;
+}
+
+/**
+ * No label spacing
+ */
+.slider--no-label {
+  gap: 0;
+}

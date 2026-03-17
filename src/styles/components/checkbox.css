@@ -1,0 +1,289 @@
+/**
+ * =============================================================================
+ * Checkbox Component
+ * =============================================================================
+ * Clean Tech UI Framework
+ * BEM Naming Convention
+ * =============================================================================
+ */
+
+/**
+ * Checkbox
+ * The main wrapper for the checkbox component
+ */
+.checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+  user-select: none;
+}
+
+/**
+ * Checkbox Input
+ * Hidden native checkbox input
+ */
+.checkbox__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/**
+ * Checkbox Box
+ * Custom styled checkbox square
+ */
+.checkbox__box {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  transition: 
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  flex-shrink: 0;
+}
+
+/**
+ * Checkbox Checkmark
+ * CSS-only checkmark icon using pseudo-elements
+ */
+.checkbox__box::before,
+.checkbox__box::after {
+  content: '';
+  position: absolute;
+  background-color: var(--color-text-inverse);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+/* Short stroke (left part of checkmark) */
+.checkbox__box::before {
+  width: 2px;
+  height: 6px;
+  top: 8px;
+  left: 5px;
+  transform: rotate(-45deg) scaleY(0);
+  border-radius: 1px;
+}
+
+/* Long stroke (right part of checkmark) */
+.checkbox__box::after {
+  width: 2px;
+  height: 10px;
+  top: 4px;
+  left: 10px;
+  transform: rotate(45deg) scaleY(0);
+  border-radius: 1px;
+}
+
+/**
+ * Checkbox Label
+ * Associated label text
+ */
+.checkbox__label {
+  font: var(--font-weight-medium) var(--font-size-xs)/var(--line-height-normal) var(--font-family-sans);
+  color: var(--color-text-primary);
+  transition: color 0.2s ease;
+}
+
+/* ==========================================================================
+   States
+   ========================================================================== */
+
+/**
+ * Checked State
+ */
+.checkbox__input:checked + .checkbox__box {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent-glow);
+}
+
+.checkbox__input:checked + .checkbox__box::before {
+  transform: rotate(-45deg) scaleY(1);
+}
+
+.checkbox__input:checked + .checkbox__box::after {
+  transform: rotate(45deg) scaleY(1);
+}
+
+/**
+ * Hover State
+ */
+.checkbox:hover .checkbox__box {
+  border-color: var(--color-border-hover);
+  background-color: var(--color-bg-hover);
+}
+
+.checkbox:hover .checkbox__input:checked + .checkbox__box {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  box-shadow: 0 0 12px var(--color-accent-glow-intense);
+}
+
+.checkbox:hover .checkbox__label {
+  color: var(--color-text-primary);
+}
+
+/**
+ * Focus State
+ */
+.checkbox__input:focus-visible + .checkbox__box {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/**
+ * Active/Pressed State
+ */
+.checkbox:active .checkbox__box {
+  transform: scale(0.95);
+}
+
+.checkbox__input:checked:active + .checkbox__box {
+  background-color: var(--color-accent-hover);
+}
+
+/**
+ * Indeterminate State
+ * For partially selected states (like in tree views)
+ */
+.checkbox__input:indeterminate + .checkbox__box {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent-glow);
+}
+
+.checkbox__input:indeterminate + .checkbox__box::before {
+  width: 10px;
+  height: 2px;
+  top: 9px;
+  left: 5px;
+  transform: none;
+  border-radius: 1px;
+}
+
+.checkbox__input:indeterminate + .checkbox__box::after {
+  display: none;
+}
+
+/**
+ * Disabled State
+ */
+.checkbox--disabled,
+.checkbox__input:disabled ~ .checkbox__label {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.checkbox__input:disabled + .checkbox__box {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-border);
+  box-shadow: none;
+}
+
+.checkbox__input:disabled + .checkbox__box::before,
+.checkbox__input:disabled + .checkbox__box::after {
+  background-color: var(--color-text-tertiary);
+}
+
+.checkbox__input:checked:disabled + .checkbox__box {
+  background-color: rgba(0, 212, 255, 0.3);
+  border-color: rgba(0, 212, 255, 0.3);
+}
+
+.checkbox__input:checked:disabled + .checkbox__box::before,
+.checkbox__input:checked:disabled + .checkbox__box::after {
+  background-color: var(--color-bg-primary);
+}
+
+/* ==========================================================================
+   Size Variants
+   ========================================================================== */
+
+/**
+ * Small Checkbox
+ */
+.checkbox--sm .checkbox__box {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+}
+
+.checkbox--sm .checkbox__box::before {
+  height: 5px;
+  top: 6px;
+  left: 4px;
+}
+
+.checkbox--sm .checkbox__box::after {
+  height: 8px;
+  top: 3px;
+  left: 8px;
+}
+
+.checkbox--sm .checkbox__label {
+  font-size: var(--font-size-2xs);
+}
+
+/**
+ * Large Checkbox
+ */
+.checkbox--lg .checkbox__box {
+  width: 24px;
+  height: 24px;
+  border-radius: 5px;
+}
+
+.checkbox--lg .checkbox__box::before {
+  height: 7px;
+  top: 10px;
+  left: 6px;
+}
+
+.checkbox--lg .checkbox__box::after {
+  height: 12px;
+  top: 5px;
+  left: 12px;
+}
+
+.checkbox--lg .checkbox__label {
+  font-size: var(--font-size-sm);
+}
+
+/* ==========================================================================
+   Label Position Variants
+   ========================================================================== */
+
+/**
+ * Label on the left
+ */
+.checkbox--label-left {
+  flex-direction: row-reverse;
+}
+
+/* ==========================================================================
+   Checkbox Group
+   ========================================================================== */
+
+/**
+ * Group of checkboxes with consistent spacing
+ */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.checkbox-group--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}

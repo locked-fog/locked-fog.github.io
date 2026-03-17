@@ -1,0 +1,257 @@
+/* ==========================================================================
+   Spinner Component
+   ==========================================================================
+   Industrial/Tactical Dark Theme
+   BEM Methodology: .spinner, .spinner--modifier
+   ========================================================================== */
+
+/* ==========================================================================
+   Spinner Base (.spinner)
+   ========================================================================== */
+
+.spinner {
+  /* Reset */
+  display: inline-block;
+  box-sizing: border-box;
+
+  /* Dimensions - default md size (24px) */
+  width: 24px;
+  height: 24px;
+
+  /* Border styling - industrial/tactical aesthetic */
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: var(--radius-full);
+
+  /* Animation */
+  animation: spinner-rotate 0.75s linear infinite;
+
+  /* Remove default button/input styling if applied to those elements */
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Spinner Animation Keyframes
+   ========================================================================== */
+
+@keyframes spinner-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   Spinner Sizes (.spinner--sm, .spinner--md, .spinner--lg, .spinner--xl)
+   ========================================================================== */
+
+/* Small (16px) */
+.spinner--sm {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
+
+/* Medium (24px) - Default */
+.spinner--md {
+  width: 24px;
+  height: 24px;
+  border-width: 2px;
+}
+
+/* Large (32px) */
+.spinner--lg {
+  width: 32px;
+  height: 32px;
+  border-width: 2px;
+}
+
+/* Extra Large (48px) */
+.spinner--xl {
+  width: 48px;
+  height: 48px;
+  border-width: 3px;
+}
+
+/* ==========================================================================
+   Spinner Colors (.spinner--white, .spinner--secondary)
+   Default uses accent color
+   ========================================================================== */
+
+/* Default - Uses accent color (acid yellow) */
+.spinner,
+.spinner--default {
+  border-top-color: var(--color-accent);
+}
+
+/* White spinner */
+.spinner--white {
+  border-color: rgba(255, 255, 255, 0.25);
+  border-top-color: #ffffff;
+}
+
+/* Secondary - Muted cyan accent */
+.spinner--secondary {
+  border-top-color: var(--color-accent-cyan);
+}
+
+/* ==========================================================================
+   Spinner with Text (.spinner--with-text)
+   ========================================================================== */
+
+.spinner--with-text {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  animation: none;
+  border: none;
+  width: auto;
+  height: auto;
+}
+
+.spinner--with-text .spinner__icon {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: var(--radius-full);
+  animation: spinner-rotate 0.75s linear infinite;
+  flex-shrink: 0;
+}
+
+.spinner--with-text.spinner--sm .spinner__icon {
+  width: 16px;
+  height: 16px;
+}
+
+.spinner--with-text.spinner--md .spinner__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.spinner--with-text.spinner--lg .spinner__icon {
+  width: 32px;
+  height: 32px;
+}
+
+.spinner--with-text.spinner--xl .spinner__icon {
+  width: 48px;
+  height: 48px;
+  border-width: 3px;
+}
+
+/* Text styling */
+.spinner--with-text .spinner__text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+}
+
+/* Color variants for with-text */
+.spinner--with-text.spinner--white .spinner__icon {
+  border-color: rgba(255, 255, 255, 0.25);
+  border-top-color: #ffffff;
+}
+
+.spinner--with-text.spinner--secondary .spinner__icon {
+  border-top-color: var(--color-accent-cyan);
+}
+
+/* ==========================================================================
+   Centered Spinner Container
+   ========================================================================== */
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--space-8);
+}
+
+.spinner-container--fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: var(--z-modal);
+}
+
+/* ==========================================================================
+   Button Integration
+   Spinner inside buttons for loading states
+   ========================================================================== */
+
+.btn .spinner {
+  width: 1em;
+  height: 1em;
+  border-width: 2px;
+  vertical-align: middle;
+  margin-right: var(--space-2);
+}
+
+.btn .spinner--white,
+.btn--primary .spinner {
+  border-color: rgba(0, 0, 0, 0.2);
+  border-top-color: var(--color-text-inverse);
+}
+
+.btn--secondary .spinner {
+  border-color: rgba(204, 255, 0, 0.25);
+  border-top-color: var(--color-accent);
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .spinner,
+  .spinner--with-text .spinner__icon {
+    animation: none;
+    border-top-color: var(--color-accent);
+    border-style: dashed;
+  }
+}
+
+/* Screen reader only text */
+.spinner__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Status Variants
+   For specific loading states
+   ========================================================================== */
+
+.spinner--success {
+  border-top-color: var(--color-success);
+}
+
+.spinner--warning {
+  border-top-color: var(--color-warning);
+}
+
+.spinner--error {
+  border-top-color: var(--color-danger);
+}
+
+.spinner--info {
+  border-top-color: var(--color-info);
+}

@@ -1,0 +1,614 @@
+/**
+ * =============================================================================
+ * Navbar Component
+ * =============================================================================
+ * Clean Tech UI Framework
+ * BEM Methodology: .navbar, .navbar--modifier, .navbar__element
+ * =============================================================================
+ */
+
+/* ==========================================================================
+   Base Navbar (.navbar)
+   ========================================================================== */
+
+.navbar {
+  /* Reset */
+  box-sizing: border-box;
+
+  /* Layout */
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 64px;
+
+  /* Box Model */
+  padding: 0 var(--space-4);
+
+  /* Visual */
+  background-color: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border);
+
+  /* Typography */
+  font: var(--font-weight-medium) var(--font-size-xs) / var(--line-height-normal) var(--font-family-sans);
+}
+
+/* ==========================================================================
+   Navbar Modifiers (.navbar--*)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Fixed Navbar (.navbar--fixed)
+   Fixed to top of viewport
+   -------------------------------------------------------------------------- */
+.navbar--fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-fixed);
+}
+
+/* --------------------------------------------------------------------------
+   Transparent Navbar (.navbar--transparent)
+   Glassmorphism effect
+   -------------------------------------------------------------------------- */
+.navbar--transparent {
+  background-color: rgba(17, 25, 34, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* --------------------------------------------------------------------------
+   Elevated Navbar (.navbar--elevated)
+   With shadow for depth
+   -------------------------------------------------------------------------- */
+.navbar--elevated {
+  box-shadow: var(--shadow-md);
+}
+
+/* ==========================================================================
+   Navbar Container (.navbar__container)
+   Inner container with max-width
+   ========================================================================== */
+
+.navbar__container {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--container-xl);
+  height: 100%;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Navbar Brand (.navbar__brand)
+   Logo/brand area
+   ========================================================================== */
+
+.navbar__brand {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+
+  /* Typography */
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  letter-spacing: var(--letter-spacing-tight);
+
+  /* Transitions */
+  transition: color var(--transition-fast);
+}
+
+.navbar__brand:hover {
+  color: var(--color-accent);
+}
+
+.navbar__brand:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-accent);
+  border-radius: var(--radius-sm);
+}
+
+/* Brand Logo */
+.navbar__brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.navbar__brand-logo svg,
+.navbar__brand-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Brand Text */
+.navbar__brand-text {
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Navbar Navigation (.navbar__nav)
+   Navigation links container
+   ========================================================================== */
+
+.navbar__nav {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex: 1;
+  margin: 0 var(--space-6);
+
+  /* Hide on mobile - shown when menu is open */
+  display: none;
+}
+
+/* Desktop: show nav */
+@media (min-width: 768px) {
+  .navbar__nav {
+    display: flex;
+  }
+}
+
+/* ==========================================================================
+   Navbar Link (.navbar__link)
+   Individual nav links
+   ========================================================================== */
+
+.navbar__link {
+  /* Layout */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+
+  /* Box Model */
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+
+  /* Typography */
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+
+  /* Transitions */
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+/* Hover underline effect */
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: var(--space-3);
+  right: var(--space-3);
+  height: 2px;
+  background-color: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--transition-base) var(--ease-out);
+}
+
+.navbar__link:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-hover);
+}
+
+.navbar__link:hover::after {
+  transform: scaleX(1);
+}
+
+.navbar__link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-accent);
+}
+
+.navbar__link:active {
+  background-color: var(--color-bg-active);
+}
+
+/* Link Icon */
+.navbar__link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+}
+
+.navbar__link-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================================================
+   Active Link State (.navbar__link--active)
+   ========================================================================== */
+
+.navbar__link--active {
+  color: var(--color-accent);
+}
+
+.navbar__link--active::after {
+  transform: scaleX(1);
+  background-color: var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent-glow);
+}
+
+.navbar__link--active:hover {
+  color: var(--color-accent-hover);
+}
+
+.navbar__link--active:hover::after {
+  background-color: var(--color-accent-hover);
+}
+
+/* ==========================================================================
+   Navbar Actions (.navbar__actions)
+   Right-side action buttons
+   ========================================================================== */
+
+.navbar__actions {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Navbar Hamburger (.navbar__hamburger)
+   Mobile menu toggle button
+   ========================================================================== */
+
+.navbar__hamburger {
+  /* Reset */
+  appearance: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  /* Box Model */
+  width: 40px;
+  height: 40px;
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+
+  /* Transitions */
+  transition:
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+/* Hamburger Lines */
+.navbar__hamburger-line {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--color-text-secondary);
+  border-radius: 1px;
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-base) var(--ease-out),
+    opacity var(--transition-fast);
+}
+
+.navbar__hamburger:hover {
+  background-color: var(--color-bg-hover);
+}
+
+.navbar__hamburger:hover .navbar__hamburger-line {
+  background-color: var(--color-text-primary);
+}
+
+.navbar__hamburger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-accent);
+}
+
+.navbar__hamburger:active {
+  background-color: var(--color-bg-active);
+}
+
+/* Active/Open State - Animate to X */
+.navbar__hamburger--active .navbar__hamburger-line:first-child {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.navbar__hamburger--active .navbar__hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.navbar__hamburger--active .navbar__hamburger-line:last-child {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.navbar__hamburger--active .navbar__hamburger-line {
+  background-color: var(--color-accent);
+}
+
+/* Desktop: hide hamburger */
+@media (min-width: 768px) {
+  .navbar__hamburger {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Mobile Menu (.navbar__mobile-menu)
+   Collapsible mobile navigation
+   ========================================================================== */
+
+.navbar__mobile-menu {
+  /* Layout */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+
+  /* Box Model */
+  padding: var(--space-4);
+
+  /* Visual */
+  background-color: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+
+  /* Animation */
+  transform-origin: top;
+  transform: scaleY(0);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--transition-base) var(--ease-out),
+    opacity var(--transition-fast);
+}
+
+.navbar__mobile-menu--open {
+  transform: scaleY(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Mobile Menu Links */
+.navbar__mobile-menu .navbar__link {
+  display: flex;
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+}
+
+.navbar__mobile-menu .navbar__link::after {
+  display: none;
+}
+
+.navbar__mobile-menu .navbar__link--active {
+  background-color: var(--color-accent-subtle);
+}
+
+/* Mobile Menu Nav Container */
+.navbar__mobile-menu .navbar__nav {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+/* Mobile Menu Actions */
+.navbar__mobile-menu .navbar__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.navbar__mobile-menu .navbar__actions .btn {
+  width: 100%;
+}
+
+/* Desktop: hide mobile menu */
+@media (min-width: 768px) {
+  .navbar__mobile-menu {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Navbar Divider (.navbar__divider)
+   Vertical separator between sections
+   ========================================================================== */
+
+.navbar__divider {
+  width: 1px;
+  height: 24px;
+  background-color: var(--color-border);
+  margin: 0 var(--space-2);
+}
+
+/* ==========================================================================
+   Navbar Dropdown (.navbar__dropdown)
+   Dropdown menu within navbar
+   ========================================================================== */
+
+.navbar__dropdown {
+  position: relative;
+}
+
+.navbar__dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.navbar__dropdown-toggle::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid currentColor;
+  transition: transform var(--transition-fast);
+}
+
+.navbar__dropdown--open .navbar__dropdown-toggle::after {
+  transform: rotate(180deg);
+}
+
+.navbar__dropdown-menu {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  min-width: 200px;
+  padding: var(--space-2);
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-dropdown);
+
+  /* Animation */
+  transform-origin: top;
+  transform: scaleY(0.95) translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--transition-fast) var(--ease-out),
+    opacity var(--transition-fast);
+}
+
+.navbar__dropdown--open .navbar__dropdown-menu {
+  transform: scaleY(1) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.navbar__dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.navbar__dropdown-item:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-hover);
+}
+
+.navbar__dropdown-item:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--focus-ring-offset) var(--color-bg-elevated),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-accent);
+}
+
+.navbar__dropdown-item--active {
+  color: var(--color-accent);
+  background-color: var(--color-accent-subtle);
+}
+
+.navbar__dropdown-divider {
+  height: 1px;
+  margin: var(--space-2) 0;
+  background-color: var(--color-border);
+}
+
+/* ==========================================================================
+   Navbar Sizes (.navbar--sm, .navbar--lg)
+   ========================================================================== */
+
+/* Small Size (.navbar--sm) */
+.navbar--sm {
+  height: 48px;
+  padding: 0 var(--space-3);
+}
+
+.navbar--sm .navbar__brand {
+  font-size: var(--font-size-md);
+}
+
+.navbar--sm .navbar__brand-logo {
+  width: 24px;
+  height: 24px;
+}
+
+.navbar--sm .navbar__link {
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-xs);
+}
+
+/* Large Size (.navbar--lg) */
+.navbar--lg {
+  height: 80px;
+  padding: 0 var(--space-6);
+}
+
+.navbar--lg .navbar__brand {
+  font-size: var(--font-size-xl);
+}
+
+.navbar--lg .navbar__brand-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.navbar--lg .navbar__link {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-md);
+}
+
+.navbar--lg .navbar__hamburger {
+  width: 48px;
+  height: 48px;
+}
+
+/* ==========================================================================
+   Spacer for Fixed Navbar
+   Add this element after navbar to prevent content from being hidden
+   ========================================================================== */
+
+.navbar-spacer {
+  height: 64px;
+}
+
+.navbar-spacer--sm {
+  height: 48px;
+}
+
+.navbar-spacer--lg {
+  height: 80px;
+}

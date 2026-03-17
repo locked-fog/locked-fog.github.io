@@ -1,0 +1,361 @@
+/**
+ * =============================================================================
+ * Tooltip Component
+ * =============================================================================
+ * Clean Tech UI Framework
+ * BEM Methodology: .tooltip, .tooltip--modifier, .tooltip__element
+ * Industrial/Tactical Dark Theme
+ * =============================================================================
+ */
+
+/* ==========================================================================
+   Base Tooltip (.tooltip)
+   ========================================================================== */
+
+.tooltip {
+  /* Positioning - absolute, requires relative parent */
+  position: absolute;
+
+  /* Box Model */
+  max-width: 250px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  /* Visual */
+  background: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+
+  /* Typography */
+  font-size: var(--font-size-xs);
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+
+  /* Stacking */
+  z-index: var(--z-tooltip);
+
+  /* Default - hidden until shown */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  /* Transitions */
+  transition:
+    opacity var(--transition-fast),
+    visibility var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+/* Show state */
+.tooltip--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ==========================================================================
+   Tooltip Arrow (.tooltip__arrow)
+   CSS triangle using borders
+   ========================================================================== */
+
+.tooltip__arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+}
+
+/* ==========================================================================
+   Position Variants (.tooltip--top, .tooltip--bottom, .tooltip--left, .tooltip--right)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Tooltip Top (.tooltip--top)
+   Arrow positioned at the bottom center
+   -------------------------------------------------------------------------- */
+.tooltip--top {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(calc(-1 * var(--space-2)));
+}
+
+.tooltip--top.tooltip--visible {
+  transform: translateX(-50%) translateY(0);
+}
+
+.tooltip--top .tooltip__arrow {
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px 5px 0;
+  border-top-color: var(--color-bg-elevated);
+}
+
+.tooltip--top.tooltip--bordered .tooltip__arrow {
+  /* Outer border arrow */
+  border-top-color: var(--color-border);
+  margin-top: 1px;
+}
+
+.tooltip--top.tooltip--bordered .tooltip__arrow::after {
+  /* Inner fill arrow to cover the outer */
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -5px;
+  border-width: 5px 5px 0;
+  border-style: solid;
+  border-color: transparent;
+  border-top-color: var(--color-bg-elevated);
+}
+
+/* --------------------------------------------------------------------------
+   Tooltip Bottom (.tooltip--bottom)
+   Arrow positioned at the top center
+   -------------------------------------------------------------------------- */
+.tooltip--bottom {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--space-2));
+}
+
+.tooltip--bottom.tooltip--visible {
+  transform: translateX(-50%) translateY(0);
+}
+
+.tooltip--bottom .tooltip__arrow {
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 0 5px 5px;
+  border-bottom-color: var(--color-bg-elevated);
+}
+
+.tooltip--bottom.tooltip--bordered .tooltip__arrow {
+  border-bottom-color: var(--color-border);
+  margin-bottom: 1px;
+}
+
+.tooltip--bottom.tooltip--bordered .tooltip__arrow::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: -5px;
+  border-width: 0 5px 5px;
+  border-style: solid;
+  border-color: transparent;
+  border-bottom-color: var(--color-bg-elevated);
+}
+
+/* --------------------------------------------------------------------------
+   Tooltip Left (.tooltip--left)
+   Arrow positioned at the right center
+   -------------------------------------------------------------------------- */
+.tooltip--left {
+  right: 100%;
+  top: 50%;
+  transform: translateX(calc(-1 * var(--space-2))) translateY(-50%);
+}
+
+.tooltip--left.tooltip--visible {
+  transform: translateX(0) translateY(-50%);
+}
+
+.tooltip--left .tooltip__arrow {
+  right: 100%;
+  top: 50%;
+  margin-top: -5px;
+  border-width: 5px 0 5px 5px;
+  border-left-color: var(--color-bg-elevated);
+}
+
+.tooltip--left.tooltip--bordered .tooltip__arrow {
+  border-left-color: var(--color-border);
+  margin-right: 1px;
+}
+
+.tooltip--left.tooltip--bordered .tooltip__arrow::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: -5px;
+  border-width: 5px 0 5px 5px;
+  border-style: solid;
+  border-color: transparent;
+  border-left-color: var(--color-bg-elevated);
+}
+
+/* --------------------------------------------------------------------------
+   Tooltip Right (.tooltip--right)
+   Arrow positioned at the left center
+   -------------------------------------------------------------------------- */
+.tooltip--right {
+  left: 100%;
+  top: 50%;
+  transform: translateX(var(--space-2)) translateY(-50%);
+}
+
+.tooltip--right.tooltip--visible {
+  transform: translateX(0) translateY(-50%);
+}
+
+.tooltip--right .tooltip__arrow {
+  left: 100%;
+  top: 50%;
+  margin-top: -5px;
+  border-width: 5px 5px 5px 0;
+  border-right-color: var(--color-bg-elevated);
+}
+
+.tooltip--right.tooltip--bordered .tooltip__arrow {
+  border-right-color: var(--color-border);
+  margin-left: 1px;
+}
+
+.tooltip--right.tooltip--bordered .tooltip__arrow::after {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: -5px;
+  border-width: 5px 5px 5px 0;
+  border-style: solid;
+  border-color: transparent;
+  border-right-color: var(--color-bg-elevated);
+}
+
+/* ==========================================================================
+   Style Variants
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Dark Variant (.tooltip--dark)
+   Darker background for contrast
+   -------------------------------------------------------------------------- */
+.tooltip--dark {
+  background: var(--color-bg-primary);
+  border-color: var(--color-border-hover);
+}
+
+.tooltip--dark .tooltip__arrow,
+.tooltip--dark.tooltip--top .tooltip__arrow::after,
+.tooltip--dark.tooltip--bottom .tooltip__arrow::after,
+.tooltip--dark.tooltip--left .tooltip__arrow::after,
+.tooltip--dark.tooltip--right .tooltip__arrow::after {
+  border-top-color: var(--color-bg-primary);
+  border-bottom-color: var(--color-bg-primary);
+  border-left-color: var(--color-bg-primary);
+  border-right-color: var(--color-bg-primary);
+}
+
+.tooltip--dark.tooltip--top .tooltip__arrow,
+.tooltip--dark.tooltip--bottom .tooltip__arrow,
+.tooltip--dark.tooltip--left .tooltip__arrow,
+.tooltip--dark.tooltip--right .tooltip__arrow {
+  border-top-color: var(--color-border-hover);
+  border-bottom-color: var(--color-border-hover);
+  border-left-color: var(--color-border-hover);
+  border-right-color: var(--color-border-hover);
+}
+
+/* --------------------------------------------------------------------------
+   Accent Variant (.tooltip--accent)
+   Accent border and glow effect
+   -------------------------------------------------------------------------- */
+.tooltip--accent {
+  background: var(--color-bg-elevated);
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-glow-accent-subtle);
+}
+
+.tooltip--accent .tooltip__arrow,
+.tooltip--accent.tooltip--top .tooltip__arrow::after,
+.tooltip--accent.tooltip--bottom .tooltip__arrow::after,
+.tooltip--accent.tooltip--left .tooltip__arrow::after,
+.tooltip--accent.tooltip--right .tooltip__arrow::after {
+  border-top-color: var(--color-bg-elevated);
+  border-bottom-color: var(--color-bg-elevated);
+  border-left-color: var(--color-bg-elevated);
+  border-right-color: var(--color-bg-elevated);
+}
+
+.tooltip--accent.tooltip--top .tooltip__arrow,
+.tooltip--accent.tooltip--bottom .tooltip__arrow,
+.tooltip--accent.tooltip--left .tooltip__arrow,
+.tooltip--accent.tooltip--right .tooltip__arrow {
+  border-top-color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+  border-left-color: var(--color-accent);
+  border-right-color: var(--color-accent);
+}
+
+/* ==========================================================================
+   Tooltip Trigger (.tooltip-trigger)
+   Helper class for tooltip parent
+   ========================================================================== */
+
+.tooltip-trigger {
+  position: relative;
+  display: inline-block;
+}
+
+/* ==========================================================================
+   Tooltip Animations
+   ========================================================================== */
+
+/* Fade in animation */
+.tooltip--animate-in {
+  animation: tooltip-fade-in var(--transition-fast);
+}
+
+@keyframes tooltip-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Scale in animation */
+.tooltip--scale-in {
+  animation: tooltip-scale-in var(--transition-fast);
+}
+
+@keyframes tooltip-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==========================================================================
+   Tooltip Accessibility
+   ========================================================================== */
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .tooltip {
+    transition: none;
+  }
+
+  .tooltip--animate-in,
+  .tooltip--scale-in {
+    animation: none;
+  }
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+  .tooltip {
+    border-width: 2px;
+  }
+
+  .tooltip__arrow {
+    border-width: 6px;
+  }
+}

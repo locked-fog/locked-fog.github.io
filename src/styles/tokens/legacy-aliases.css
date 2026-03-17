@@ -1,0 +1,158 @@
+/**
+ * Legacy Token Aliases
+ * Maps old --color-*, --space-*, --font-* tokens to canonical --airis-*
+ * Include this AFTER tokens.css for backward compatibility
+ */
+
+:root {
+  /* Colors */
+  --color-bg-primary: var(--airis-bg-primary);
+  --color-bg-secondary: var(--airis-bg-secondary);
+  --color-bg-elevated: var(--airis-bg-elevated);
+  --color-bg-hover: var(--airis-bg-hover);
+  --color-bg-active: var(--airis-bg-active);
+  
+  --color-panel: var(--airis-panel);
+  --color-panel-elevated: var(--airis-panel-elevated);
+  --color-panel-border: var(--airis-panel-border);
+  
+  --color-text-primary: var(--airis-text-primary);
+  --color-text-secondary: var(--airis-text-secondary);
+  --color-text-tertiary: var(--airis-text-tertiary);
+  --color-text-inverse: var(--airis-text-inverse);
+  
+  --color-border: var(--airis-border);
+  --color-border-hover: var(--airis-border-hover);
+  --color-border-focus: var(--airis-border-focus);
+  
+  --color-accent: var(--airis-accent);
+  --color-accent-hover: var(--airis-accent-hover);
+  --color-accent-subtle: var(--airis-accent-subtle);
+  --color-accent-muted: var(--airis-accent-muted);
+  
+  --color-accent-cyan: var(--airis-accent-cyan);
+  --color-accent-cyan-hover: var(--airis-accent-cyan-hover);
+  --color-accent-cyan-subtle: var(--airis-accent-cyan-subtle);
+  
+  --color-success: var(--airis-success);
+  --color-success-hover: var(--airis-success-hover);
+  --color-success-subtle: var(--airis-success-subtle);
+  
+  --color-warning: var(--airis-warning);
+  --color-warning-hover: var(--airis-warning-hover);
+  --color-warning-subtle: var(--airis-warning-subtle);
+  
+  --color-danger: var(--airis-danger);
+  --color-danger-hover: var(--airis-danger-hover);
+  --color-danger-subtle: var(--airis-danger-subtle);
+  
+  --color-error: var(--airis-danger);
+  --color-error-hover: var(--airis-danger-hover);
+  --color-error-subtle: var(--airis-danger-subtle);
+  
+  --color-info: var(--airis-info);
+  --color-info-hover: var(--airis-info-hover);
+  --color-info-subtle: var(--airis-info-subtle);
+  
+  --color-accent-glow: var(--airis-glow);
+  --color-accent-glow-intense: var(--airis-glow-intense);
+  --color-accent-cyan-glow: var(--airis-glow-cyan);
+  --color-accent-cyan-glow-intense: var(--airis-glow-cyan-intense);
+  
+  --color-classification-1: var(--airis-class-1);
+  --color-classification-2: var(--airis-class-2);
+  --color-classification-3: var(--airis-class-3);
+  --color-classification-4: var(--airis-class-4);
+  --color-classification-5: var(--airis-class-5);
+  
+  /* Typography */
+  --font-family-sans: var(--airis-font-body);
+  --font-family-mono: var(--airis-font-mono);
+  --font-family-display: var(--airis-font-display);
+  
+  --font-size-2xs: var(--airis-text-2xs);
+  --font-size-xs: var(--airis-text-xs);
+  --font-size-sm: var(--airis-text-sm);
+  --font-size-base: var(--airis-text-base);
+  --font-size-lg: var(--airis-text-lg);
+  --font-size-xl: var(--airis-text-xl);
+  --font-size-2xl: var(--airis-text-2xl);
+  --font-size-3xl: var(--airis-text-3xl);
+  --font-size-4xl: var(--airis-text-4xl);
+  
+  --line-height-tight: var(--airis-leading-tight);
+  --line-height-snug: var(--airis-leading-snug);
+  --line-height-normal: var(--airis-leading-normal);
+  --line-height-relaxed: var(--airis-leading-relaxed);
+  
+  --letter-spacing-tighter: var(--airis-tracking-tighter);
+  --letter-spacing-tight: var(--airis-tracking-tight);
+  --letter-spacing-normal: var(--airis-tracking-normal);
+  --letter-spacing-wide: var(--airis-tracking-wide);
+  --letter-spacing-wider: var(--airis-tracking-wider);
+  --letter-spacing-widest: var(--airis-tracking-widest);
+  
+  /* Spacing */
+  --space-1: var(--airis-space-1);
+  --space-2: var(--airis-space-2);
+  --space-3: var(--airis-space-3);
+  --space-4: var(--airis-space-4);
+  --space-5: var(--airis-space-5);
+  --space-6: var(--airis-space-6);
+  --space-8: var(--airis-space-8);
+  --space-10: var(--airis-space-10);
+  --space-12: var(--airis-space-12);
+  --space-16: var(--airis-space-16);
+  
+  /* Radius */
+  --radius-none: var(--airis-radius-none);
+  --radius-sm: var(--airis-radius-sm);
+  --radius-md: var(--airis-radius-md);
+  --radius-lg: var(--airis-radius-lg);
+  --radius-full: var(--airis-radius-full);
+  
+  /* Lines */
+  --line-thin: var(--airis-line-thin);
+  --line-medium: var(--airis-line-medium);
+  --line-thick: var(--airis-line-thick);
+  --line-thicker: var(--airis-line-thicker);
+  
+  /* Brackets */
+  --bracket-size: var(--airis-bracket-size);
+  --bracket-thickness: var(--airis-bracket-thickness);
+  
+  /* Classification */
+  --bar-classification-width: var(--airis-bar-class-width);
+  --bar-classification-gap: var(--airis-bar-class-gap);
+  --bar-classification-height: var(--airis-bar-class-height);
+  
+  /* Patterns */
+  --pattern-hatch-angle: var(--airis-hatch-angle);
+  --pattern-hatch-spacing: var(--airis-hatch-spacing);
+  --pattern-hatch-thickness: var(--airis-line-thin);
+  --pattern-hatch-opacity: var(--airis-hatch-opacity);
+  --pattern-dot-size: var(--airis-dot-size);
+  --pattern-dot-spacing: var(--airis-dot-spacing);
+  --pattern-dot-opacity: var(--airis-dot-opacity);
+  
+  /* Transitions */
+  --transition-fast: var(--airis-duration-fast);
+  --transition-base: var(--airis-duration-base);
+  --transition-slow: var(--airis-duration-slow);
+  
+  /* Focus */
+  --focus-ring-width: var(--airis-line-medium);
+  --focus-ring-offset: var(--airis-line-medium);
+  --focus-ring-color: var(--airis-accent);
+  
+  /* Z-Index */
+  --z-base: var(--airis-z-base);
+  --z-dropdown: var(--airis-z-dropdown);
+  --z-sticky: var(--airis-z-sticky);
+  --z-fixed: var(--airis-z-fixed);
+  --z-modal-backdrop: var(--airis-z-modal-backdrop);
+  --z-modal: var(--airis-z-modal);
+  --z-popover: var(--airis-z-popover);
+  --z-tooltip: var(--airis-z-tooltip);
+  --z-toast: var(--airis-z-toast);
+}

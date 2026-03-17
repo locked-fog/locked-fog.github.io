@@ -1,0 +1,483 @@
+/**
+ * =============================================================================
+ * Status Bar Component
+ * =============================================================================
+ * Clean Tech UI Framework
+ * BEM Methodology: .statusbar, .statusbar--modifier, .statusbar__element
+ * =============================================================================
+ */
+
+/* ==========================================================================
+   Base Status Bar (.statusbar)
+   ========================================================================== */
+
+.statusbar {
+  /* Reset */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+
+  /* Visual */
+  background-color: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border);
+
+  /* Typography */
+  font: var(--font-weight-medium) var(--font-size-xs) / var(--line-height-normal) var(--font-family-sans);
+  color: var(--color-text-secondary);
+
+  /* Transitions */
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+/* ==========================================================================
+   Fixed Position Status Bar (.statusbar--fixed)
+   ========================================================================== */
+
+.statusbar--fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-fixed);
+}
+
+/* ==========================================================================
+   Inner Container (.statusbar__container)
+   ========================================================================== */
+
+.statusbar__container {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--container-2xl);
+  height: 100%;
+  padding: 0 var(--space-4);
+  gap: var(--space-4);
+}
+
+/* ==========================================================================
+   Status Bar Sections (.statusbar__section)
+   Left, center, and right sections for content organization
+   ========================================================================== */
+
+.statusbar__section {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex: 1;
+}
+
+/* Left section - aligns content to the left */
+.statusbar__section--left {
+  justify-content: flex-start;
+}
+
+/* Center section - aligns content to the center */
+.statusbar__section--center {
+  justify-content: center;
+}
+
+/* Right section - aligns content to the right */
+.statusbar__section--right {
+  justify-content: flex-end;
+}
+
+/* ==========================================================================
+   Status Bar Items (.statusbar__item)
+   Individual status items within sections
+   ========================================================================== */
+
+.statusbar__item {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+
+  /* Box Model */
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+
+  /* Visual */
+  background-color: transparent;
+  border: 1px solid transparent;
+
+  /* Transitions */
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+/* Hover state for interactive items */
+.statusbar__item--interactive:hover {
+  background-color: var(--color-bg-hover);
+  border-color: var(--color-border);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+/* Active state */
+.statusbar__item--interactive:active {
+  background-color: var(--color-bg-active);
+}
+
+/* Disabled state */
+.statusbar__item--disabled,
+.statusbar__item[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: var(--color-text-tertiary);
+}
+
+/* ==========================================================================
+   Status Bar Icons (.statusbar__icon)
+   Icon elements for status indicators
+   ========================================================================== */
+
+.statusbar__icon {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+
+  /* Visual */
+  color: inherit;
+}
+
+/* Ensure SVG icons scale properly */
+.statusbar__icon svg,
+.statusbar__icon img {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* ==========================================================================
+   Status Bar Text (.statusbar__text)
+   Text content within status items
+   ========================================================================== */
+
+.statusbar__text {
+  /* Layout */
+  display: inline-block;
+
+  /* Typography */
+  font: inherit;
+  color: inherit;
+  white-space: nowrap;
+}
+
+/* Label style - muted text before the value */
+.statusbar__text--label {
+  color: var(--color-text-tertiary);
+  font-weight: var(--font-weight-regular);
+}
+
+/* Value style - emphasized text */
+.statusbar__text--value {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Monospace style - for technical data like version numbers */
+.statusbar__text--mono {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-2xs);
+}
+
+/* ==========================================================================
+   Status Bar Divider (.statusbar__divider)
+   Vertical dividers between sections or items
+   ========================================================================== */
+
+.statusbar__divider {
+  /* Layout */
+  display: inline-block;
+  width: 1px;
+  height: 20px;
+  flex-shrink: 0;
+
+  /* Visual */
+  background-color: var(--color-border);
+}
+
+/* ==========================================================================
+   Status Indicators (.statusbar__indicator)
+   Online/offline status dots and badges
+   ========================================================================== */
+
+.statusbar__indicator {
+  /* Layout */
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+
+  /* Visual */
+  border-radius: var(--radius-full);
+  background-color: var(--color-text-tertiary);
+
+  /* Animation */
+  transition: background-color var(--transition-fast);
+}
+
+/* Online status - green */
+.statusbar__indicator--online {
+  background-color: var(--color-success);
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
+}
+
+/* Offline status - red */
+.statusbar__indicator--offline {
+  background-color: var(--color-error);
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.4);
+}
+
+/* Warning status - amber */
+.statusbar__indicator--warning {
+  background-color: var(--color-warning);
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.4);
+}
+
+/* Info/Accent status - cyan */
+.statusbar__indicator--info {
+  background-color: var(--color-accent);
+  box-shadow: 0 0 6px var(--color-accent-glow);
+}
+
+/* Busy/Processing status - pulsing animation */
+.statusbar__indicator--busy {
+  background-color: var(--color-accent);
+  animation: statusbar-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes statusbar-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 6px var(--color-accent-glow);
+  }
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 2px var(--color-accent-glow);
+  }
+}
+
+/* ==========================================================================
+   Status Bar Variants (.statusbar--*)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Compact Status Bar (.statusbar--compact)
+   Reduced height for dense layouts
+   -------------------------------------------------------------------------- */
+.statusbar--compact {
+  height: 36px;
+  font-size: var(--font-size-2xs);
+}
+
+.statusbar--compact .statusbar__container {
+  padding: 0 var(--space-3);
+  gap: var(--space-3);
+}
+
+.statusbar--compact .statusbar__section {
+  gap: var(--space-3);
+}
+
+.statusbar--compact .statusbar__item {
+  padding: var(--space-1);
+  gap: var(--space-1);
+}
+
+.statusbar--compact .statusbar__divider {
+  height: 16px;
+}
+
+.statusbar--compact .statusbar__icon {
+  width: 14px;
+  height: 14px;
+}
+
+.statusbar--compact .statusbar__indicator {
+  width: 6px;
+  height: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   Large Status Bar (.statusbar--large)
+   Increased height for prominence
+   -------------------------------------------------------------------------- */
+.statusbar--large {
+  height: 64px;
+  font-size: var(--font-size-sm);
+}
+
+.statusbar--large .statusbar__container {
+  padding: 0 var(--space-6);
+  gap: var(--space-6);
+}
+
+.statusbar--large .statusbar__section {
+  gap: var(--space-6);
+}
+
+.statusbar--large .statusbar__item {
+  padding: var(--space-2) var(--space-3);
+  gap: var(--space-3);
+}
+
+.statusbar--large .statusbar__divider {
+  height: 28px;
+}
+
+.statusbar--large .statusbar__icon {
+  width: 20px;
+  height: 20px;
+}
+
+.statusbar--large .statusbar__indicator {
+  width: 10px;
+  height: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   Elevated Status Bar (.statusbar--elevated)
+   With shadow for floating appearance
+   -------------------------------------------------------------------------- */
+.statusbar--elevated {
+  background-color: var(--color-bg-elevated);
+  border-top: 1px solid var(--color-border-hover);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   Transparent Status Bar (.statusbar--transparent)
+   Minimal visual presence
+   -------------------------------------------------------------------------- */
+.statusbar--transparent {
+  background-color: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   Primary Accent Status Bar (.statusbar--accent)
+   Uses accent color for border
+   -------------------------------------------------------------------------- */
+.statusbar--accent {
+  border-top: 1px solid var(--color-accent);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 212, 255, 0.05) 0%,
+    var(--color-bg-secondary) 100%
+  );
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .statusbar__container {
+    padding: 0 var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .statusbar__section {
+    gap: var(--space-2);
+  }
+
+  /* Hide less important items on mobile */
+  .statusbar__item--hide-mobile {
+    display: none;
+  }
+
+  /* Stack items differently on mobile in the center section */
+  .statusbar__section--center {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .statusbar {
+    height: auto;
+    min-height: 48px;
+  }
+
+  .statusbar__container {
+    flex-wrap: wrap;
+    padding: var(--space-2) var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .statusbar__section {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .statusbar__section--left,
+  .statusbar__section--right {
+    flex: 1 1 45%;
+  }
+
+  .statusbar__section--center {
+    flex: 1 1 100%;
+    order: -1;
+  }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+/* Focus visible styles for interactive items */
+.statusbar__item--interactive:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .statusbar {
+    border-top-width: 2px;
+    border-top-color: var(--color-text-primary);
+  }
+
+  .statusbar__divider {
+    background-color: var(--color-text-secondary);
+    width: 2px;
+  }
+
+  .statusbar__indicator {
+    border: 1px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .statusbar,
+  .statusbar__item,
+  .statusbar__indicator {
+    transition: none;
+  }
+
+  .statusbar__indicator--busy {
+    animation: none;
+    opacity: 1;
+  }
+}

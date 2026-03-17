@@ -1,0 +1,397 @@
+/**
+ * =============================================================================
+ * Empty State Component
+ * =============================================================================
+ * Clean Tech UI Framework
+ * BEM Methodology: .empty-state, .empty-state--modifier, .empty-state__element
+ * Industrial/Tactical Dark Theme
+ * =============================================================================
+ */
+
+/* ==========================================================================
+   Base Empty State (.empty-state)
+   ========================================================================== */
+
+.empty-state {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* Box Model */
+  padding: var(--space-8);
+
+  /* Text */
+  text-align: center;
+}
+
+/* ==========================================================================
+   Empty State Elements (.empty-state__*)
+   ========================================================================== */
+
+/* Icon - large centered icon */
+.empty-state__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: var(--space-6);
+  color: var(--color-text-tertiary);
+}
+
+.empty-state__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Illustration area - for custom graphics */
+.empty-state__illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 280px;
+  margin-bottom: var(--space-6);
+}
+
+.empty-state__illustration img,
+.empty-state__illustration svg {
+  width: 100%;
+  height: auto;
+}
+
+/* Title - heading */
+.empty-state__title {
+  font: var(--font-weight-semibold) var(--font-size-xl) / var(--line-height-tight) var(--font-family-sans);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-3) 0;
+}
+
+/* Description - body text */
+.empty-state__description {
+  font: var(--font-weight-regular) var(--font-size-base) / var(--line-height-normal) var(--font-family-sans);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-6) 0;
+  max-width: 400px;
+}
+
+/* Action - button or link container */
+.empty-state__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+/* ==========================================================================
+   Empty State Variants (.empty-state--*)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Compact Variant (.empty-state--compact)
+   Reduced padding for tighter spaces
+   -------------------------------------------------------------------------- */
+.empty-state--compact {
+  padding: var(--space-6);
+}
+
+.empty-state--compact .empty-state__icon {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: var(--space-4);
+}
+
+.empty-state--compact .empty-state__illustration {
+  max-width: 200px;
+  margin-bottom: var(--space-4);
+}
+
+.empty-state--compact .empty-state__title {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-2);
+}
+
+.empty-state--compact .empty-state__description {
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-4);
+}
+
+/* --------------------------------------------------------------------------
+   Illustration Variant (.empty-state--illustration)
+   Enhanced for custom illustration display
+   -------------------------------------------------------------------------- */
+.empty-state--illustration .empty-state__illustration {
+  padding: var(--space-4);
+  background-color: var(--color-bg-secondary);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+/* --------------------------------------------------------------------------
+   Search Variant (.empty-state--search)
+   Specific styling for no search results
+   -------------------------------------------------------------------------- */
+.empty-state--search .empty-state__icon {
+  color: var(--color-accent);
+  opacity: 0.6;
+}
+
+.empty-state--search .empty-state__title {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-lg);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+}
+
+/* --------------------------------------------------------------------------
+   Bordered Variant (.empty-state--bordered)
+   Adds border around the entire empty state
+   -------------------------------------------------------------------------- */
+.empty-state--bordered {
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   Panel Variant (.empty-state--panel)
+   Elevated panel style
+   -------------------------------------------------------------------------- */
+.empty-state--panel {
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-panel);
+  box-shadow: var(--shadow-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Minimal Variant (.empty-state--minimal)
+   Reduced visual weight
+   -------------------------------------------------------------------------- */
+.empty-state--minimal {
+  padding: var(--space-6);
+}
+
+.empty-state--minimal .empty-state__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: var(--space-3);
+  color: var(--color-text-secondary);
+}
+
+.empty-state--minimal .empty-state__title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.empty-state--minimal .empty-state__description {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Error Variant (.empty-state--error)
+   For error/empty error states
+   -------------------------------------------------------------------------- */
+.empty-state--error .empty-state__icon {
+  color: var(--color-danger);
+}
+
+.empty-state--error .empty-state__title {
+  color: var(--color-danger);
+}
+
+/* --------------------------------------------------------------------------
+   Success Variant (.empty-state--success)
+   For success/complete states
+   -------------------------------------------------------------------------- */
+.empty-state--success .empty-state__icon {
+  color: var(--color-success);
+}
+
+.empty-state--success .empty-state__title {
+  color: var(--color-success);
+}
+
+/* --------------------------------------------------------------------------
+   Warning Variant (.empty-state--warning)
+   For warning states
+   -------------------------------------------------------------------------- */
+.empty-state--warning .empty-state__icon {
+  color: var(--color-warning);
+}
+
+.empty-state--warning .empty-state__title {
+  color: var(--color-warning);
+}
+
+/* --------------------------------------------------------------------------
+   Info Variant (.empty-state--info)
+   For informational empty states
+   -------------------------------------------------------------------------- */
+.empty-state--info .empty-state__icon {
+  color: var(--color-info);
+}
+
+.empty-state--info .empty-state__title {
+  color: var(--color-info);
+}
+
+/* ==========================================================================
+   Empty State Sizes (.empty-state--small, .empty-state--large)
+   ========================================================================== */
+
+/* Small Size */
+.empty-state--small {
+  padding: var(--space-6);
+}
+
+.empty-state--small .empty-state__icon {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: var(--space-4);
+}
+
+.empty-state--small .empty-state__title {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-2);
+}
+
+.empty-state--small .empty-state__description {
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-4);
+}
+
+/* Large Size */
+.empty-state--large {
+  padding: var(--space-12);
+}
+
+.empty-state--large .empty-state__icon {
+  width: 5rem;
+  height: 5rem;
+  margin-bottom: var(--space-8);
+}
+
+.empty-state--large .empty-state__illustration {
+  max-width: 360px;
+  margin-bottom: var(--space-8);
+}
+
+.empty-state--large .empty-state__title {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-4);
+}
+
+.empty-state--large .empty-state__description {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-8);
+  max-width: 480px;
+}
+
+/* ==========================================================================
+   Empty State with Dashed Border (.empty-state--dashed)
+   ========================================================================== */
+
+.empty-state--dashed {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: transparent;
+}
+
+.empty-state--dashed.empty-state--compact {
+  border-width: 1px;
+}
+
+/* ==========================================================================
+   Empty State Horizontal Layout (.empty-state--horizontal)
+   ========================================================================== */
+
+.empty-state--horizontal {
+  flex-direction: row;
+  text-align: left;
+  gap: var(--space-6);
+}
+
+.empty-state--horizontal .empty-state__icon {
+  margin-bottom: 0;
+}
+
+.empty-state--horizontal .empty-state__illustration {
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.empty-state--horizontal .empty-state__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.empty-state--horizontal .empty-state__title {
+  margin-bottom: var(--space-2);
+}
+
+.empty-state--horizontal .empty-state__description {
+  margin-bottom: var(--space-4);
+  max-width: none;
+}
+
+.empty-state--horizontal.empty-state--compact {
+  gap: var(--space-4);
+}
+
+.empty-state--horizontal.empty-state--compact .empty-state__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* ==========================================================================
+   Empty State with Accent Glow (.empty-state--glow)
+   ========================================================================== */
+
+.empty-state--glow {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-glow-accent-subtle);
+}
+
+.empty-state--glow .empty-state__icon {
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   Empty State Accessibility
+   ========================================================================== */
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .empty-state,
+  .empty-state__icon,
+  .empty-state__illustration {
+    transition: none;
+  }
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+  .empty-state--bordered,
+  .empty-state--panel,
+  .empty-state--illustration .empty-state__illustration {
+    border-width: 2px;
+  }
+
+  .empty-state--dashed {
+    border-width: 3px;
+  }
+}
+
+/* Focus visible for interactive empty states */
+.empty-state[tabindex]:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--color-bg-primary),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-accent);
+}

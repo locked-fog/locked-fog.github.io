@@ -1,0 +1,232 @@
+/**
+ * =============================================================================
+ * AIRIS Design Tokens
+ * =============================================================================
+ * Canonical source for all design tokens
+ * Uses --airis-* prefix as the single source of truth
+ * 
+ * Legacy aliases (--color-*, --space-*, etc.) are in legacy-aliases.css
+ * =============================================================================
+ */
+
+:root {
+  /* ==========================================================================
+     A. COLOR SYSTEM
+     ========================================================================== */
+  
+  /* --- A1. Neutral Hierarchy --- */
+  --airis-bg-primary: #0a0a0a;
+  --airis-bg-secondary: #111111;
+  --airis-bg-elevated: #1a1a1a;
+  --airis-bg-hover: #222222;
+  --airis-bg-active: #2a2a2a;
+  
+  /* Panel variants */
+  --airis-panel: #0f0f0f;
+  --airis-panel-elevated: #161616;
+  --airis-panel-border: #2a2a2a;
+  
+  /* --- A2. Text Hierarchy --- */
+  --airis-text-primary: #e5e5e5;
+  --airis-text-secondary: #999999;
+  --airis-text-tertiary: #666666;
+  --airis-text-inverse: #0a0a0a;
+  
+  /* --- A3. Border Hierarchy --- */
+  --airis-border: #2a2a2a;
+  --airis-border-hover: #3a3a3a;
+  --airis-border-focus: #4a4a4a;
+  
+  /* --- A4. Accent Families --- */
+  --airis-accent: #ccff00;
+  --airis-accent-hover: #b3e600;
+  --airis-accent-subtle: rgba(204, 255, 0, 0.1);
+  --airis-accent-muted: rgba(204, 255, 0, 0.4);
+  
+  --airis-accent-cyan: #0891b2;
+  --airis-accent-cyan-hover: #0e7490;
+  --airis-accent-cyan-subtle: rgba(8, 145, 178, 0.1);
+  
+  /* --- A5. Semantic Colors --- */
+  --airis-success: #22c55e;
+  --airis-success-hover: #16a34a;
+  --airis-success-subtle: rgba(34, 197, 94, 0.1);
+  
+  --airis-warning: #f97316;
+  --airis-warning-hover: #ea580c;
+  --airis-warning-subtle: rgba(249, 115, 22, 0.1);
+  
+  --airis-danger: #dc2626;
+  --airis-danger-hover: #b91c1c;
+  --airis-danger-subtle: rgba(220, 38, 38, 0.1);
+  
+  --airis-info: #6366f1;
+  --airis-info-hover: #4f46e5;
+  --airis-info-subtle: rgba(99, 102, 241, 0.1);
+  
+  /* --- A6. Glow Effects --- */
+  --airis-glow: rgba(204, 255, 0, 0.15);
+  --airis-glow-intense: rgba(204, 255, 0, 0.25);
+  
+  --airis-glow-cyan: rgba(8, 145, 178, 0.15);
+  --airis-glow-cyan-intense: rgba(8, 145, 178, 0.25);
+  
+  /* --- A7. Classification Palette --- */
+  --airis-class-1: #666666;
+  --airis-class-2: #999999;
+  --airis-class-3: #ccff00;
+  --airis-class-4: #f97316;
+  --airis-class-5: #dc2626;
+
+  /* ==========================================================================
+     B. STRUCTURAL STYLE
+     ========================================================================== */
+  
+  /* --- B1. Edge Treatment --- */
+  --airis-radius-none: 0;
+  --airis-radius-sm: 0;
+  --airis-radius-md: 0;
+  --airis-radius-lg: 0;
+  --airis-radius-full: 0;
+  --airis-chamfer-size: 12px;
+  
+  /* --- B2. Border Logic --- */
+  --airis-line-thin: 1px;
+  --airis-line-medium: 2px;
+  --airis-line-thick: 3px;
+  --airis-line-thicker: 4px;
+  
+  /* --- B3. Corner Treatment --- */
+  --airis-bracket-size: 16px;
+  --airis-bracket-thickness: 2px;
+
+  /* ==========================================================================
+     C. TYPOGRAPHY
+     ========================================================================== */
+  
+  /* --- C1. Font Families --- */
+  --airis-font-display: 'IBM Plex Sans', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  --airis-font-body: 'IBM Plex Sans', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  --airis-font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+  
+  /* --- C2. Font Sizes --- */
+  --airis-text-2xs: 0.625rem;
+  --airis-text-xs: 0.6875rem;
+  --airis-text-sm: 0.8125rem;
+  --airis-text-base: 0.9375rem;
+  --airis-text-lg: 1.125rem;
+  --airis-text-xl: 1.5rem;
+  --airis-text-2xl: 2rem;
+  --airis-text-3xl: 2.5rem;
+  --airis-text-4xl: 3.5rem;
+  
+  /* --- C3. Line Heights --- */
+  --airis-leading-tight: 1.1;
+  --airis-leading-snug: 1.25;
+  --airis-leading-normal: 1.5;
+  --airis-leading-relaxed: 1.75;
+  
+  /* --- C4. Letter Spacing --- */
+  --airis-tracking-tighter: -0.03em;
+  --airis-tracking-tight: -0.02em;
+  --airis-tracking-normal: 0;
+  --airis-tracking-wide: 0.025em;
+  --airis-tracking-wider: 0.05em;
+  --airis-tracking-widest: 0.1em;
+
+  /* ==========================================================================
+     D. DECORATIVE SYNTAX
+     ========================================================================== */
+  
+  --airis-control-line-color: var(--airis-text-tertiary);
+  --airis-control-line-weight: 1px;
+  
+  --airis-signal-line-color: var(--airis-accent);
+  --airis-signal-line-weight: 2px;
+  
+  --airis-frame-line-color: var(--airis-border);
+  --airis-frame-line-weight: 1px;
+  
+  --airis-divider-color: var(--airis-border);
+  --airis-divider-weight: 1px;
+  
+  --airis-class-marker-width: 3px;
+  --airis-class-marker-gap: 2px;
+  
+  /* Classification Bar */
+  --airis-bar-class-width: 3px;
+  --airis-bar-class-gap: 2px;
+  --airis-bar-class-height: 12px;
+  
+  /* Stripe */
+  --airis-stripe-width-thin: 2px;
+  --airis-stripe-width-thick: 4px;
+  
+  /* Contour */
+  --airis-contour-spacing: 8px;
+  --airis-contour-opacity: 0.08;
+
+  /* ==========================================================================
+     E. TEXTURE/ATMOSPHERIC
+     ========================================================================== */
+  
+  /* Dot Field */
+  --airis-dot-size: 2px;
+  --airis-dot-spacing: 8px;
+  --airis-dot-opacity: 0.15;
+  
+  /* Hatch Zone */
+  --airis-hatch-angle: 45deg;
+  --airis-hatch-spacing: 6px;
+  --airis-hatch-opacity: 0.08;
+  
+  /* Scan Texture */
+  --airis-scan-line-height: 2px;
+  --airis-scan-gap: 2px;
+  --airis-scan-opacity: 0.03;
+
+  /* ==========================================================================
+     F. SPACING SYSTEM
+     ========================================================================== */
+  
+  --airis-space-1: 0.25rem;
+  --airis-space-2: 0.5rem;
+  --airis-space-3: 0.75rem;
+  --airis-space-4: 1rem;
+  --airis-space-5: 1.25rem;
+  --airis-space-6: 1.5rem;
+  --airis-space-8: 2rem;
+  --airis-space-10: 2.5rem;
+  --airis-space-12: 3rem;
+  --airis-space-16: 4rem;
+
+  /* ==========================================================================
+     G. MOTION SYSTEM
+     ========================================================================== */
+  
+  /* Timing */
+  --airis-duration-instant: 50ms;
+  --airis-duration-fast: 150ms;
+  --airis-duration-base: 200ms;
+  --airis-duration-slow: 300ms;
+  
+  /* Easing */
+  --airis-ease-linear: linear;
+  --airis-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --airis-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --airis-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ==========================================================================
+     H. Z-INDEX SCALE
+     ========================================================================== */
+  
+  --airis-z-base: 0;
+  --airis-z-dropdown: 100;
+  --airis-z-sticky: 200;
+  --airis-z-fixed: 300;
+  --airis-z-modal-backdrop: 400;
+  --airis-z-modal: 500;
+  --airis-z-popover: 600;
+  --airis-z-tooltip: 700;
+  --airis-z-toast: 800;
+}

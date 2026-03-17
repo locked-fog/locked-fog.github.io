@@ -1,0 +1,711 @@
+/**
+ * =============================================================================
+ * Dashboard Page Styles - Example/Overview Page
+ * =============================================================================
+ * AIRIS — Axiom Industries Render Interface System
+ * Industrial/Tactical Dark Theme
+ * =============================================================================
+ * 
+ * This file demonstrates a complete dashboard implementation using the AIRIS
+ * design system components and tokens.
+ * 
+ * Structure:
+ *   - Page Header (breadcrumb, title, actions)
+ *   - Stats Grid (4 stat cards)
+ *   - Main Content Grid (2-column panels)
+ *   - Data Table (recent activity)
+ */
+
+/* ==========================================================================
+   Page Container
+   ========================================================================== */
+
+.dashboard {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  
+  /* Animation */
+  animation: dashboard-fade-in var(--animation-fade-in) var(--ease-out);
+}
+
+@keyframes dashboard-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Page Header Section
+   ========================================================================== */
+
+.dashboard__header {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  
+  /* Box Model */
+  padding-bottom: var(--space-4);
+  border-bottom: var(--line-thin) solid var(--color-border);
+}
+
+/* Breadcrumb Navigation */
+.dashboard__breadcrumb {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  /* Typography */
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+}
+
+.dashboard__breadcrumb-item {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  /* Typography */
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  
+  /* Transitions */
+  transition: color var(--transition-fast);
+}
+
+.dashboard__breadcrumb-item:hover {
+  color: var(--color-accent);
+}
+
+.dashboard__breadcrumb-item--current {
+  color: var(--color-text-tertiary);
+  pointer-events: none;
+}
+
+.dashboard__breadcrumb-separator {
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-xs);
+}
+
+/* Header Content Row */
+.dashboard__header-row {
+  /* Layout */
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+/* Page Title Group */
+.dashboard__title-group {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.dashboard__title {
+  /* Typography */
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.dashboard__subtitle {
+  /* Typography */
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Header Actions */
+.dashboard__header-actions {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Stats Grid Section
+   ========================================================================== */
+
+.dashboard__stats {
+  /* Layout */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 1200px) {
+  .dashboard__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard__stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Stat Card Component (Inline) */
+.stat-card {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  
+  /* Box Model */
+  padding: var(--space-4);
+  
+  /* Visual */
+  background-color: var(--color-panel);
+  border: var(--line-thin) solid var(--color-border);
+  
+  /* Transitions */
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.stat-card:hover {
+  border-color: var(--color-border-hover);
+  background-color: var(--color-panel-elevated);
+}
+
+/* Stat Card Header */
+.stat-card__header {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.stat-card__label {
+  /* Typography */
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+  color: var(--color-text-tertiary);
+}
+
+.stat-card__trend {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  
+  /* Typography */
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+}
+
+.stat-card__trend--up {
+  color: var(--color-success);
+}
+
+.stat-card__trend--down {
+  color: var(--color-danger);
+}
+
+.stat-card__trend--neutral {
+  color: var(--color-text-tertiary);
+}
+
+/* Stat Card Value */
+.stat-card__value {
+  /* Typography */
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.stat-card__value--accent {
+  color: var(--color-accent);
+  text-shadow: 0 0 20px var(--color-accent-glow);
+}
+
+/* Stat Card Footer */
+.stat-card__footer {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  
+  /* Box Model */
+  padding-top: var(--space-3);
+  border-top: var(--line-thin) solid var(--color-border);
+}
+
+.stat-card__meta {
+  /* Typography */
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-2xs);
+  color: var(--color-text-tertiary);
+}
+
+.stat-card__icon {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  
+  /* Visual */
+  background-color: var(--color-accent-subtle);
+  border: var(--line-thin) solid var(--color-accent-muted);
+  
+  /* Typography */
+  color: var(--color-accent);
+  font-size: var(--font-size-md);
+}
+
+/* Stat Card Variants */
+.stat-card--highlight {
+  border-color: var(--color-accent);
+  border-width: var(--line-medium);
+}
+
+.stat-card--highlight:hover {
+  border-color: var(--color-accent-hover);
+  box-shadow: 0 0 20px var(--color-accent-glow);
+}
+
+.stat-card--warning {
+  border-left: var(--line-thicker) solid var(--color-warning);
+}
+
+.stat-card--danger {
+  border-left: var(--line-thicker) solid var(--color-danger);
+}
+
+.stat-card--success {
+  border-left: var(--line-thicker) solid var(--color-success);
+}
+
+/* ==========================================================================
+   Main Content Grid
+   ========================================================================== */
+
+.dashboard__grid {
+  /* Layout */
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-6);
+}
+
+/* Grid Column Utilities */
+.dashboard__col-8 {
+  grid-column: span 8;
+}
+
+.dashboard__col-4 {
+  grid-column: span 4;
+}
+
+.dashboard__col-6 {
+  grid-column: span 6;
+}
+
+.dashboard__col-12 {
+  grid-column: span 12;
+}
+
+@media (max-width: 1024px) {
+  .dashboard__col-8,
+  .dashboard__col-4,
+  .dashboard__col-6 {
+    grid-column: span 12;
+  }
+}
+
+/* ==========================================================================
+   Dashboard Panel Overrides
+   ========================================================================== */
+
+.dashboard__panel {
+  /* Ensure panels in dashboard have consistent height */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard__panel .panel__body {
+  flex: 1;
+}
+
+/* Activity Panel Specific */
+.dashboard__panel--activity .panel__body {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ==========================================================================
+   Activity List Component (Inline)
+   ========================================================================== */
+
+.activity-list {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.activity-item {
+  /* Layout */
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  
+  /* Box Model */
+  padding: var(--space-3);
+  
+  /* Visual */
+  background-color: var(--color-bg-secondary);
+  border: var(--line-thin) solid var(--color-border);
+  
+  /* Transitions */
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.activity-item:hover {
+  background-color: var(--color-bg-hover);
+  border-color: var(--color-border-hover);
+}
+
+.activity-item__icon {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  
+  /* Visual */
+  background-color: var(--color-bg-elevated);
+  
+  /* Typography */
+  color: var(--color-accent);
+}
+
+.activity-item__icon--success {
+  color: var(--color-success);
+}
+
+.activity-item__icon--warning {
+  color: var(--color-warning);
+}
+
+.activity-item__icon--danger {
+  color: var(--color-danger);
+}
+
+.activity-item__content {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  flex: 1;
+  min-width: 0; /* Prevent flex overflow */
+}
+
+.activity-item__title {
+  /* Typography */
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.activity-item__description {
+  /* Typography */
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  margin: 0;
+  
+  /* Text truncation */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.activity-item__meta {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  /* Typography */
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-2xs);
+  color: var(--color-text-tertiary);
+}
+
+.activity-item__time::before {
+  content: '//';
+  margin-right: var(--space-1);
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   Quick Stats Component (Inline)
+   ========================================================================== */
+
+.quick-stats {
+  /* Layout */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.quick-stat {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  
+  /* Box Model */
+  padding: var(--space-3);
+  
+  /* Visual */
+  background-color: var(--color-bg-secondary);
+  border: var(--line-thin) solid var(--color-border);
+}
+
+.quick-stat__label {
+  /* Typography */
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-2xs);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+  color: var(--color-text-tertiary);
+}
+
+.quick-stat__value {
+  /* Typography */
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.quick-stat__value--accent {
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   Dashboard Table Overrides
+   ========================================================================== */
+
+.dashboard__table-wrapper {
+  /* Ensure table fits within panel */
+  margin: calc(-1 * var(--space-4));
+  margin-top: 0;
+  border: none;
+  border-top: var(--line-thin) solid var(--color-border);
+}
+
+.dashboard__table {
+  /* Remove outer borders since wrapper handles it */
+  border: none;
+}
+
+.dashboard__table .table__header:first-child,
+.dashboard__table .table__cell:first-child {
+  padding-left: var(--space-4);
+}
+
+.dashboard__table .table__header:last-child,
+.dashboard__table .table__cell:last-child {
+  padding-right: var(--space-4);
+}
+
+/* ==========================================================================
+   Status Badge Integration
+   ========================================================================== */
+
+.dashboard__status {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.dashboard__status-indicator {
+  /* Layout */
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  
+  /* Visual */
+  background-color: var(--color-text-tertiary);
+  box-shadow: 0 0 8px currentColor;
+}
+
+.dashboard__status-indicator--online {
+  background-color: var(--color-success);
+  box-shadow: 0 0 8px var(--color-success);
+}
+
+.dashboard__status-indicator--warning {
+  background-color: var(--color-warning);
+  box-shadow: 0 0 8px var(--color-warning);
+}
+
+.dashboard__status-indicator--offline {
+  background-color: var(--color-danger);
+  box-shadow: 0 0 8px var(--color-danger);
+}
+
+.dashboard__status-text {
+  /* Typography */
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   Section Spacing
+   ========================================================================== */
+
+.dashboard__section {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.dashboard__section-header {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.dashboard__section-title {
+  /* Typography */
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.dashboard__section-actions {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .dashboard__header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .dashboard__header-actions {
+    width: 100%;
+  }
+  
+  .dashboard__header-actions .btn {
+    flex: 1;
+  }
+  
+  .stat-card__value {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .dashboard__table-wrapper {
+    margin: calc(-1 * var(--space-3));
+    margin-top: 0;
+  }
+  
+  .dashboard__table .table__header:first-child,
+  .dashboard__table .table__cell:first-child {
+    padding-left: var(--space-3);
+  }
+  
+  .dashboard__table .table__header:last-child,
+  .dashboard__table .table__cell:last-child {
+    padding-right: var(--space-3);
+  }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard {
+    animation: none;
+  }
+  
+  .stat-card,
+  .activity-item {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+  .dashboard {
+    background: white;
+    color: black;
+  }
+  
+  .stat-card,
+  .dashboard__panel,
+  .activity-item {
+    border: 1px solid #ccc;
+    break-inside: avoid;
+  }
+  
+  .dashboard__header-actions,
+  .dashboard__section-actions {
+    display: none;
+  }
+}

@@ -1,0 +1,51 @@
+/**
+ * AIRIS Framework
+ * Complete CSS framework for industrial tactical interfaces
+ */
+
+@import './tokens/index.css';
+
+@import './base/reset.css';
+@import './base/global.css';
+
+@import './components/typography.css';
+
+@import './components/button.css';
+
+@import './components/toggle.css';
+@import './components/checkbox.css';
+@import './components/radio.css';
+@import './components/slider.css';
+@import './components/input.css';
+@import './components/select.css';
+@import './components/textarea.css';
+
+@import './components/navbar.css';
+@import './components/sidebar.css';
+@import './components/statusbar.css';
+@import './components/app-shell.css';
+@import './components/breadcrumb.css';
+
+@import './components/panel.css';
+@import './components/section-header.css';
+
+@import './components/tooltip.css';
+@import './components/footnote.css';
+@import './components/dialog.css';
+@import './components/drawer.css';
+@import './components/alert.css';
+@import './components/toast.css';
+
+@import './components/table.css';
+@import './components/tabs.css';
+
+@import './components/classification-bar.css';
+@import './components/micro-label.css';
+@import './components/empty-state.css';
+@import './components/spinner.css';
+
+:root {
+  --airis-version: "1.0.0";
+  --airis-framework-name: "AIRIS — Axiom Industries Render Interface System";
+  --airis-build-date: "2024";
+}

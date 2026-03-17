@@ -1,0 +1,280 @@
+/**
+ * =============================================================================
+ * Micro Label Component
+ * =============================================================================
+ * Industrial/Tactical Dark Theme
+ * BEM Methodology: .micro-label, .micro-label--modifier
+ * =============================================================================
+ * 
+ * Usage:
+ *   - Column headers in tables
+ *   - Field labels in forms
+ *   - Status indicators
+ *   - Timestamps
+ *   - Metadata
+ */
+
+/* ==========================================================================
+   Base Micro Label (.micro-label)
+   ========================================================================== */
+
+.micro-label {
+  /* Typography */
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  
+  /* Visual */
+  color: var(--color-text-tertiary);
+  
+  /* Reset */
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  
+  /* Performance */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   Color Variants (.micro-label--*)
+   ========================================================================== */
+
+/**
+ * Accent Color
+ * For highlighting important labels
+ */
+.micro-label--accent {
+  color: var(--color-accent);
+}
+
+/**
+ * Success Color
+ * For positive/complete states
+ */
+.micro-label--success {
+  color: var(--color-success);
+}
+
+/**
+ * Warning Color
+ * For caution/attention states
+ */
+.micro-label--warning {
+  color: var(--color-warning);
+}
+
+/**
+ * Danger Color
+ * For error/critical states
+ */
+.micro-label--danger {
+  color: var(--color-danger);
+}
+
+/**
+ * Inverted Color
+ * For use on dark backgrounds
+ */
+.micro-label--inverted {
+  color: var(--color-text-inverse);
+}
+
+/* ==========================================================================
+   Size Variants (.micro-label--*)
+   ========================================================================== */
+
+/**
+ * Large Size
+ * Slightly larger for emphasis
+ */
+.micro-label--lg {
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.06em;
+}
+
+/**
+ * Small Size
+ * Smaller variant for dense UIs
+ */
+.micro-label--sm {
+  font-size: 0.5rem;  /* 8px - extra small */
+  letter-spacing: 0.1em;
+}
+
+/* ==========================================================================
+   Weight Variants (.micro-label--*)
+   ========================================================================== */
+
+/**
+ * Bold Weight
+ * For increased emphasis
+ */
+.micro-label--bold {
+  font-weight: var(--font-weight-bold);
+}
+
+/**
+ * Regular Weight
+ * For subtle labels
+ */
+.micro-label--regular {
+  font-weight: var(--font-weight-regular);
+}
+
+/* ==========================================================================
+   State Modifiers (.micro-label--*)
+   ========================================================================== */
+
+/**
+ * Muted State
+ * Reduces opacity for less emphasis
+ */
+.micro-label--muted {
+  opacity: 0.6;
+}
+
+/**
+ * Disabled State
+ * For inactive/unavailable labels
+ */
+.micro-label--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Layout Utilities (.micro-label--*)
+   ========================================================================== */
+
+/**
+ * Block Display
+ * Full width label
+ */
+.micro-label--block {
+  display: block;
+}
+
+/**
+ * Centered Alignment
+ */
+.micro-label--center {
+  text-align: center;
+}
+
+/**
+ * Right Alignment
+ */
+.micro-label--right {
+  text-align: right;
+}
+
+/**
+ * Truncated Text
+ * Single line with ellipsis
+ */
+.micro-label--truncate {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Combination Patterns
+   ========================================================================== */
+
+/**
+ * Label with icon support
+ * Use with an icon element inside
+ */
+.micro-label--with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.micro-label--with-icon svg,
+.micro-label--with-icon .icon {
+  width: 0.875em;
+  height: 0.875em;
+  flex-shrink: 0;
+}
+
+/**
+ * Bordered Label
+ * Adds a subtle border for grouping
+ */
+.micro-label--bordered {
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+/**
+ * Padded Label
+ * Adds padding without border
+ */
+.micro-label--padded {
+  padding: var(--space-1) var(--space-2);
+}
+
+/* ==========================================================================
+   Contextual Modifiers
+   ========================================================================== */
+
+/**
+ * Table Header Context
+ * Optimized for column headers
+ */
+.micro-label--table-header {
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/**
+ * Form Label Context
+ * Optimized for form field labels
+ */
+.micro-label--form-label {
+  margin-bottom: var(--space-1);
+  display: block;
+}
+
+/**
+ * Status Context
+ * Optimized for status indicators
+ */
+.micro-label--status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.micro-label--status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background-color: currentColor;
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .micro-label--responsive {
+    font-size: calc(var(--font-size-2xs) * 0.9);
+    letter-spacing: 0.06em;
+  }
+  
+  .micro-label--lg.micro-label--responsive {
+    font-size: var(--font-size-2xs);
+  }
+}

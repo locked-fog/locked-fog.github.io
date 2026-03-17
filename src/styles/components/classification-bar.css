@@ -1,0 +1,333 @@
+/**
+ * =============================================================================
+ * Classification Bar Component
+ * =============================================================================
+ * Clean Tech UI Framework
+ * BEM Methodology: .classification-bar, .classification-bar--modifier,
+ * .classification-bar__element
+ * =============================================================================
+ *
+ * Visual indicator showing security/priority classification levels (1-5).
+ * Used in tactical interfaces to indicate threat level, security clearance,
+ * or priority status.
+ *
+ * Usage:
+ *   <div class="classification-bar classification-bar--3">
+ *     <span class="classification-bar__segment"></span>
+ *     <span class="classification-bar__segment"></span>
+ *     <span class="classification-bar__segment"></span>
+ *     <span class="classification-bar__segment"></span>
+ *     <span class="classification-bar__segment"></span>
+ *   </div>
+ */
+
+/* ==========================================================================
+   Base Classification Bar (.classification-bar)
+   ========================================================================== */
+
+.classification-bar {
+  /* Reset */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  /* Layout - Vertical (default) */
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--bar-classification-gap, 2px);
+  align-items: flex-start;
+
+  /* Visual */
+  line-height: 0;
+}
+
+/* ==========================================================================
+   Classification Bar Segment (.classification-bar__segment)
+   ========================================================================== */
+
+.classification-bar__segment {
+  /* Layout */
+  display: block;
+  width: var(--bar-classification-width, 3px);
+  height: var(--bar-classification-height, 12px);
+  flex-shrink: 0;
+
+  /* Visual - Inactive state */
+  background-color: var(--color-text-tertiary);
+
+  /* Transitions */
+  transition:
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+/* ==========================================================================
+   Classification Level Variants (.classification-bar--1 to --5)
+   Each level activates segments 1 through N with appropriate colors
+   ========================================================================== */
+
+/* Level 1 - Minimal (Gray) */
+.classification-bar--1 .classification-bar__segment:nth-child(1) {
+  background-color: var(--color-classification-1);
+}
+
+/* Level 2 - Low (Light Gray) */
+.classification-bar--2 .classification-bar__segment:nth-child(1) {
+  background-color: var(--color-classification-1);
+}
+
+.classification-bar--2 .classification-bar__segment:nth-child(2) {
+  background-color: var(--color-classification-2);
+}
+
+/* Level 3 - Medium (Accent/Acid Yellow) */
+.classification-bar--3 .classification-bar__segment:nth-child(1) {
+  background-color: var(--color-classification-1);
+}
+
+.classification-bar--3 .classification-bar__segment:nth-child(2) {
+  background-color: var(--color-classification-2);
+}
+
+.classification-bar--3 .classification-bar__segment:nth-child(3) {
+  background-color: var(--color-classification-3);
+  box-shadow: 0 0 4px var(--color-accent-glow);
+}
+
+/* Level 4 - High (Warning/Orange) */
+.classification-bar--4 .classification-bar__segment:nth-child(1) {
+  background-color: var(--color-classification-1);
+}
+
+.classification-bar--4 .classification-bar__segment:nth-child(2) {
+  background-color: var(--color-classification-2);
+}
+
+.classification-bar--4 .classification-bar__segment:nth-child(3) {
+  background-color: var(--color-classification-3);
+}
+
+.classification-bar--4 .classification-bar__segment:nth-child(4) {
+  background-color: var(--color-classification-4);
+  box-shadow: 0 0 6px rgba(249, 115, 22, 0.4);
+}
+
+/* Level 5 - Critical (Danger/Red) */
+.classification-bar--5 .classification-bar__segment:nth-child(1) {
+  background-color: var(--color-classification-1);
+}
+
+.classification-bar--5 .classification-bar__segment:nth-child(2) {
+  background-color: var(--color-classification-2);
+}
+
+.classification-bar--5 .classification-bar__segment:nth-child(3) {
+  background-color: var(--color-classification-3);
+}
+
+.classification-bar--5 .classification-bar__segment:nth-child(4) {
+  background-color: var(--color-classification-4);
+}
+
+.classification-bar--5 .classification-bar__segment:nth-child(5) {
+  background-color: var(--color-classification-5);
+  box-shadow: 0 0 8px rgba(220, 38, 38, 0.5);
+}
+
+/* ==========================================================================
+   Orientation Variants
+   ========================================================================== */
+
+/* Vertical (default) - Bars stack bottom to top */
+.classification-bar--vertical {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Horizontal - Bars side by side, left to right */
+.classification-bar--horizontal {
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+/* ==========================================================================
+   Size Variants
+   ========================================================================== */
+
+/* Small Size (.classification-bar--sm) */
+.classification-bar--sm {
+  gap: calc(var(--bar-classification-gap, 2px) * 0.75);
+}
+
+.classification-bar--sm .classification-bar__segment {
+  width: calc(var(--bar-classification-width, 3px) * 0.75);
+  height: calc(var(--bar-classification-height, 12px) * 0.75);
+}
+
+/* Large Size (.classification-bar--lg) */
+.classification-bar--lg {
+  gap: calc(var(--bar-classification-gap, 2px) * 1.5);
+}
+
+.classification-bar--lg .classification-bar__segment {
+  width: calc(var(--bar-classification-width, 3px) * 1.5);
+  height: calc(var(--bar-classification-height, 12px) * 1.5);
+}
+
+/* ==========================================================================
+   Animation / Pulse States
+   ========================================================================== */
+
+/* Pulsing animation for critical/high levels */
+.classification-bar--pulse .classification-bar__segment:last-child {
+  animation: classification-bar-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes classification-bar-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Staggered pulse animation for all active segments */
+.classification-bar--pulse-all .classification-bar__segment {
+  animation: classification-bar-pulse 1.5s ease-in-out infinite;
+}
+
+.classification-bar--pulse-all .classification-bar__segment:nth-child(1) { animation-delay: 0ms; }
+.classification-bar--pulse-all .classification-bar__segment:nth-child(2) { animation-delay: 100ms; }
+.classification-bar--pulse-all .classification-bar__segment:nth-child(3) { animation-delay: 200ms; }
+.classification-bar--pulse-all .classification-bar__segment:nth-child(4) { animation-delay: 300ms; }
+.classification-bar--pulse-all .classification-bar__segment:nth-child(5) { animation-delay: 400ms; }
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .classification-bar--pulse .classification-bar__segment:last-child,
+  .classification-bar--pulse-all .classification-bar__segment {
+    animation: none;
+    opacity: 1;
+  }
+
+  .classification-bar__segment {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .classification-bar__segment {
+    border: 1px solid currentColor;
+  }
+
+  .classification-bar--3 .classification-bar__segment:nth-child(3),
+  .classification-bar--4 .classification-bar__segment:nth-child(4),
+  .classification-bar--5 .classification-bar__segment:nth-child(5) {
+    box-shadow: none;
+  }
+}
+
+/* Focus styles for interactive classification bars */
+.classification-bar[tabindex]:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+/* Inline display for embedding in text */
+.classification-bar--inline {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+/* No gap variant for tighter spacing */
+.classification-bar--tight {
+  gap: 1px;
+}
+
+/* Wide gap variant for more separation */
+.classification-bar--spaced {
+  gap: calc(var(--bar-classification-gap, 2px) * 2);
+}
+
+/* ==========================================================================
+   Identity Card Layout (.classification-bar--identity)
+   Horizontal layout for profile pages - personal identity display
+   ========================================================================== */
+
+.classification-bar--identity {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.classification-bar--identity .classification-bar__level {
+  font: var(--font-weight-bold) var(--font-size-xs) / 1 var(--font-family-mono);
+  letter-spacing: var(--letter-spacing-widest);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  min-width: 70px;
+}
+
+.classification-bar--identity .classification-bar__level span {
+  display: block;
+}
+
+.classification-bar--identity .classification-bar__segments {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-start;
+}
+
+.classification-bar--identity .classification-bar__segment {
+  width: var(--bar-classification-height, 12px);
+  height: var(--bar-classification-width, 3px);
+  flex-shrink: 0;
+}
+
+.classification-bar--identity .classification-bar__descriptor {
+  font: var(--font-weight-medium) var(--font-size-sm) / var(--line-height-normal) var(--font-family-sans);
+  color: var(--color-text-primary);
+  border-left: 1px solid var(--color-border);
+  padding-left: var(--space-4);
+  margin-left: var(--space-1);
+}
+
+/* Identity card level colors */
+.classification-bar--identity.classification-bar--1 .classification-bar__level { color: var(--color-classification-1); }
+.classification-bar--identity.classification-bar--2 .classification-bar__level { color: var(--color-classification-2); }
+.classification-bar--identity.classification-bar--3 .classification-bar__level { color: var(--color-classification-3); }
+.classification-bar--identity.classification-bar--4 .classification-bar__level { color: var(--color-classification-4); }
+.classification-bar--identity.classification-bar--5 .classification-bar__level { color: var(--color-classification-5); }
+
+/* Compact identity card */
+.classification-bar--identity.classification-bar--identity--compact {
+  padding: var(--space-2) var(--space-3);
+  gap: var(--space-3);
+}
+
+.classification-bar--identity.classification-bar--identity--compact .classification-bar__level {
+  font-size: var(--font-size-2xs);
+  min-width: 60px;
+}
+
+.classification-bar--identity.classification-bar--identity--compact .classification-bar__descriptor {
+  font-size: var(--font-size-xs);
+}

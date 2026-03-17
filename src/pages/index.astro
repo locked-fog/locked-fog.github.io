@@ -1,0 +1,80 @@
+---
+import { getCollection } from 'astro:content';
+import ClassificationBar from '../components/ClassificationBar.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { formatDate } from '../utils/date';
+
+const posts = (await getCollection('posts'))
+  .filter((post) => !post.data.draft || !import.meta.env.PROD)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const featured = posts[0];
+---
+
+<BaseLayout pageTitle="首页">
+  <section class="hero-grid">
+    <article class="panel panel--classified-4 panel--bracket-tr panel--bracket-bl hero-panel">
+      <span class="micro-label micro-label--accent">PRIMARY CHANNEL</span>
+      <h2>写文章就够了，其余交给构建流程。</h2>
+      <p>
+        这套博客已经预留了 Markdown 内容集合、LaTeX 公式渲染、AIRIS 风格化排版，以及 GitHub
+        Pages 的自动发布工作流。
+      </p>
+
+      <div class="hero-panel__actions">
+        <a class="btn btn--secondary" href="/about/">查看写作方式</a>
+        {featured && <a class="btn btn--primary" href={`/posts/${featured.id}/`}>打开示例文章</a>}
+      </div>
+    </article>
+
+    <aside class="panel panel--classified-3 hero-side">
+      <div class="section-header section-header--accent section-header--segmented">
+        <span class="section-header__label">STATUS</span>
+        <span class="section-header__line"></span>
+      </div>
+
+      <ul class="status-list">
+        <li>
+          <span>VISUAL SYSTEM</span>
+          <strong>AIRIS ACTIVE</strong>
+        </li>
+        <li>
+          <span>CONTENT INPUT</span>
+          <strong>MARKDOWN / LATEX</strong>
+        </li>
+        <li>
+          <span>PUBLISH TARGET</span>
+          <strong>GITHUB PAGES</strong>
+        </li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="panel panel--classified-2 panel--bracket-tr archive-panel">
+    <div class="section-header section-header--segmented section-header--accent">
+      <span class="section-header__label">ARCHIVE</span>
+      <span class="section-header__line"></span>
+    </div>
+
+    <div class="post-list">
+      {posts.map((post) => (
+        <article class={`post-card panel panel--classified-${post.data.classification}`}>
+          <div class="post-card__meta">
+            <ClassificationBar level={post.data.classification as 1 | 2 | 3 | 4 | 5} horizontal size="sm" />
+            <span>{formatDate(post.data.pubDate)}</span>
+          </div>
+
+          <h3><a href={`/posts/${post.id}/`}>{post.data.title}</a></h3>
+          <p>{post.data.description}</p>
+
+          <div class="post-card__footer">
+            <ul class="tag-list" aria-label="标签">
+              {post.data.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+            <a href={`/posts/${post.id}/`} class="post-card__link">READ ENTRY</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

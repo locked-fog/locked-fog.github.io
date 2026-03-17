@@ -4,10 +4,21 @@ import remarkMath from 'remark-math';
 
 const site = process.env.SITE_URL ?? 'https://locked-fog.github.io';
 
+function rehypeKatexWithDocumentMacros() {
+  return (tree, file) => {
+    const transform = rehypeKatex({
+      globalGroup: true,
+      macros: {},
+    });
+
+    return transform(tree, file);
+  };
+}
+
 export default defineConfig({
   site,
   markdown: {
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex],
+    rehypePlugins: [rehypeKatexWithDocumentMacros],
   },
 });

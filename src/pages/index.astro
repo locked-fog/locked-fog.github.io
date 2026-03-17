@@ -1,14 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
-import ClassificationBar from '../components/ClassificationBar.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { formatDate } from '../utils/date';
+import PostArchive from '../components/PostArchive.astro';
+import { getVisibleSortedPosts, POSTS_PER_PAGE } from '../utils/posts';
 
-const posts = (await getCollection('posts'))
-  .filter((post) => !post.data.draft || !import.meta.env.PROD)
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
-
+const allPosts = await getCollection('posts');
+const posts = getVisibleSortedPosts(allPosts, import.meta.env.PROD);
 const featured = posts[0];
+const pagePosts = posts.slice(0, POSTS_PER_PAGE);
+const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
 ---
 
 <BaseLayout pageTitle="首页">
@@ -47,35 +47,13 @@ const featured = posts[0];
           <span>PUBLISH TARGET</span>
           <strong>GITHUB PAGES</strong>
         </li>
+        <li>
+          <span>ARCHIVE SIZE</span>
+          <strong>{posts.length} POSTS</strong>
+        </li>
       </ul>
     </aside>
   </section>
 
-  <section class="panel panel--classified-2 panel--bracket-tl archive-panel">
-    <div class="section-header section-header--segmented section-header--accent">
-      <span class="section-header__label">ARCHIVE</span>
-      <span class="section-header__line"></span>
-    </div>
-
-    <div class="post-list">
-      {posts.map((post) => (
-        <article class={`post-card panel panel--classified-${post.data.classification}`}>
-          <div class="post-card__meta">
-            <ClassificationBar level={post.data.classification as 1 | 2 | 3 | 4 | 5} horizontal size="sm" />
-            <span>{formatDate(post.data.pubDate)}</span>
-          </div>
-
-          <h3><a href={`/posts/${post.id}/`}>{post.data.title}</a></h3>
-          <p>{post.data.description}</p>
-
-          <div class="post-card__footer">
-            <ul class="tag-list" aria-label="标签">
-              {post.data.tags.map((tag) => <li>{tag}</li>)}
-            </ul>
-            <a href={`/posts/${post.id}/`} class="post-card__link">READ ENTRY</a>
-          </div>
-        </article>
-      ))}
-    </div>
-  </section>
+  <PostArchive posts={pagePosts} currentPage={1} totalPages={totalPages} />
 </BaseLayout>

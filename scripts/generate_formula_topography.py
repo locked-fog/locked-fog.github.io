@@ -20,8 +20,8 @@ class ContourConfig:
     grid_width: int = 480
     grid_height: int = 270
     levels: int = 16
-    line_width: float = 1.6
-    alpha: float = 0.10
+    line_width: float = 2.5
+    alpha: float = 0.20
     color: str = "#686868"
     smooth_sigma: float = 1.2
     noise_scale: float = 1.0
@@ -40,8 +40,8 @@ def parse_args() -> ContourConfig:
     parser.add_argument("--grid-width", type=int, default=480)
     parser.add_argument("--grid-height", type=int, default=270)
     parser.add_argument("--levels", type=int, default=16)
-    parser.add_argument("--line-width", type=float, default=1.6)
-    parser.add_argument("--alpha", type=float, default=0.10)
+    parser.add_argument("--line-width", type=float, default=2.5)
+    parser.add_argument("--alpha", type=float, default=0.20)
     parser.add_argument("--color", default="#686868")
     parser.add_argument("--smooth-sigma", type=float, default=1.2)
     parser.add_argument(

@@ -14,7 +14,7 @@ const featured = posts[0];
 <BaseLayout pageTitle="首页">
   <section class="hero-grid">
     <article class="panel panel--classified-4 panel--bracket-tl panel--bracket-br hero-panel">
-      <span class="micro-label micro-label--accent">PRIMARY CHANNEL</span>
+      <span class="micro-label micro-label--accent">最新文章</span>
       <h2>写文章就够了，其余交给构建流程。</h2>
       <p>
         这套博客已经接入 Markdown 内容流、LaTeX 公式渲染、AIRIS 风格阅读排版，以及 GitHub Pages
@@ -22,8 +22,8 @@ const featured = posts[0];
       </p>
 
       <div class="hero-panel__actions">
+        {featured && <a class="btn btn--primary" href={`/posts/${featured.id}/`}>查看文章</a>}
         <a class="btn btn--secondary" href="/about/">查看写作方式</a>
-        {featured && <a class="btn btn--primary" href={`/posts/${featured.id}/`}>打开示例文章</a>}
       </div>
     </article>
 

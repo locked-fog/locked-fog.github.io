@@ -1,41 +1,125 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const profileTags = ['算法', '数学', '技术写作', 'Markdown / LaTeX', '静态站点'];
+
+const profileFields = [
+  ['公开称呼', 'Locked_Fog'],
+  ['一句简介', '待补充'],
+  ['主要关注', '待补充'],
+  ['所在地区 / 时区', '中国 / UTC+8'],
+  ['联系方式', 'GitHub Issues / 待补充邮箱'],
+];
+
+const siteFacts = [
+  ['视觉系统', 'AIRIS'],
+  ['内容入口', 'Markdown + LaTeX'],
+  ['站点框架', 'Astro'],
+  ['发布方式', 'GitHub Pages'],
+  ['开源协议', 'MIT License'],
+];
+
+const requiredInfo = [
+  '你希望公开显示的中文名、英文名，或固定署名方式。',
+  '一句最能代表你的简介，例如研究方向、职业身份或写作主题。',
+  '希望长期出现在“关于我”里的关键词，建议 3 到 6 个。',
+  '是否公开联系方式，例如邮箱、X、知乎、Bilibili、Telegram 等。',
+  '是否展示教育背景、机构、城市、工作方向；如果不想公开，可以留空。',
+  '你希望这个博客强调什么，例如算法题解、研究笔记、工程记录、随笔。',
+  '如果有个人理念或写作原则，可以给我 2 到 4 句原话，我会整理进页面。',
+];
 ---
 
-<BaseLayout pageTitle="关于">
-  <section class="content-stack">
-    <article class="panel panel--classified-3 panel--bracket-tl panel--bracket-br prose-panel">
-      <span class="micro-label micro-label--accent">WRITER MODE</span>
-      <h2>你的实际工作只需要两件事</h2>
+<BaseLayout
+  pageTitle="关于"
+  pageDescription="关于 Locked_Fog，以及这个博客的写作方式、技术栈与维护原则。"
+>
+  <section class="about-grid">
+    <article class="panel panel--classified-4 panel--bracket-tl panel--bracket-br prose-panel about-overview">
+      <span class="micro-label micro-label--accent">ABOUT OPERATOR</span>
+      <h2>关于我</h2>
+      <p class="about-overview__lead">
+        这里将作为你的正式个人说明页，回答“你是谁、你在写什么、为什么值得持续关注”。目前站点已经有了结构，
+        但个人内容还只填入了最小可用信息。
+      </p>
+
       <div class="prose">
-        <ol>
-          <li>在 <code>src/content/posts/</code> 里新建一个 Markdown 文件。</li>
-          <li>写 frontmatter、正文和公式，然后提交到 GitHub。</li>
-        </ol>
-
-        <p>不需要手动把 Markdown 转 HTML，也不需要提前把 LaTeX 公式截图或导出图片。</p>
-
-        <h3>推荐写作语法</h3>
-        <ul>
-          <li>行内公式：<code>$E = mc^2$</code></li>
-          <li>块级公式：<code>$$ ... $$</code></li>
-          <li>代码块：使用三个反引号包裹</li>
-          <li>脚注：使用 GitHub Flavored Markdown 的 <code>[^1]</code> 语法</li>
-        </ul>
-
-        <h3>文章模板位置</h3>
-        <p><code>src/content/posts/_template.md</code> 里已经放好了可复制的模板。</p>
+        <p>
+          现在已知的是：你以 <strong>Locked_Fog</strong> 作为公开身份，主要通过
+          <strong> Markdown / LaTeX </strong>写作，站点倾向于承载技术性、结构化、可长期归档的内容。
+          如果你愿意补充更明确的个人定位，我可以把这里收束成一段真正可信、专业的简介，而不是占位文本。
+        </p>
       </div>
+
+      <ul class="tag-list" aria-label="个人关键词">
+        {profileTags.map((tag) => <li>{tag}</li>)}
+      </ul>
     </article>
 
-    <article class="panel panel--classified-4 prose-panel">
-      <span class="micro-label">PUBLISHING</span>
-      <h2>第一次发布时的最简单选择</h2>
-      <div class="prose">
-        <p>最省事的做法是把仓库名直接建成 <code>&lt;你的 GitHub 用户名&gt;.github.io</code>。</p>
-        <p>这样部署地址就是站点根目录，不需要额外配置 Astro 的 <code>base</code>。</p>
-        <p>如果以后你再换成自定义域名，只需要在 <code>public/CNAME</code> 中加入域名，并到 GitHub Pages 设置里绑定即可。</p>
+    <aside class="panel panel--classified-2 about-side">
+      <div class="section-header section-header--accent section-header--segmented">
+        <span class="section-header__label">PROFILE</span>
+        <span class="section-header__line"></span>
       </div>
+
+      <ul class="status-list">
+        {profileFields.map(([label, value]) => (
+          <li>
+            <span>{label}</span>
+            <strong>{value}</strong>
+          </li>
+        ))}
+      </ul>
+
+      <div class="about-side__actions">
+        <a class="btn btn--primary" href="https://github.com/locked-fog" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="btn btn--secondary" href="/">返回首页</a>
+      </div>
+    </aside>
+  </section>
+
+  <section class="content-stack">
+    <article class="panel panel--classified-3 panel--bracket-tl panel--bracket-br prose-panel">
+      <span class="micro-label">ABOUT THIS SITE</span>
+      <h2>关于本页面</h2>
+      <div class="prose">
+        <p>
+          这个博客是一个以 <strong>Markdown</strong> 为入口、以 <strong>LaTeX</strong> 为数学表达层、以
+          <strong> GitHub Pages </strong>为发布目标的静态个人站点。它的目标不是做成信息流式的“新内容容器”，
+          而是更偏向于一个长期可维护的个人知识归档界面。
+        </p>
+
+        <p>
+          视觉上，这个页面继承了 AIRIS 的控制界面语言：克制的面板结构、分类条、材质纹理、以及较强的技术感。
+          功能上，它优先服务于长文阅读、数学公式、代码展示和可追溯发布。
+        </p>
+      </div>
+
+      <div class="section-header section-header--segmented">
+        <span class="section-header__label">SITE STACK</span>
+        <span class="section-header__line"></span>
+      </div>
+
+      <ul class="status-list">
+        {siteFacts.map(([label, value]) => (
+          <li>
+            <span>{label}</span>
+            <strong>{value}</strong>
+          </li>
+        ))}
+      </ul>
+    </article>
+
+    <article class="panel panel--classified-2 prose-panel about-checklist">
+      <span class="micro-label">NEXT INPUT</span>
+      <h2>为了把“关于我”写完整，你还需要告诉我这些</h2>
+      <div class="prose">
+        <p>你不需要一次性给很多资料。把下面这些内容按你愿意公开的程度告诉我，我就可以把页面改成正式版本。</p>
+      </div>
+
+      <ol class="about-checklist__list">
+        {requiredInfo.map((item) => <li>{item}</li>)}
+      </ol>
     </article>
   </section>
 </BaseLayout>

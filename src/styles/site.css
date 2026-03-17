@@ -264,6 +264,12 @@ body::before {
   gap: 24px;
 }
 
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.85fr);
+  gap: 24px;
+}
+
 .hero-panel,
 .prose-panel,
 .article-panel {
@@ -290,6 +296,43 @@ body::before {
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 24px;
+}
+
+.about-side {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+  padding: 24px;
+}
+
+.about-side__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.about-overview__lead {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+}
+
+.about-checklist {
+  display: grid;
+  gap: 16px;
+}
+
+.about-checklist__list {
+  margin: 0;
+  padding-left: 1.4rem;
+  display: grid;
+  gap: 12px;
+}
+
+.about-checklist__list li {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
 }
 
 .hero-side {
@@ -769,6 +812,7 @@ body::before {
 @media (max-width: 980px) {
   .site-frame,
   .hero-grid,
+  .about-grid,
   .article-grid {
     grid-template-columns: 1fr;
   }

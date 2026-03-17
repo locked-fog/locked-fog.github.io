@@ -97,5 +97,47 @@ const documentTitle = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
         </footer>
       </div>
     </div>
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        const blocks = document.querySelectorAll('.prose pre');
+
+        for (const pre of blocks) {
+          if (pre.parentElement?.classList.contains('code-block')) continue;
+
+          const code = pre.querySelector('code');
+          if (!code) continue;
+
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode?.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'btn btn--secondary btn--sm code-block__copy';
+          button.textContent = '复制';
+          button.setAttribute('aria-label', '复制代码');
+
+          button.addEventListener('click', async () => {
+            const text = code.textContent ?? '';
+
+            try {
+              await navigator.clipboard.writeText(text.replace(/\n$/, ''));
+              button.textContent = '已复制';
+              window.setTimeout(() => {
+                button.textContent = '复制';
+              }, 1600);
+            } catch {
+              button.textContent = '复制失败';
+              window.setTimeout(() => {
+                button.textContent = '复制';
+              }, 1600);
+            }
+          });
+
+          wrapper.appendChild(button);
+        }
+      });
+    </script>
   </body>
 </html>

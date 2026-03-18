@@ -46,6 +46,8 @@ body::before {
     rgba(0, 0, 0, 0.88) 100%
   );
   opacity: 0.9;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .site-background::before {

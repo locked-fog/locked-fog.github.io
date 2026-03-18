@@ -119,6 +119,20 @@ const documentTitle = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
           pre.parentNode?.insertBefore(wrapper, pre);
           wrapper.appendChild(pre);
 
+          // Get language from data-language attribute (Astro uses this)
+          const language = pre.getAttribute('data-language') || '';
+
+          // Create header bar
+          const header = document.createElement('div');
+          header.className = 'code-block__header';
+
+          if (language) {
+            const langLabel = document.createElement('span');
+            langLabel.className = 'code-block__lang';
+            langLabel.textContent = language;
+            header.appendChild(langLabel);
+          }
+
           const button = document.createElement('button');
           button.type = 'button';
           button.className = 'btn btn--secondary btn--sm code-block__copy';
@@ -142,7 +156,8 @@ const documentTitle = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
             }
           });
 
-          wrapper.appendChild(button);
+          header.appendChild(button);
+          wrapper.prepend(header);
         }
       });
     </script>
